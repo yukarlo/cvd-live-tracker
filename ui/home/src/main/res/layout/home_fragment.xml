@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="4dp"
+    tools:context=".HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/homeConfirmedCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/homeRecoveredCount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1,200,4331" />
+
+        <TextView
+            android:id="@+id/homeRecoveredCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/homeDeathCount"
+            app:layout_constraintStart_toEndOf="@+id/homeConfirmedCount"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/homeDeathCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/homeRecoveredCount"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1,200" />
+
+        <TextView
+            android:id="@+id/homeConfirmedTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirmed"
+            android:textColor="@color/yellow500"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/homeConfirmedCount"
+            app:layout_constraintStart_toStartOf="@+id/homeConfirmedCount"
+            app:layout_constraintTop_toBottomOf="@+id/homeConfirmedCount" />
+
+        <TextView
+            android:id="@+id/homeRecoveredTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recovered"
+            android:textSize="16sp"
+            android:textColor="@color/green500"
+            app:layout_constraintEnd_toEndOf="@+id/homeRecoveredCount"
+            app:layout_constraintStart_toStartOf="@+id/homeRecoveredCount"
+            app:layout_constraintTop_toBottomOf="@+id/homeRecoveredCount" />
+
+        <TextView
+            android:id="@+id/homeDeathTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/death"
+            android:textSize="16sp"
+            android:textColor="@color/red500"
+            app:layout_constraintEnd_toEndOf="@+id/homeDeathCount"
+            app:layout_constraintStart_toStartOf="@+id/homeDeathCount"
+            app:layout_constraintTop_toBottomOf="@+id/homeDeathCount" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

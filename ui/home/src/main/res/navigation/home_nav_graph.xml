@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph">
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.yukarlo.ui.home.HomeFragment"
+        android:label="Home Fragment 1"
+        tools:layout="@layout/home_fragment">
+    </fragment>
+</navigation>

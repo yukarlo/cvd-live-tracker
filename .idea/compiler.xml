@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="core" target="1.8" />
+      <module name="core.network" target="1.8" />
+      <module name="CoroNow.app" target="1.8" />
+      <module name="CoroNow.buildSrc" target="1.8" />
+      <module name="CoroNow.common-android" target="1.8" />
+      <module name="CoroNow.core" target="1.8" />
+      <module name="CoroNow.stack" target="1.8" />
+      <module name="CoroNow.stack.network" target="1.8" />
+      <module name="CoroNow.ui.home" target="1.8" />
+      <module name="stack" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
