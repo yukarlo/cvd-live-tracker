@@ -70,7 +70,7 @@
             android:id="@+id/homeDeathTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/death"
+            android:text="@string/deceased"
             android:textSize="16sp"
             android:textColor="@color/red500"
             app:layout_constraintEnd_toEndOf="@+id/homeDeathCount"

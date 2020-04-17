@@ -5,6 +5,8 @@ import com.yukarlo.core.CoroNowApplication
 import com.yukarlo.stack.network.di.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
+import okhttp3.OkHttpClient
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Component(
     modules = [
@@ -20,4 +22,10 @@ interface CoreComponent {
     fun inject(coroNowApplication: CoroNowApplication)
 
     fun provideContext(): Context
+
+    fun provideOkHttpClient(): OkHttpClient
+
+    fun provideMoshiConverterFactory(): MoshiConverterFactory
+
+    fun provideBaseUrl(): String
 }

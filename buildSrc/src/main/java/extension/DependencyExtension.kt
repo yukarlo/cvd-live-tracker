@@ -21,11 +21,11 @@ fun DependencyHandler.addDaggerDependencies() {
     kapt(LibraryDependency.DAGGER_COMPILER)
 }
 
-fun DependencyHandler.stackModule(moduleNotation: String) =
-    project(":stack:$moduleNotation")
+fun DependencyHandler.coreModule(moduleNotation: String) =
+    project(":core:$moduleNotation")
 
 fun DependencyHandler.libModule(moduleNotation: String) =
-    project(":lib-$moduleNotation")
+    project(":lib:$moduleNotation")
 
 fun DependencyHandler.featureModule(moduleNotation: String) =
     project(":ui:$moduleNotation")

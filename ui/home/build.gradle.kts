@@ -8,7 +8,10 @@ plugins {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(project(":core"))
     implementation(project(":common-android"))
+    implementation(libModule("cases"))
+    implementation(coreModule("network"))
 
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.APP_COMPACT)

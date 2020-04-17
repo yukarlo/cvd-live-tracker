@@ -71,12 +71,6 @@ class CoroNowPlugin : Plugin<Project> {
                 versionCode = AndroidConfig.VERSION_CODE
                 versionName = AndroidConfig.VERSION_NAME
                 testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
-
-                javaCompileOptions {
-                    annotationProcessorOptions {
-                        arguments(mapOf("room.schemaLocation" to "${project.projectDir}/schemas"))
-                    }
-                }
             }
 
             sourceSets.getByName("androidTest")
