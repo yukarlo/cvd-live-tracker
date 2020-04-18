@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.yukarlo.common.android.di.view.withNumberSeparator
 import com.yukarlo.core.di.CoreComponentFactory
+import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.lib.cases.data.model.CasesSummaryResponseModel
 import com.yukarlo.ui.home.databinding.HomeFragmentBinding
 import com.yukarlo.ui.home.di.DaggerUiHomeComponent
@@ -48,11 +50,11 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun populateData(data: CasesSummaryResponseModel) {
+    private fun populateData(data: CasesSummaryModel) {
         with(fragmentBinding) {
-            homeConfirmedCount.text = data.cases.toString()
-            homeDeathCount.text = data.deaths.toString()
-            homeRecoveredCount.text = data.recovered.toString()
+            homeConfirmedCount.text = data.totalCasesCount
+            homeDeceasedCount.text = data.totalDeceasedCount
+            homeRecoveredCount.text = data.totalRecoveredCount
         }
     }
 }

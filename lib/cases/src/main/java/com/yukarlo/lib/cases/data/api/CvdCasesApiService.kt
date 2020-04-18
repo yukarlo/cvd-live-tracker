@@ -2,6 +2,7 @@ package com.yukarlo.lib.cases.data.api
 
 import com.yukarlo.lib.cases.data.model.CasesCountriesResponseModel
 import com.yukarlo.lib.cases.data.model.CasesSummaryResponseModel
+import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 
 interface CvdCasesApiService {

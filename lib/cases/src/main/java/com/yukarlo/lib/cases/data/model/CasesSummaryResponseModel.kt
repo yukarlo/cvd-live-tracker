@@ -1,36 +1,37 @@
 package com.yukarlo.lib.cases.data.model
 
 import com.squareup.moshi.Json
+import com.yukarlo.stack.network.model.DataModel
 
 data class CasesSummaryResponseModel(
     @Json(name = "updated")
     val updated: Long,
 
-    @Json(name= "cases")
+    @Json(name = "cases")
     val cases: Long,
 
-    @Json(name= "todayCases")
+    @Json(name = "todayCases")
     val casesToday: Long,
 
-    @Json(name= "deaths")
+    @Json(name = "deaths")
     val deaths: Long,
 
-    @Json(name= "todayDeaths")
+    @Json(name = "todayDeaths")
     val deathsToday: Long,
 
-    @Json(name= "recovered")
+    @Json(name = "recovered")
     val recovered: Long,
 
-    @Json(name= "active")
+    @Json(name = "active")
     val active: Long,
 
-    @Json(name= "critical")
+    @Json(name = "critical")
     val critical: Long,
 
-    @Json(name= "tests")
+    @Json(name = "tests")
     val tests: Long,
 
-    @Json(name= "affectedCountries")
+    @Json(name = "affectedCountries")
     val affectedCountries: Long
-)
+) : DataModel
 
