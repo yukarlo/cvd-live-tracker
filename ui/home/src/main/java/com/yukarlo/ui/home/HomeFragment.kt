@@ -1,17 +1,15 @@
 package com.yukarlo.ui.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import com.yukarlo.common.android.di.view.withNumberSeparator
+import androidx.lifecycle.ViewModelProvider
 import com.yukarlo.core.di.CoreComponentFactory
 import com.yukarlo.core.domain.model.CasesSummaryModel
-import com.yukarlo.lib.cases.data.model.CasesSummaryResponseModel
+import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
 import com.yukarlo.ui.home.databinding.HomeFragmentBinding
 import com.yukarlo.ui.home.di.DaggerUiHomeComponent
 import javax.inject.Inject
@@ -32,7 +30,8 @@ class HomeFragment : Fragment() {
         DaggerUiHomeComponent.factory()
             .create(
                 homeFragment = this,
-                coreComponent = coreComponent
+                coreComponent = coreComponent,
+                libCvdCasesComponent = DaggerLibCvdCasesComponent.factory().create(coreComponent)
             )
             .inject(fragment = this)
 

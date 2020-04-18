@@ -2,7 +2,7 @@ package com.yukarlo.lib.cases.data.model
 
 import com.squareup.moshi.Json
 
-data class CountryInfo(
+internal data class CountryInfo(
     @Json(name = "flag")
     val flag: String,
 

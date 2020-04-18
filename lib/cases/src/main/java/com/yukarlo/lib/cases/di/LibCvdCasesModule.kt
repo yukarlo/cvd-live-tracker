@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
-abstract class CvdCasesModule {
+internal abstract class LibCvdCasesModule {
     @Binds
     abstract fun bindMovieRepository(
         mCvdCasesRepository: CvdCasesRepository

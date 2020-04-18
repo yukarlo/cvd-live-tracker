@@ -7,6 +7,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(coreModule("domain-model"))
     implementation(coreModule("network"))
 

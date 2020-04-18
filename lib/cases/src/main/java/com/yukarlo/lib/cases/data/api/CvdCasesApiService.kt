@@ -5,7 +5,7 @@ import com.yukarlo.lib.cases.data.model.CasesSummaryResponseModel
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 
-interface CvdCasesApiService {
+internal interface CvdCasesApiService {
     @GET("all")
     suspend fun getAll(): CasesSummaryResponseModel
 

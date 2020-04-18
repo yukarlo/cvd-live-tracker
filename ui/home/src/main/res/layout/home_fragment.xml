@@ -24,13 +24,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/homeDeathCount"
+        app:layout_constraintEnd_toStartOf="@+id/homeDeceasedCount"
         app:layout_constraintStart_toEndOf="@+id/homeConfirmedCount"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="100" />
 
     <TextView
-        android:id="@+id/homeDeathCount"
+        android:id="@+id/homeDeceasedCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -62,13 +62,13 @@
         app:layout_constraintTop_toBottomOf="@+id/homeRecoveredCount" />
 
     <TextView
-        android:id="@+id/homeDeathTitle"
+        android:id="@+id/homeDeceasedTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/deceased"
         android:textColor="@color/red300"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/homeDeathCount"
-        app:layout_constraintStart_toStartOf="@+id/homeDeathCount"
-        app:layout_constraintTop_toBottomOf="@+id/homeDeathCount" />
+        app:layout_constraintEnd_toEndOf="@+id/homeDeceasedCount"
+        app:layout_constraintStart_toStartOf="@+id/homeDeceasedCount"
+        app:layout_constraintTop_toBottomOf="@+id/homeDeceasedCount" />
 </androidx.constraintlayout.widget.ConstraintLayout>

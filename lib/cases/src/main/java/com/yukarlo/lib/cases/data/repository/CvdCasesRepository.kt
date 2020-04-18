@@ -8,11 +8,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class CvdCasesRepository @Inject constructor(
+internal class CvdCasesRepository @Inject constructor(
     private val mCvdCasesApiService: CvdCasesApiService
 ) : ICvdCasesRepository {
     override fun getSummary(): Flow<CasesSummaryModel> = flow {
         emit(CvdResponseConverter.convert(mCvdCasesApiService.getAll()))
     }
-
 }

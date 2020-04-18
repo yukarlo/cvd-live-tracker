@@ -2,7 +2,7 @@ package com.yukarlo.lib.cases.data.model
 
 import com.squareup.moshi.Json
 
-data class CasesCountryResponseModel(
+internal data class CasesCountryResponseModel(
     @Json(name = "updated")
     val updated: Int,
 

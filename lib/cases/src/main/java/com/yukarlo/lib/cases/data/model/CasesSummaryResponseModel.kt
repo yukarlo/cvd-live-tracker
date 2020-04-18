@@ -3,7 +3,7 @@ package com.yukarlo.lib.cases.data.model
 import com.squareup.moshi.Json
 import com.yukarlo.stack.network.model.DataModel
 
-data class CasesSummaryResponseModel(
+internal data class CasesSummaryResponseModel(
     @Json(name = "updated")
     val updated: Long,
 

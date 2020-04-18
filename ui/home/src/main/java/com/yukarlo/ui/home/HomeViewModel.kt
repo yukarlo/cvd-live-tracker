@@ -9,7 +9,7 @@ import com.yukarlo.lib.cases.domain.GetCvdCasesSummaryUseCase
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+internal class HomeViewModel @Inject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase
 ) : ViewModel() {
 
