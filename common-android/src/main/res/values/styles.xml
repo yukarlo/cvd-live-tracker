@@ -1,13 +1,13 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
-        <item name="colorPrimary">@color/gray1000</item>
-        <item name="colorPrimaryDark">@color/gray1000</item>
+        <item name="colorPrimary">@color/gray800</item>
+        <item name="colorPrimaryDark">@color/gray800</item>
         <item name="colorAccent">@color/teal200</item>
 
         <item name="android:textColor">@color/white50</item>
 
-        <item name="android:windowBackground">@color/gray1000</item>
+        <item name="android:windowBackground">@color/gray800</item>
 
         <item name="colorPrimarySurface">@color/gray500</item>
         <item name="colorOnPrimarySurface">@color/gray300</item>
