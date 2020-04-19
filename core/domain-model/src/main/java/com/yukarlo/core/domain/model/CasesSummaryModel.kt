@@ -6,5 +6,6 @@ data class CasesSummaryModel(
     val totalCasesCount: String,
     val totalDeceasedCount: String,
     val totalRecoveredCount: String,
+    val affectedCountries: String,
     val updatedSince: String
 ) : DomainModel

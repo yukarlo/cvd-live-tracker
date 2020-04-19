@@ -14,6 +14,7 @@ internal object CvdResponseConverter :
             totalCasesCount = numberFormat.format(input.cases),
             totalDeceasedCount = numberFormat.format(input.deaths),
             totalRecoveredCount = numberFormat.format(input.recovered),
+            affectedCountries = input.affectedCountries.toString(),
             updatedSince = DateUtils.getRelativeTimeSpanString(input.updated).toString()
         )
     }

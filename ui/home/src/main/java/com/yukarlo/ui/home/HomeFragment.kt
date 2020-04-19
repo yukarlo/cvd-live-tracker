@@ -54,8 +54,8 @@ class HomeFragment : Fragment() {
             homeConfirmedCount.text = data.totalCasesCount
             homeDeceasedCount.text = data.totalDeceasedCount
             homeRecoveredCount.text = data.totalRecoveredCount
-            homeUpdatedSince.text =
-                String.format(resources.getString(R.string.updated), data.updatedSince)
+            homeAffectedCountriesCount.text = data.affectedCountries
+            homeUpdatedSince.text = String.format(resources.getString(R.string.updated), data.updatedSince)
         }
     }
 }
