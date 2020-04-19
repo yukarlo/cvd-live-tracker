@@ -16,8 +16,10 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/common-android" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/stack" />
-            <option value="$PROJECT_DIR$/stack/network" />
+            <option value="$PROJECT_DIR$/core/domain-model" />
+            <option value="$PROJECT_DIR$/core/network" />
+            <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/lib/cases" />
             <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/ui/home" />
           </set>

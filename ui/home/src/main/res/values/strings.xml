@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="updated">Updated %1$s</string>
+    <string name="updated">Last Updated: %1$s</string>
+    <string name="summary">Summary</string>
+    <string name="affected_countries">Affected Countries</string>
 </resources>

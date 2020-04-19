@@ -8,6 +8,9 @@
       <module name="CoroNow.buildSrc" target="1.8" />
       <module name="CoroNow.common-android" target="1.8" />
       <module name="CoroNow.core" target="1.8" />
+      <module name="CoroNow.core.domain-model" target="1.8" />
+      <module name="CoroNow.core.network" target="1.8" />
+      <module name="CoroNow.lib.cases" target="1.8" />
       <module name="CoroNow.stack" target="1.8" />
       <module name="CoroNow.stack.network" target="1.8" />
       <module name="CoroNow.ui.home" target="1.8" />
