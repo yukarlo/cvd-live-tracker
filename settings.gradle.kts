@@ -1,3 +1,4 @@
+include(":ui:continents")
 include(":lib:cases")
 include(":core:domain-model")
 include(":core:network")
