@@ -8,7 +8,7 @@
     android:padding="5dp">
 
     <TextView
-        android:id="@+id/homeContinentsTitle"
+        android:id="@+id/affectedRegionTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/continent"

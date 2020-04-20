@@ -13,50 +13,50 @@
     android:paddingEnd="5dp">
 
     <TextView
-        android:id="@+id/homeContinentsName"
+        android:id="@+id/affectedRegionName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/homeContinentGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/affectedRegionGuideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="US" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/homeContinentGuideline"
+        android:id="@+id/affectedRegionGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.35" />
 
     <TextView
-        android:id="@+id/homeContinentTotalCases"
+        android:id="@+id/affectedTotalCases"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"
         app:drawableStartCompat="@drawable/ic_dot"
         app:drawableTint="@color/yellow300"
-        app:layout_constraintEnd_toStartOf="@+id/homeContinentTotalRecovered"
+        app:layout_constraintEnd_toStartOf="@+id/affectedTotalRecovered"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/homeContinentGuideline"
+        app:layout_constraintStart_toEndOf="@+id/affectedRegionGuideline"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="10,820,749" />
 
     <TextView
-        android:id="@+id/homeContinentTotalRecovered"
+        android:id="@+id/affectedTotalRecovered"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"
         app:drawableStartCompat="@drawable/ic_dot"
         app:drawableTint="@color/green300"
-        app:layout_constraintEnd_toStartOf="@+id/homeContinentTotalDeceased"
+        app:layout_constraintEnd_toStartOf="@+id/affectedTotalDeceased"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/homeContinentTotalCases"
+        app:layout_constraintStart_toEndOf="@+id/affectedTotalCases"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="86885" />
 
     <TextView
-        android:id="@+id/homeContinentTotalDeceased"
+        android:id="@+id/affectedTotalDeceased"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"
@@ -64,12 +64,12 @@
         app:drawableTint="@color/red300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/homeContinentTotalRecovered"
+        app:layout_constraintStart_toEndOf="@+id/affectedTotalRecovered"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="32" />
 
     <View
-        android:id="@+id/homeContinentDivider"
+        android:id="@+id/affectedRegionDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="15dp"
@@ -77,6 +77,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeContinentTotalDeceased" />
+        app:layout_constraintTop_toBottomOf="@+id/affectedTotalDeceased" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

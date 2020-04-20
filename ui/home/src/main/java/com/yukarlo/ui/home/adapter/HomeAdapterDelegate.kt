@@ -1,12 +1,12 @@
 package com.yukarlo.ui.home.adapter
 
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import com.yukarlo.common.android.databinding.AffectedRowViewBinding
+import com.yukarlo.common.android.databinding.AffectedTitleRowViewBinding
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.*
 import com.yukarlo.ui.home.databinding.HomeContinentHeaderBinding
-import com.yukarlo.ui.home.databinding.HomeContinentsTitleViewBinding
-import com.yukarlo.ui.home.databinding.HomeContinentsViewBinding
 import com.yukarlo.ui.home.databinding.HomeSummaryViewBinding
 
 internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
@@ -46,9 +46,9 @@ internal fun homeContinentHeader() =
     }
 
 internal fun homeContinentsTitleDelegate() =
-    adapterDelegateViewBinding<ContinentsTitle, HomeBaseItem, HomeContinentsTitleViewBinding>(
+    adapterDelegateViewBinding<ContinentsTitle, HomeBaseItem, AffectedTitleRowViewBinding>(
         { layoutInflater, root ->
-            HomeContinentsTitleViewBinding.inflate(
+            AffectedTitleRowViewBinding.inflate(
                 layoutInflater,
                 root,
                 false
@@ -62,8 +62,8 @@ internal fun homeContinentsTitleDelegate() =
     }
 
 internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
-    adapterDelegateViewBinding<ContinentsItem, HomeBaseItem, HomeContinentsViewBinding>(
-        { layoutInflater, root -> HomeContinentsViewBinding.inflate(layoutInflater, root, false) },
+    adapterDelegateViewBinding<ContinentsItem, HomeBaseItem, AffectedRowViewBinding>(
+        { layoutInflater, root -> AffectedRowViewBinding.inflate(layoutInflater, root, false) },
         on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
             item is ContinentsItem && items[position] is ContinentsItem
         }
@@ -72,9 +72,9 @@ internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
             itemClickedListener(item.continents.continentName)
         }
         bind {
-            binding.homeContinentTotalCases.text = item.continents.totalCasesCount
-            binding.homeContinentTotalRecovered.text = item.continents.totalRecoveredCount
-            binding.homeContinentTotalDeceased.text = item.continents.totalDeceasedCount
-            binding.homeContinentsName.text = item.continents.continentName
+            binding.affectedTotalCases.text = item.continents.totalCasesCount
+            binding.affectedTotalRecovered.text = item.continents.totalRecoveredCount
+            binding.affectedTotalDeceased.text = item.continents.totalDeceasedCount
+            binding.affectedRegionName.text = item.continents.continentName
         }
     }

@@ -9,6 +9,7 @@ plugins {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(LibraryDependency.KOTLIN)
+    implementation(LibraryDependency.CONSTRAINT_LAYOUT)
     implementation(LibraryDependency.APP_COMPACT)
     implementation(LibraryDependency.CORE_KTX)
     implementation(LibraryDependency.GOOGLE_MATERIAL)
