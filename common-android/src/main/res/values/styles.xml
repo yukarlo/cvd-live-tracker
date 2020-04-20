@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <item name="colorPrimary">@color/white50</item>
+        <item name="colorOnPrimary">@color/gray800</item>
         <item name="colorPrimaryDark">@color/white300</item>
         <item name="colorAccent">@color/teal200</item>
 
@@ -18,11 +19,6 @@
 
         <item name="colorSurface">@color/white300</item>
         <item name="colorOnSurface">@color/gray300</item>
-    </style>
-
-    <style name="Theme.App.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />

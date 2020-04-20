@@ -4,4 +4,5 @@
     <string name="confirmed">Confirmed</string>
     <string name="recovered">Recovered</string>
     <string name="deceased">Deceased</string>
+    <string name="information">information</string>
 </resources>
