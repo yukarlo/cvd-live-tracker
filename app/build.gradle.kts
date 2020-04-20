@@ -9,6 +9,8 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":common-android"))
     implementation(featureModule("home"))
+    implementation(featureModule("continents"))
+    implementation(featureModule("countries"))
 
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.APP_COMPACT)
