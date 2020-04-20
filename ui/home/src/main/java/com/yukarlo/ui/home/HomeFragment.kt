@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -27,10 +28,11 @@ class HomeFragment : Fragment() {
     @Inject
     lateinit var mViewModelFactory: ViewModelProvider.Factory
 
+    private val mViewModel: HomeViewModel by viewModels { mViewModelFactory }
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var fragmentBinding: HomeFragmentBinding
-    private lateinit var mViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +53,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        mViewModel = ViewModelProvider(this, mViewModelFactory).get(HomeViewModel::class.java)
 
         recyclerView = fragmentBinding.homeRecyclerView.also {
             it.layoutManager = LinearLayoutManager(context)
