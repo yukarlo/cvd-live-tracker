@@ -14,4 +14,5 @@
     <string name="affected_countries">Affected Countries</string>
     <string name="continent">Continent</string>
     <string name="name">Name</string>
+    <string name="countries">Countries</string>
 </resources>
