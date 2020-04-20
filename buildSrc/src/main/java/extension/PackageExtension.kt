@@ -36,3 +36,6 @@ val PluginDependenciesSpec.kotlinAndroidExtensions: PluginDependencySpec
 
 val PluginDependenciesSpec.kotlinKapt: PluginDependencySpec
     get() = kotlin(GradlePluginId.KOTLIN_KAPT)
+
+val PluginDependenciesSpec.androidSafeArgs: PluginDependencySpec
+    get() = id("androidx.navigation.safeargs")

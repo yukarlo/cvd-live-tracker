@@ -14,6 +14,7 @@ import org.gradle.kotlin.dsl.project
 fun DependencyHandler.addPluginDependencies() {
     classpath(dependencyNotation = GradlePlugin.ANDROID_TOOLS_BUILD_GRADLE)
     classpath(kotlin(module = GradlePlugin.KOTLIN_GRADLE_PLUGIN, version = LibraryVersion.KOTLIN))
+    classpath(dependencyNotation = LibraryDependency.NAVIGATION_SAFE_ARGS)
 }
 
 fun DependencyHandler.addDaggerDependencies() {
