@@ -3,4 +3,5 @@
     <string name="updated">Last Updated: %1$s</string>
     <string name="summary">Summary</string>
     <string name="affected_countries">Affected Countries</string>
+    <string name="continent">Continent</string>
 </resources>
