@@ -9,13 +9,16 @@ import com.yukarlo.ui.home.databinding.HomeContinentsTitleViewBinding
 import com.yukarlo.ui.home.databinding.HomeContinentsViewBinding
 import com.yukarlo.ui.home.databinding.HomeSummaryViewBinding
 
-internal fun homeSummaryDelegate() =
+internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
     adapterDelegateViewBinding<SummaryItem, HomeBaseItem, HomeSummaryViewBinding>(
         { layoutInflater, root -> HomeSummaryViewBinding.inflate(layoutInflater, root, false) },
         on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
             item is SummaryItem && items[position] is SummaryItem
         }
     ) {
+        binding.homeSummaryLayout.setOnClickListener {
+            itemClickedListener()
+        }
         bind {
             binding.homeConfirmedCount.text = item.summary.totalCasesCount
             binding.homeDeceasedCount.text = item.summary.totalDeceasedCount
@@ -58,13 +61,16 @@ internal fun homeContinentsTitleDelegate() =
 
     }
 
-internal fun homeContinentsDelegate() =
+internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
     adapterDelegateViewBinding<ContinentsItem, HomeBaseItem, HomeContinentsViewBinding>(
         { layoutInflater, root -> HomeContinentsViewBinding.inflate(layoutInflater, root, false) },
         on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
             item is ContinentsItem && items[position] is ContinentsItem
         }
     ) {
+        binding.homeContinentsLayout.setOnClickListener {
+            itemClickedListener(item.continents.continentName)
+        }
         bind {
             binding.homeContinentTotalCases.text = item.continents.totalCasesCount
             binding.homeContinentTotalRecovered.text = item.continents.totalRecoveredCount
