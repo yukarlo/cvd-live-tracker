@@ -1,12 +1,14 @@
 package com.yukarlo.coronow
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
+import android.text.method.LinkMovementMethod
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_fragment.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,8 +29,36 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_information -> {
+                showInformationDialog()
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showInformationDialog() {
+        val inflater = layoutInflater
+
+        val view = inflater.inflate(R.layout.dialog_fragment, null)
+        val dialog = AlertDialog
+            .Builder(this)
+            .setView(view)
+            .create()
+
+        dialog.window?.apply {
+            attributes.run {
+                y = toolbar.height
+                gravity = Gravity.TOP
+            }
+        }
+
+        dialog.show()
+
+        dialog.dialogCreatedBy.movementMethod =
+            LinkMovementMethod.getInstance()
+
+        dialog.dialogNovelApi.movementMethod =
+            LinkMovementMethod.getInstance()
     }
 }
