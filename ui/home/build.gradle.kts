@@ -4,6 +4,7 @@ plugins {
     kotlinAndroid
     kotlinAndroidExtensions
     kotlinKapt
+    androidSafeArgs
 }
 
 dependencies {
