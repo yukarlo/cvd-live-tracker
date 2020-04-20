@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:padding="5dp"
+    android:background="@color/gray500">
+
+    <TextView
+        android:id="@+id/homeContinentsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/continent"
+        app:layout_constraintEnd_toStartOf="@+id/homeContinentGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="Continent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/homeContinentGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35"  />
+
+    <TextView
+        android:id="@+id/homeContinentTotalCasesTitle"
+        android:layout_width="0dp"
+        android:text="@string/confirmed"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/homeContinentTotalRecoveredTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/homeContinentGuideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="Confirmed" />
+
+    <TextView
+        android:id="@+id/homeContinentTotalRecoveredTitle"
+        android:layout_width="0dp"
+        android:text="@string/recovered"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/homeContinentTotalDeceased"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/homeContinentTotalCasesTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="Recovered" />
+
+    <TextView
+        android:id="@+id/homeContinentTotalDeceased"
+        android:layout_width="0dp"
+        android:text="@string/deceased"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/homeContinentTotalRecoveredTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="Deceased" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

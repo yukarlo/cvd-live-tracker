@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.yukarlo.core.di.CoreComponentFactory
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
-import com.yukarlo.ui.home.adapter.HomeItem
+import com.yukarlo.ui.home.adapter.homeContinentsDelegate
+import com.yukarlo.ui.home.adapter.homeContinentsTitleDelegate
 import com.yukarlo.ui.home.adapter.homeSummaryDelegate
 import com.yukarlo.ui.home.databinding.HomeFragmentBinding
 import com.yukarlo.ui.home.di.DaggerUiHomeComponent
@@ -50,19 +51,18 @@ class HomeFragment : Fragment() {
 
         mViewModel = ViewModelProvider(this, mViewModelFactory).get(HomeViewModel::class.java)
 
-        layoutManager = LinearLayoutManager(context)
-
         recyclerView = fragmentBinding.homeRecyclerView.also {
-            it.setHasFixedSize(true)
-            it.layoutManager = layoutManager
+            it.layoutManager = LinearLayoutManager(context)
         }
 
-        mViewModel.getSummary().observe(viewLifecycleOwner, Observer { cases ->
-            val adapterDSL = ListDelegationAdapter(
-                homeSummaryDelegate()
-            ).apply {
-                items = listOf(HomeItem.SummaryItem(summary = cases))
-            }
+        val adapterDSL = ListDelegationAdapter(
+            homeSummaryDelegate(),
+            homeContinentsTitleDelegate(),
+            homeContinentsDelegate()
+        )
+
+        mViewModel.getHomeData().observe(viewLifecycleOwner, Observer { homeItems ->
+            adapterDSL.items = homeItems
             recyclerView.adapter = adapterDSL
         })
     }
