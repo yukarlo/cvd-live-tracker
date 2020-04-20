@@ -15,6 +15,7 @@ object LibraryVersion {
     const val MOSHI = "2.8.1"
     const val PAGING = "2.1.2"
     const val COIL = "0.9.5"
+    const val ADAPTER_DELEGATE = "4.3.0"
 }
 
 object LibraryDependency {
@@ -31,6 +32,7 @@ object LibraryDependency {
         "com.google.android.material:material:${LibraryVersion.GOOGLE_MATERIAL}"
     const val DAGGER = "com.google.dagger:dagger:${LibraryVersion.DAGGER}"
     const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:${LibraryVersion.DAGGER}"
+
     // alternatively - just ViewModel
     const val ANDROID_LIFECYCLE_VIEWMODEL_KTX =
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibraryVersion.ANDROID_LIFECYCLE}"
@@ -51,4 +53,6 @@ object LibraryDependency {
     const val PAGING_RUNTIME = "androidx.paging:paging-runtime:${LibraryVersion.PAGING}"
     const val PAGING_RUNTIME_KTX = "androidx.paging:paging-runtime-ktx:${LibraryVersion.PAGING}"
     const val COIL_KT = "io.coil-kt:coil:${LibraryVersion.COIL}"
+    const val ADAPTER_DELEGATE =
+        "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${LibraryVersion.ADAPTER_DELEGATE}"
 }
