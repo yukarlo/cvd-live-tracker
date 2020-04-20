@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomeFragment">
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.yukarlo.ui.home.HomeFragment"
+        android:label="Home Fragment 1"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_Summary_to_CountriesFragment"
+            app:destination="@id/CountriesFragment" />
+
+        <action
+            android:id="@+id/action_Continents_to_ContinentsFragment"
+            app:destination="@id/ContinentsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CountriesFragment"
+        android:name="com.yukarlo.ui.countries.CountriesFragment"
+        android:label="Countries Fragment"
+        tools:layout="@layout/countries_fragment" />
+
+    <fragment
+        android:id="@+id/ContinentsFragment"
+        android:name="com.yukarlo.ui.continents.ContinentsFragment"
+        android:label="Continents Fragment"
+        tools:layout="@layout/continents_fragment">
+        <argument
+            android:name="continentName"
+            android:defaultValue="@null"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
