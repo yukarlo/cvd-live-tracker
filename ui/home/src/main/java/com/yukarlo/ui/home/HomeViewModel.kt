@@ -8,10 +8,8 @@ import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.lib.cases.domain.GetCvdCasesContinentsUseCase
 import com.yukarlo.lib.cases.domain.GetCvdCasesSummaryUseCase
-import com.yukarlo.ui.home.adapter.model.HomeAdapterItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
@@ -32,13 +30,21 @@ internal class HomeViewModel @Inject constructor(
         mGetCvdCasesContinentsUseCase.execute().combine(
             mGetCvdCasesSummaryUseCase.execute()
         ) { continents, summary ->
-            val baseItem = mutableListOf<HomeBaseItem>()
-            baseItem.add(HomeBaseItem.SummaryItem(summary = summary))
-            baseItem.add(HomeBaseItem.ContinentsTitle)
-            continents.map {
-                baseItem.add(HomeBaseItem.ContinentsItem(continents = it))
-            }
-
-            baseItem
+            provideHomeBaseItem(summary = summary, continents = continents)
         }.asLiveData(viewModelScope.coroutineContext + Dispatchers.IO)
+
+    private fun provideHomeBaseItem(
+        summary: CasesSummaryModel,
+        continents: List<CasesContinentsModel>
+    ): List<HomeBaseItem> {
+        val baseItem = mutableListOf<HomeBaseItem>()
+        baseItem.add(HomeBaseItem.SummaryItem(summary = summary))
+        baseItem.add(HomeBaseItem.ContinentsHeader)
+        baseItem.add(HomeBaseItem.ContinentsTitle)
+        continents.map {
+            baseItem.add(HomeBaseItem.ContinentsItem(continents = it))
+        }
+
+        return baseItem
+    }
 }

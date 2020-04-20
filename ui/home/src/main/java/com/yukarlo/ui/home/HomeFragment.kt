@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.yukarlo.core.di.CoreComponentFactory
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
+import com.yukarlo.ui.home.adapter.homeContinentHeader
 import com.yukarlo.ui.home.adapter.homeContinentsDelegate
 import com.yukarlo.ui.home.adapter.homeContinentsTitleDelegate
 import com.yukarlo.ui.home.adapter.homeSummaryDelegate
@@ -58,6 +59,7 @@ class HomeFragment : Fragment() {
         val adapterDSL = ListDelegationAdapter(
             homeSummaryDelegate(),
             homeContinentsTitleDelegate(),
+            homeContinentHeader(),
             homeContinentsDelegate()
         )
 

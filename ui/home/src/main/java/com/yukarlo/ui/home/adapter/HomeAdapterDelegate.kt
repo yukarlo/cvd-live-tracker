@@ -4,9 +4,7 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.*
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsItem
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsTitle
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.SummaryItem
+import com.yukarlo.ui.home.databinding.HomeContinentHeaderBinding
 import com.yukarlo.ui.home.databinding.HomeContinentsTitleViewBinding
 import com.yukarlo.ui.home.databinding.HomeContinentsViewBinding
 import com.yukarlo.ui.home.databinding.HomeSummaryViewBinding
@@ -26,6 +24,22 @@ internal fun homeSummaryDelegate() =
             binding.homeUpdatedSince.text =
                 String.format(getString(R.string.updated), item.summary.updatedSince)
         }
+    }
+
+internal fun homeContinentHeader() =
+    adapterDelegateViewBinding<ContinentsHeader, HomeBaseItem, HomeContinentHeaderBinding>(
+        { layoutInflater, root ->
+            HomeContinentHeaderBinding.inflate(
+                layoutInflater,
+                root,
+                false
+            )
+        },
+        on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
+            item is ContinentsHeader && items[position] is ContinentsHeader
+        }
+    ) {
+
     }
 
 internal fun homeContinentsTitleDelegate() =

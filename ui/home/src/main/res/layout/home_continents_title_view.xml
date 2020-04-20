@@ -6,13 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
     android:padding="5dp"
-    android:background="@color/gray500">
+    android:background="?attr/colorPrimarySurface">
 
     <TextView
         android:id="@+id/homeContinentsTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/continent"
+        android:text="@string/name"
         app:layout_constraintEnd_toStartOf="@+id/homeContinentGuideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

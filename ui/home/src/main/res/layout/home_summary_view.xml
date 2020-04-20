@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="30dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="20dp">
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="20dp"
+    android:background="?attr/colorPrimarySurface"
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/homeSummaryHeader"
@@ -25,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/updated"
-        android:textColor="@color/white500"
+        android:textColor="?attr/subtitleTextColor"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/homeDivider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +42,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
-        android:background="@color/gray500"
+        android:background="@color/gray300"
         app:layout_constraintBottom_toTopOf="@+id/homeRecoveredCount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

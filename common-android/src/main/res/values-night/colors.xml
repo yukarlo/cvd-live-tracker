@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="yellow500">#DFAB16</color>
+    <color name="yellow300">#FBD67A</color>
+
+    <color name="green500">#1a7749</color>
+    <color name="green300">#94D175</color>
+
+    <color name="red500">#d32f2f</color>
+    <color name="red300">#FD6354</color>
+
+    <color name="cyan500">#1DADBF</color>
+    <color name="cyan300">#84F2FF</color>
+</resources>
