@@ -1,8 +1,10 @@
 package com.yukarlo.ui.countries.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter.CasesCountriesViewHolder
@@ -41,6 +43,10 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
             itemBinding.affectedTotalCasesCount.text = data.totalCasesCount
             itemBinding.affectedTotalRecoveredCount.text = data.totalRecoveredCount
             itemBinding.affectedTotalDeceasedCount.text = data.totalDeceasedCount
+            itemBinding.affectedRegionFlag.apply {
+                load(data.countryFlag)
+                visibility = View.VISIBLE
+            }
         }
     }
 }

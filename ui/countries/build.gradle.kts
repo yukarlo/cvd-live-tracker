@@ -23,6 +23,7 @@ dependencies {
     implementation(LibraryDependency.NAVIGATION_UI_KTX)
     implementation(LibraryDependency.GOOGLE_MATERIAL)
     implementation(LibraryDependency.ADAPTER_DELEGATE)
+    implementation(LibraryDependency.COIL_KT)
 
     addDaggerDependencies()
 }

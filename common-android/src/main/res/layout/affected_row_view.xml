@@ -8,16 +8,27 @@
     android:layout_marginStart="15dp"
     android:layout_marginEnd="15dp"
     android:layout_marginBottom="15dp"
-    android:paddingStart="5dp"
+    android:paddingStart="0dp"
     android:paddingEnd="5dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/affectedRegionFlag"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:foregroundGravity="center"
+        android:visibility="gone"
+        android:src="@drawable/ic_asia_colored"
+        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/affectedRegionName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
+        android:layout_marginStart="5dp"
         app:layout_constraintEnd_toStartOf="@+id/affectedRegionGuideline"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/affectedRegionFlag"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="Central African Republic" />
 
@@ -26,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.37" />
 
     <TextView
         android:id="@+id/affectedTotalCasesCount"
@@ -36,10 +47,9 @@
         app:drawableStartCompat="@drawable/ic_dot"
         app:drawableTint="@color/yellow300"
         app:layout_constraintEnd_toStartOf="@+id/affectedTotalRecoveredCount"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/affectedRegionGuideline"
         app:layout_constraintTop_toTopOf="parent"
-        tool:text="10,820,749" />
+        tool:text="100,820,749" />
 
     <TextView
         android:id="@+id/affectedTotalRecoveredCount"
@@ -49,7 +59,6 @@
         app:drawableStartCompat="@drawable/ic_dot"
         app:drawableTint="@color/green300"
         app:layout_constraintEnd_toStartOf="@+id/affectedTotalDeceasedCount"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/affectedTotalCasesCount"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="86885" />
@@ -62,7 +71,6 @@
         app:drawableStartCompat="@drawable/ic_dot"
         app:drawableTint="@color/red300"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/affectedTotalRecoveredCount"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="32" />

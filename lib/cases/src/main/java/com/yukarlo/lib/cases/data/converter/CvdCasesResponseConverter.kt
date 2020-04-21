@@ -45,7 +45,8 @@ internal object CvdCountriesResponseConverter :
             totalCasesCount = numberFormat.format(input.cases),
             totalDeceasedCount = numberFormat.format(input.deaths),
             totalRecoveredCount = numberFormat.format(input.recovered),
-            countryName = input.country
+            countryName = input.country,
+            countryFlag = input.countryInfo.flag
         )
     }
 }
