@@ -72,9 +72,9 @@ internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
             itemClickedListener(item.continents.continentName)
         }
         bind {
-            binding.affectedTotalCases.text = item.continents.totalCasesCount
-            binding.affectedTotalRecovered.text = item.continents.totalRecoveredCount
-            binding.affectedTotalDeceased.text = item.continents.totalDeceasedCount
+            binding.affectedTotalCasesCount.text = item.continents.totalCasesCount
+            binding.affectedTotalRecoveredCount.text = item.continents.totalRecoveredCount
+            binding.affectedTotalDeceasedCount.text = item.continents.totalDeceasedCount
             binding.affectedRegionName.text = item.continents.continentName
         }
     }

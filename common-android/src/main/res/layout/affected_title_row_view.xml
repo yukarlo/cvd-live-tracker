@@ -9,7 +9,7 @@
     android:background="?attr/colorPrimarySurface">
 
     <TextView
-        android:id="@+id/affectedRegionTitle"
+        android:id="@+id/affectedRegionNameTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/name"
@@ -26,35 +26,35 @@
         app:layout_constraintGuide_percent="0.35"  />
 
     <TextView
-        android:id="@+id/affectedRegionTotalCasesTitle"
+        android:id="@+id/affectedTotalCasesCountTitle"
         android:layout_width="0dp"
         android:text="@string/confirmed"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/affectedRegionTotalRecoveredTitle"
+        app:layout_constraintEnd_toStartOf="@+id/affectedTotalRecoveredCountTitle"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/affectedGuideline"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="Confirmed" />
 
     <TextView
-        android:id="@+id/affectedRegionTotalRecoveredTitle"
+        android:id="@+id/affectedTotalRecoveredCountTitle"
         android:layout_width="0dp"
         android:text="@string/recovered"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/affectedTotalDeceased"
+        app:layout_constraintEnd_toStartOf="@+id/affectedTotalDeceasedCount"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/affectedRegionTotalCasesTitle"
+        app:layout_constraintStart_toEndOf="@+id/affectedTotalCasesCountTitle"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="Recovered" />
 
     <TextView
-        android:id="@+id/affectedTotalDeceased"
+        android:id="@+id/affectedTotalDeceasedCountTitle"
         android:layout_width="0dp"
         android:text="@string/deceased"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/affectedRegionTotalRecoveredTitle"
+        app:layout_constraintStart_toEndOf="@+id/affectedTotalRecoveredCountTitle"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="Deceased" />
 

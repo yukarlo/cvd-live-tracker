@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
     private val mViewModel: HomeViewModel by viewModels { mViewModelFactory }
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var fragmentBinding: HomeFragmentBinding
 
     override fun onCreateView(

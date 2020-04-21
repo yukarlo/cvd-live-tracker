@@ -1,6 +1,7 @@
 package com.yukarlo.lib.cases.di
 
 import com.yukarlo.core.di.CoreComponent
+import com.yukarlo.lib.cases.domain.GetAllCountriesCasesUseCase
 import com.yukarlo.lib.cases.domain.GetCvdCasesContinentsUseCase
 import com.yukarlo.lib.cases.domain.GetCvdCasesSummaryUseCase
 import com.yukarlo.lib.cases.domain.repository.ICvdCasesRepository
@@ -19,6 +20,8 @@ interface LibCvdCasesComponent {
     fun provideGetCvdCasesSummaryUseCase(): GetCvdCasesSummaryUseCase
 
     fun provideGetCvdCasesContinentsUseCase(): GetCvdCasesContinentsUseCase
+
+    fun provideGetGetAllCountriesCasesUseCase(): GetAllCountriesCasesUseCase
 
     fun provideCvdCasesRepository(): ICvdCasesRepository
 }

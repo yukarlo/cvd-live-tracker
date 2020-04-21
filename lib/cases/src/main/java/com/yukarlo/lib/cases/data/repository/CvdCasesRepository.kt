@@ -1,10 +1,12 @@
 package com.yukarlo.lib.cases.data.repository
 
 import com.yukarlo.core.domain.model.CasesContinentsModel
+import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.lib.cases.data.api.CvdCasesApiService
 import com.yukarlo.lib.cases.data.converter.CvdCasesResponseConverter
 import com.yukarlo.lib.cases.data.converter.CvdContinentsResponseConverter
+import com.yukarlo.lib.cases.data.converter.CvdCountriesResponseConverter
 import com.yukarlo.lib.cases.domain.repository.ICvdCasesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -19,5 +21,9 @@ internal class CvdCasesRepository @Inject constructor(
 
     override fun getContinents(): Flow<List<CasesContinentsModel>> = flow {
         emit(mCvdCasesApiService.getContinents().map(CvdContinentsResponseConverter::convert))
+    }
+
+    override fun getAllCountries(): Flow<List<CasesCountriesModel>> = flow {
+        emit(mCvdCasesApiService.getCountries().map(CvdCountriesResponseConverter::convert))
     }
 }
