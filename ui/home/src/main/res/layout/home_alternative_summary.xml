@@ -5,8 +5,7 @@
     android:id="@+id/homeSummaryLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="30dp"
-    android:layout_marginBottom="20dp">
+    android:layout_marginTop="30dp">
 
     <TextView
         android:id="@+id/homeSummaryHeader"
@@ -38,7 +37,7 @@
         android:id="@+id/homeBorderTop"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:background="?attr/colorSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
