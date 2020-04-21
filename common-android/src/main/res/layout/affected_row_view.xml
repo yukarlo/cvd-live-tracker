@@ -48,6 +48,7 @@
         app:drawableTint="@color/yellow300"
         app:layout_constraintEnd_toStartOf="@+id/affectedTotalRecoveredCount"
         app:layout_constraintStart_toEndOf="@+id/affectedRegionGuideline"
+        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="100,820,749" />
 
@@ -59,6 +60,7 @@
         app:drawableStartCompat="@drawable/ic_dot"
         app:drawableTint="@color/green300"
         app:layout_constraintEnd_toStartOf="@+id/affectedTotalDeceasedCount"
+        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
         app:layout_constraintStart_toEndOf="@+id/affectedTotalCasesCount"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="86885" />
@@ -72,6 +74,7 @@
         app:drawableTint="@color/red300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/affectedTotalRecoveredCount"
+        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="32" />
 
