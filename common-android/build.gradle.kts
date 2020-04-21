@@ -14,5 +14,7 @@ dependencies {
     implementation(LibraryDependency.CORE_KTX)
     implementation(LibraryDependency.GOOGLE_MATERIAL)
 
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
     addDaggerDependencies()
 }

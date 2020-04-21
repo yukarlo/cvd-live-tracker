@@ -6,12 +6,13 @@ import com.yukarlo.common.android.databinding.AffectedTitleRowViewBinding
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.*
+import com.yukarlo.ui.home.databinding.HomeAlternativeSummaryBinding
 import com.yukarlo.ui.home.databinding.HomeContinentHeaderBinding
 import com.yukarlo.ui.home.databinding.HomeSummaryViewBinding
 
 internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
-    adapterDelegateViewBinding<SummaryItem, HomeBaseItem, HomeSummaryViewBinding>(
-        { layoutInflater, root -> HomeSummaryViewBinding.inflate(layoutInflater, root, false) },
+    adapterDelegateViewBinding<SummaryItem, HomeBaseItem, HomeAlternativeSummaryBinding>(
+        { layoutInflater, root -> HomeAlternativeSummaryBinding.inflate(layoutInflater, root, false) },
         on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
             item is SummaryItem && items[position] is SummaryItem
         }

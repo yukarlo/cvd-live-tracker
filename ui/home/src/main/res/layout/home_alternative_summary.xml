@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeSummaryLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="20dp">
+
+    <TextView
+        android:id="@+id/homeSummaryHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/summary"
+        android:textColor="@color/gray100"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/homeUpdatedSince"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homeUpdatedSince"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/updated"
+        android:textColor="?attr/subtitleTextColor"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/homeBorderTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeSummaryHeader"
+        tools:text="updated 32 minutes ago" />
+
+    <View
+        android:id="@+id/homeBorderTop"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="?attr/colorSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeUpdatedSince" />
+
+    <View
+        android:id="@+id/homeBorderMiddleVertical"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorSurface"
+        app:layout_constraintBottom_toTopOf="@+id/homeBorderBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeBorderTop" />
+
+    <TextView
+        android:id="@+id/homeConfirmedCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeBorderTop"
+        tools:text="1,200,4331" />
+
+    <TextView
+        android:id="@+id/homeRecoveredCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="28sp"
+        app:layout_constraintStart_toEndOf="@+id/homeBorderMiddleVertical"
+        app:layout_constraintTop_toBottomOf="@+id/homeBorderTop"
+        tools:text="100,000,000" />
+
+    <TextView
+        android:id="@+id/homeConfirmedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/confirmed"
+        android:textColor="?attr/subtitleTextColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/homeBorderMiddleHorizontal"
+        app:layout_constraintStart_toStartOf="@+id/homeConfirmedCount"
+        app:layout_constraintTop_toBottomOf="@+id/homeConfirmedCount" />
+
+    <TextView
+        android:id="@+id/homeRecoveredTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/recovered"
+        android:textColor="?attr/subtitleTextColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/homeBorderMiddleHorizontal"
+        app:layout_constraintStart_toStartOf="@+id/homeRecoveredCount"
+        app:layout_constraintTop_toBottomOf="@+id/homeRecoveredCount" />
+
+    <View
+        android:id="@+id/homeBorderMiddleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorSurface"
+        app:layout_constraintBottom_toTopOf="@+id/homeBorderBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeBorderTop" />
+
+    <TextView
+        android:id="@+id/homeDeceasedCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeBorderMiddleHorizontal"
+        tools:text="1,200,000" />
+
+    <TextView
+        android:id="@+id/homeDeceasedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/deceased"
+        android:textColor="?attr/subtitleTextColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/homeBorderBottom"
+        app:layout_constraintStart_toStartOf="@+id/homeDeceasedCount"
+        app:layout_constraintTop_toBottomOf="@+id/homeDeceasedCount" />
+
+    <TextView
+        android:id="@+id/homeAffectedCountriesCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="28sp"
+        app:layout_constraintStart_toEndOf="@+id/homeBorderMiddleVertical"
+        app:layout_constraintTop_toBottomOf="@+id/homeBorderMiddleHorizontal"
+        tools:text="750" />
+
+    <TextView
+        android:id="@+id/homeAffectedCountriesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/affected_countries"
+        android:textColor="?attr/subtitleTextColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/homeBorderBottom"
+        app:layout_constraintStart_toStartOf="@+id/homeAffectedCountriesCount"
+        app:layout_constraintTop_toBottomOf="@+id/homeAffectedCountriesCount" />
+
+    <View
+        android:id="@+id/homeBorderBottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
