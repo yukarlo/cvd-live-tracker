@@ -17,7 +17,7 @@ internal object GradlePluginVersion {
     const val ANDROID_GRADLE = "4.1.0-alpha06"
 }
 
-object GradlePlugin {
+internal object GradlePlugin {
     const val ANDROID_TOOLS_BUILD_GRADLE =
         "com.android.tools.build:gradle:${GradlePluginVersion.ANDROID_GRADLE}"
     const val KOTLIN_GRADLE_PLUGIN = "gradle-plugin"

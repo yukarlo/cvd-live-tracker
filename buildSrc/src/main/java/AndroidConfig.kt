@@ -1,4 +1,4 @@
-object AndroidConfig {
+internal object AndroidConfig {
     const val COMPILE_SDK_VERSION = 29
     const val BUILD_TOOLS_VERSION = "29.0.3"
     const val MIN_SDK_VERSION = 23
@@ -11,7 +11,7 @@ object AndroidConfig {
     const val TEST_INSTRUMENTATION_RUNNER = "android.support.test.runner.AndroidJUnitRunner"
 }
 
-interface BuildType {
+internal interface BuildType {
     companion object {
         const val RELEASE = "release"
         const val DEBUG = "debug"
@@ -22,13 +22,13 @@ interface BuildType {
     val isShrinkResources: Boolean
 }
 
-object BuildTypeDebug : BuildType {
+internal object BuildTypeDebug : BuildType {
     override val isMinifyEnabled = false
     override val isDebuggable = true
     override val isShrinkResources = true
 }
 
-object BuildTypeRelease : BuildType {
+internal object BuildTypeRelease : BuildType {
     override val isMinifyEnabled = true
     override val isDebuggable = false
     override val isShrinkResources = true
