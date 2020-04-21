@@ -13,8 +13,8 @@ internal object GradlePluginId {
     internal const val KOTLIN = "kotlin"
 }
 
-object GradlePluginVersion {
-    const val ANDROID_GRADLE = "4.1.0-alpha05"
+internal object GradlePluginVersion {
+    const val ANDROID_GRADLE = "4.1.0-alpha06"
 }
 
 object GradlePlugin {
