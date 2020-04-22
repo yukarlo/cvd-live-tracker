@@ -4,7 +4,7 @@ internal object LibraryVersion {
     internal const val CONSTRAINT_LAYOUT = "2.0.0-beta4"
     internal const val CORE_KTX = "1.3.0-rc01"
     internal const val ANDROID_NAVIGATION = "2.3.0-alpha05"
-    internal const val GOOGLE_MATERIAL = "1.1.0"
+    internal const val GOOGLE_MATERIAL = "1.2.0-alpha06"
     internal const val DAGGER = "2.27"
     internal const val ANDROID_LIFECYCLE = "2.3.0-alpha01"
     internal const val RECYCLERVIEW = "1.2.0-alpha02"

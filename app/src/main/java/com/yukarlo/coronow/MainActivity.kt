@@ -5,10 +5,12 @@ import android.text.method.LinkMovementMethod
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.view.size
 import com.yukarlo.coronow.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_fragment.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,8 +22,17 @@ class MainActivity : AppCompatActivity() {
         activityBinding = ActivityMainBinding.inflate(layoutInflater)
         activityBinding.apply {
             setContentView(root)
-            setSupportActionBar(toolbar)
         }
+
+        activityBinding.motionHeader.motionHeaderInformation
+            .setOnClickListener {
+                showInformationDialog()
+            }
+
+        activityBinding.motionHeader.motionHeaderBack
+            .setOnClickListener {
+                finish()
+            }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -54,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         dialog.window?.apply {
             attributes.run {
-                y = toolbar.height
+                y = activityBinding.mainMotionAppBar.findViewById<MotionLayout>(R.id.motionLayout).height
                 gravity = Gravity.TOP
             }
         }
