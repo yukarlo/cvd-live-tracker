@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,25 +12,28 @@
         android:layout_height="180dp"
         android:theme="@style/Theme.App.AppBarOverlay">
 
-        <include android:id="@+id/motionHeader" layout="@layout/motion_header" />
+        <include
+            android:id="@+id/motionHeader"
+            layout="@layout/motion_header" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/mainNormalAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.App.AppBarOverlay"
-        android:visibility="gone">
+    <!--    <com.google.android.material.appbar.AppBarLayout-->
+    <!--        android:id="@+id/mainNormalAppBar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:theme="@style/Theme.App.AppBarOverlay">-->
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/Theme.App.PopupOverlay" />
+    <!--        <androidx.appcompat.widget.Toolbar-->
+    <!--            android:id="@+id/toolbar"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="?attr/actionBarSize"-->
+    <!--            app:popupTheme="@style/Theme.App.PopupOverlay" />-->
 
-    </com.google.android.material.appbar.AppBarLayout>
+    <!--    </com.google.android.material.appbar.AppBarLayout>-->
 
-    <include layout="@layout/content_main" />
+    <include
+        android:id="@+id/mainLayout"
+        layout="@layout/content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

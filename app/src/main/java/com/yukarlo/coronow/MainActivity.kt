@@ -5,34 +5,49 @@ import android.text.method.LinkMovementMethod
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.core.view.size
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.yukarlo.coronow.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.dialog_fragment.*
+import kotlinx.android.synthetic.main.motion_header.view.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var activityBinding: ActivityMainBinding
 
+    private val navController: NavController
+        get() = findNavController(R.id.nav_host_fragment)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityBinding = ActivityMainBinding.inflate(layoutInflater)
+
         activityBinding.apply {
             setContentView(root)
+
+            motionHeader.motionHeaderInformation
+                .setOnClickListener {
+                    showInformationDialog()
+                }
+
+            motionHeader.motionHeaderBack
+                .setOnClickListener {
+                    onBackPressed()
+                }
         }
 
-        activityBinding.motionHeader.motionHeaderInformation
-            .setOnClickListener {
-                showInformationDialog()
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            val title = when (destination.id) {
+                R.id.HomeFragment -> R.string.summary
+                R.id.ContinentsFragment -> R.string.continent
+                R.id.CountriesFragment -> R.string.countries
+                else -> R.string.app_name
             }
 
-        activityBinding.motionHeader.motionHeaderBack
-            .setOnClickListener {
-                finish()
-            }
+            activityBinding.mainMotionAppBar.motionHeaderLabel.text = getString(title)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -65,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 
         dialog.window?.apply {
             attributes.run {
-                y = activityBinding.mainMotionAppBar.findViewById<MotionLayout>(R.id.motionLayout).height
+                y = activityBinding.motionHeader.motionLayout.height
                 gravity = Gravity.TOP
             }
         }
