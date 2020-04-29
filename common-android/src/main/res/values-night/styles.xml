@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <item name="colorPrimary">@color/gray800</item>
+        <item name="colorOnPrimary">@color/white50</item>
+        <item name="colorPrimaryDark">@color/gray800</item>
+        <item name="colorAccent">@color/teal200</item>
+
+        <item name="android:textColor">@color/white50</item>
+        <item name="subtitleTextColor">@color/white800</item>
+
+        <item name="android:windowBackground">@color/gray800</item>
+        <item name="background">@color/gray800</item>
+
+        <item name="colorPrimarySurface">@color/gray500</item>
+        <item name="colorOnPrimarySurface">@color/gray300</item>
+
+        <item name="cardBackgroundColor">@color/gray500</item>
+
+        <item name="colorSurface">@color/gray500</item>
+        <item name="colorOnSurface">@color/gray300</item>
+    </style>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yukarlo.common.android.view.CollapsibleToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/motionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    app:layoutDescription="@xml/motion_header_scene"
+    app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
+
+    <ImageView
+        android:id="@+id/motionHeaderBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_left_chevron" />
+
+    <ImageView
+        android:id="@+id/motionHeaderInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_information_transparent" />
+
+    <TextView
+        android:id="@+id/motionHeaderLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/gray100"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"/>
+
+    <View
+        android:id="@+id/motionHeaderBorderline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorSurface" />
+
+</com.yukarlo.common.android.view.CollapsibleToolbar>

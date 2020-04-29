@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Stat Tracker</string>
+    <string name="action_settings">Settings</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="recovered">Recovered</string>
+    <string name="deceased">Deceased</string>
+    <string name="information">information</string>
+    <string name="sources">Sources:</string>
+    <string name="created_by">This app is created by <a href="https://github.com/yukarlo/">Karlo Yu</a>.</string>
+    <string name="information_of_tool">This tool is an attempt to provide well information related to the Coronavirus (COVID-19).</string>
+    <string name="api_source"><a href="https://corona.lmao.ninja/docs/#/">Novel Covid 19</a></string>
+    <string name="updated">Last Updated: %1$s</string>
+    <string name="summary">Summary</string>
+    <string name="affected_countries">Affected Countries</string>
+    <string name="continent">Continent</string>
+    <string name="name">Name</string>
+    <string name="countries">Countries</string>
+</resources>
