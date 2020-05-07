@@ -1,4 +1,4 @@
-package com.yukarlo.core.di
+package com.yukarlo.main.di
 
 import javax.inject.Scope
 

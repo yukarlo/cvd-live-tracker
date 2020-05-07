@@ -1,7 +1,9 @@
-package com.yukarlo.core.di
+package com.yukarlo.main.di
 
 import android.content.Context
-import com.yukarlo.core.CoroNowApplication
+import com.yukarlo.dispatchers.AppCoroutineDispatchers
+import com.yukarlo.dispatchers.di.DispatchersModule
+import com.yukarlo.main.CoroNowApplication
 import com.yukarlo.stack.network.di.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
@@ -10,7 +12,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Component(
     modules = [
-        NetworkModule::class
+        NetworkModule::class,
+        DispatchersModule::class
     ]
 )
 interface CoreComponent {
@@ -28,4 +31,6 @@ interface CoreComponent {
     fun provideMoshiConverterFactory(): MoshiConverterFactory
 
     fun provideBaseUrl(): String
+
+    fun provideAppCoroutineDispatchers(): AppCoroutineDispatchers
 }

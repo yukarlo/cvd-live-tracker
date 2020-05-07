@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.yukarlo.core.di.CoreComponentFactory
+import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
@@ -32,7 +32,7 @@ class CountriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val coreComponent = CoreComponentFactory.coreComponent(context = requireContext())
+        val coreComponent = com.yukarlo.main.di.CoreComponentFactory.coreComponent(context = requireContext())
         DaggerUiCountriesComponent.factory()
             .create(
                 countriesFragment = this,

@@ -1,17 +1,17 @@
 package com.yukarlo.ui.countries.di
 
 import com.yukarlo.common.android.di.viewmodel.ViewModelModule
-import com.yukarlo.core.di.CoreComponent
-import com.yukarlo.core.di.FeatureScope
+import com.yukarlo.main.di.CoreComponent
+import com.yukarlo.main.di.FeatureScope
 import com.yukarlo.lib.cases.di.LibCvdCasesComponent
 import com.yukarlo.ui.countries.CountriesFragment
 import dagger.BindsInstance
 import dagger.Component
 
-@FeatureScope
+@com.yukarlo.main.di.FeatureScope
 @Component(
     dependencies = [
-        CoreComponent::class,
+        com.yukarlo.main.di.CoreComponent::class,
         LibCvdCasesComponent::class
     ],
     modules = [
@@ -24,7 +24,7 @@ interface UiCountriesComponent {
     interface Factory {
         fun create(
             @BindsInstance countriesFragment: CountriesFragment,
-            coreComponent: CoreComponent,
+            coreComponent: com.yukarlo.main.di.CoreComponent,
             libCvdCasesComponent: LibCvdCasesComponent
         ): UiCountriesComponent
     }

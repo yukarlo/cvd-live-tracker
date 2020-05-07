@@ -1,7 +1,7 @@
-package com.yukarlo.core
+package com.yukarlo.main
 
 import android.app.Application
-import com.yukarlo.core.di.CoreComponentFactory
+import com.yukarlo.main.di.CoreComponentFactory
 
 class CoroNowApplication : Application() {
 
