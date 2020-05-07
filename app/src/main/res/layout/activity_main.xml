@@ -8,21 +8,10 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/mainMotionAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:theme="@style/Theme.App.AppBarOverlay">
-
-        <include android:id="@+id/motionHeader" layout="@layout/motion_header" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/mainNormalAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.App.AppBarOverlay"
-        android:visibility="gone">
+        android:theme="@style/Theme.App.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
