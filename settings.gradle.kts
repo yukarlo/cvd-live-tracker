@@ -1,5 +1,6 @@
 include(":core:dispatchers")
 include(":core:main")
+include(":core:usecase")
 include(":ui:countries")
 include(":ui:continents")
 include(":lib:cases")
