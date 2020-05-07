@@ -19,6 +19,7 @@ import com.yukarlo.ui.home.adapter.homeContinentHeader
 import com.yukarlo.ui.home.adapter.homeContinentsDelegate
 import com.yukarlo.ui.home.adapter.homeContinentsTitleDelegate
 import com.yukarlo.ui.home.adapter.homeSummaryDelegate
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.databinding.HomeFragmentBinding
 import com.yukarlo.ui.home.di.DaggerUiHomeComponent
 import javax.inject.Inject
@@ -32,12 +33,13 @@ class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var fragmentBinding: HomeFragmentBinding
+    private lateinit var homeAdapter: ListDelegationAdapter<List<HomeBaseItem>>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val coreComponent = com.yukarlo.main.di.CoreComponentFactory.coreComponent(context = requireContext())
+        val coreComponent = CoreComponentFactory.coreComponent(context = requireContext())
         DaggerUiHomeComponent.factory()
             .create(
                 homeFragment = this,
@@ -57,7 +59,7 @@ class HomeFragment : Fragment() {
             it.layoutManager = LinearLayoutManager(context)
         }
 
-        val adapterDSL = ListDelegationAdapter(
+        homeAdapter = ListDelegationAdapter(
             homeSummaryDelegate(navigateToCountries()),
             homeContinentsTitleDelegate(),
             homeContinentHeader(),
@@ -65,8 +67,8 @@ class HomeFragment : Fragment() {
         )
 
         mViewModel.getHomeData().observe(viewLifecycleOwner, Observer { homeItems ->
-            adapterDSL.items = homeItems
-            recyclerView.adapter = adapterDSL
+            homeAdapter.items = homeItems
+            recyclerView.adapter = homeAdapter
         })
     }
 
