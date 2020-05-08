@@ -2,18 +2,43 @@ package com.yukarlo.ui.home.adapter
 
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.yukarlo.common.android.databinding.AffectedAlternativeRowViewBinding
-import com.yukarlo.common.android.databinding.AffectedRowViewBinding
 import com.yukarlo.common.android.databinding.AffectedTitleRowViewBinding
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.*
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsHeader
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsItem
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsTitle
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.Header
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.SummaryItem
 import com.yukarlo.ui.home.databinding.HomeAlternativeSummaryBinding
 import com.yukarlo.ui.home.databinding.HomeContinentHeaderBinding
-import com.yukarlo.ui.home.databinding.HomeSummaryViewBinding
+import com.yukarlo.ui.home.databinding.HomeHeaderBinding
+
+internal fun homeHeaderDelegate() =
+    adapterDelegateViewBinding<Header, HomeBaseItem, HomeHeaderBinding>(
+        { layoutInflater, root ->
+            HomeHeaderBinding.inflate(
+                layoutInflater,
+                root,
+                false
+            )
+        },
+        on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
+            item is Header && items[position] is Header
+        }
+    ) {
+
+    }
 
 internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
     adapterDelegateViewBinding<SummaryItem, HomeBaseItem, HomeAlternativeSummaryBinding>(
-        { layoutInflater, root -> HomeAlternativeSummaryBinding.inflate(layoutInflater, root, false) },
+        { layoutInflater, root ->
+            HomeAlternativeSummaryBinding.inflate(
+                layoutInflater,
+                root,
+                false
+            )
+        },
         on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
             item is SummaryItem && items[position] is SummaryItem
         }
@@ -65,7 +90,13 @@ internal fun homeContinentsTitleDelegate() =
 
 internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
     adapterDelegateViewBinding<ContinentsItem, HomeBaseItem, AffectedAlternativeRowViewBinding>(
-        { layoutInflater, root -> AffectedAlternativeRowViewBinding.inflate(layoutInflater, root, false) },
+        { layoutInflater, root ->
+            AffectedAlternativeRowViewBinding.inflate(
+                layoutInflater,
+                root,
+                false
+            )
+        },
         on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
             item is ContinentsItem && items[position] is ContinentsItem
         }

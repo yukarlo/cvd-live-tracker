@@ -9,6 +9,10 @@
     <color name="red500">#d32f2f</color>
     <color name="red300">#FD6354</color>
 
+    <color name="blue800">#6779ff</color>
+
     <color name="cyan500">#1DADBF</color>
     <color name="cyan300">#84F2FF</color>
+
+    <color name="gray00">#080B0E</color>
 </resources>

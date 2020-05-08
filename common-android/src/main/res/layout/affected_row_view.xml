@@ -17,7 +17,6 @@
         android:layout_height="14dp"
         android:foregroundGravity="center"
         android:visibility="gone"
-        android:src="@drawable/ic_asia_colored"
         app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -38,6 +38,7 @@ internal class HomeViewModel @Inject constructor(
         continents: List<CasesContinentsModel>
     ): List<HomeBaseItem> {
         val baseItem = mutableListOf<HomeBaseItem>()
+        baseItem.add(HomeBaseItem.Header)
         baseItem.add(HomeBaseItem.SummaryItem(summary = summary))
         baseItem.add(HomeBaseItem.ContinentsHeader)
         continents.map {

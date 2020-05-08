@@ -3,7 +3,7 @@
 
     <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <item name="colorPrimary">@color/gray800</item>
-        <item name="colorOnPrimary">@color/white50</item>
+        <item name="colorOnPrimary">@color/white00</item>
         <item name="colorPrimaryDark">@color/gray800</item>
         <item name="colorAccent">@color/teal200</item>
 
@@ -18,7 +18,7 @@
 
         <item name="cardBackgroundColor">@color/gray500</item>
 
-        <item name="colorSurface">@color/gray500</item>
+        <item name="colorSurface">@color/gray800</item>
         <item name="colorOnSurface">@color/gray300</item>
     </style>
 </resources>

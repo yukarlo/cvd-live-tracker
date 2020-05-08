@@ -2,25 +2,27 @@
     <!-- Base application theme. -->
     <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <item name="android:windowLightStatusBar">true</item>
-        <item name="colorPrimary">@color/white50</item>
+        <item name="colorPrimary">@color/white00</item>
         <item name="colorOnPrimary">@color/gray800</item>
-        <item name="colorPrimaryDark">@color/white50</item>
+        <item name="colorPrimaryDark">@color/white00</item>
         <item name="colorAccent">@color/teal200</item>
 
-        <item name="android:textColor">@color/gray500</item>
-        <item name="subtitleTextColor">@color/gray100</item>
+        <item name="android:textColor">@color/gray100</item>
+        <item name="subtitleTextColor">@color/white800</item>
 
-        <item name="android:windowBackground">@color/white50</item>
+        <item name="android:windowBackground">@color/white00</item>
         <item name="background">@color/white50</item>
 
         <item name="colorPrimarySurface">@color/white300</item>
         <item name="colorOnPrimarySurface">@color/gray300</item>
 
-        <item name="cardBackgroundColor">@color/white300</item>
-
+        <item name="colorSurface">@color/white50</item>
+        <item name="colorOnSurface">@color/gray300</item>
 
         <item name="colorSurface">@color/white300</item>
         <item name="colorOnSurface">@color/gray300</item>
+
+        <item name="cardBackgroundColor">@color/white300</item>
     </style>
 
     <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />

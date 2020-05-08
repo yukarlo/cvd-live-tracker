@@ -15,4 +15,6 @@
     <string name="continent">Continent</string>
     <string name="name">Name</string>
     <string name="countries">Countries</string>
+    <string name="latest_update_title">Latest Global Update</string>
+    <string name="covid_19">Covid-19</string>
 </resources>
