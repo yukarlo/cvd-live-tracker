@@ -11,12 +11,9 @@
         <item name="subtitleTextColor">@color/white800</item>
 
         <item name="android:windowBackground">@color/gray800</item>
-        <item name="background">@color/gray800</item>
 
         <item name="colorPrimarySurface">@color/gray500</item>
         <item name="colorOnPrimarySurface">@color/gray300</item>
-
-        <item name="cardBackgroundColor">@color/gray500</item>
 
         <item name="colorSurface">@color/gray800</item>
         <item name="colorOnSurface">@color/gray300</item>

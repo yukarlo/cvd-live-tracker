@@ -11,18 +11,12 @@
         <item name="subtitleTextColor">@color/white800</item>
 
         <item name="android:windowBackground">@color/white00</item>
-        <item name="background">@color/white50</item>
 
         <item name="colorPrimarySurface">@color/white300</item>
         <item name="colorOnPrimarySurface">@color/gray300</item>
 
-        <item name="colorSurface">@color/white50</item>
-        <item name="colorOnSurface">@color/gray300</item>
-
         <item name="colorSurface">@color/white300</item>
         <item name="colorOnSurface">@color/gray300</item>
-
-        <item name="cardBackgroundColor">@color/white300</item>
     </style>
 
     <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />

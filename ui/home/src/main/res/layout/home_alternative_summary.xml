@@ -9,29 +9,17 @@
     android:layout_marginEnd="20dp">
 
     <TextView
-        android:id="@+id/homeSummaryHeader1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:text="@string/covid_19"
-        android:textColor="@color/gray100"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/homeSummaryHeader2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/homeSummaryHeader2"
+        android:id="@+id/homeSummaryHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
         android:text="@string/latest_update_title"
         android:textColor="@color/gray100"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/homeUpdatedSince"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeSummaryHeader1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/homeUpdatedSince"
@@ -43,7 +31,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/homeBorderTop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeSummaryHeader2"
+        app:layout_constraintTop_toBottomOf="@+id/homeSummaryHeader"
         tools:text="updated 32 minutes ago" />
 
     <TextView
