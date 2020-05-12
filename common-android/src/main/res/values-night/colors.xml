@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow500">#DFAB16</color>
-    <color name="yellow300">#FBD67A</color>
+    <color name="yellow500">#FFB000</color>
+    <color name="yellow300">#EDC55F</color>
 
     <color name="green500">#1a7749</color>
-    <color name="green300">#94D175</color>
+    <color name="green300">#8FCC70</color>
 
     <color name="red500">#d32f2f</color>
-    <color name="red300">#FD6354</color>
+    <color name="red300">#EF5C4E</color>
 
     <color name="blue800">#6779ff</color>
 
-    <color name="cyan500">#1DADBF</color>
-    <color name="cyan300">#84F2FF</color>
+    <color name="cyan500">#009AAB</color>
+    <color name="cyan300">#55C5D6</color>
 
-    <color name="gray00">#080B0E</color>
+    <color name="white800">#FFFFFF</color>
+    <color name="white500">#E1E1E1</color>
+
 </resources>
