@@ -2,20 +2,26 @@
 <resources>
 
     <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
-        <item name="colorPrimary">@color/gray800</item>
+        <item name="colorPrimary">@color/gray1000</item>
         <item name="colorOnPrimary">@color/white00</item>
-        <item name="colorPrimaryDark">@color/gray800</item>
+        <item name="colorPrimaryDark">@color/gray1000</item>
         <item name="colorAccent">@color/teal200</item>
 
         <item name="android:textColor">@color/white50</item>
         <item name="subtitleTextColor">@color/white800</item>
 
-        <item name="android:windowBackground">@color/gray800</item>
+        <item name="android:windowBackground">@color/gray1000</item>
 
-        <item name="colorPrimarySurface">@color/gray500</item>
+        <item name="colorPrimarySurface">@color/gray00</item>
         <item name="colorOnPrimarySurface">@color/gray300</item>
 
         <item name="colorSurface">@color/gray800</item>
-        <item name="colorOnSurface">@color/gray300</item>
+        <item name="colorOnSurface">@color/white500</item>
     </style>
+
+    <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" >
+        <item name="android:background">@color/gray1000</item>
+    </style>
+
+    <style name="Theme.App.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
 </resources>
