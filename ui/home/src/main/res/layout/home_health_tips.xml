@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/homeSummaryLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp">
+
+    <TextView
+        android:id="@+id/homeHealthTipsHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:lines="1"
+        android:text="@string/health_tips"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/homeHealthTipsSymptomsImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/homeHealthTipsSymptomsImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="26dp"
+        android:elevation="1dp"
+        android:src="@drawable/person_with_a_cold"
+        app:layout_constraintBottom_toBottomOf="@+id/homeHealthTipsSymptomsCardView"
+        app:layout_constraintStart_toStartOf="@+id/homeHealthTipsSymptomsCardView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homeHealthTipsSymptomsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:text="@string/symptoms"
+        android:textColor="@color/white800"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/homeHealthTipsSymptomsSubtitle"
+        app:layout_constraintEnd_toEndOf="@+id/homeHealthTipsSymptomsCardView"
+        app:layout_constraintStart_toEndOf="@+id/homeHealthTipsSymptomsImageView"
+        app:layout_constraintTop_toTopOf="@+id/homeHealthTipsSymptomsCardView"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/homeHealthTipsSymptomsSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:textColor="@color/white500"
+        android:text="@string/symptoms_subtitle"
+        app:layout_constraintBottom_toBottomOf="@+id/homeHealthTipsSymptomsCardView"
+        app:layout_constraintEnd_toEndOf="@+id/homeHealthTipsSymptomsCardView"
+        app:layout_constraintStart_toEndOf="@+id/homeHealthTipsSymptomsImageView"
+        app:layout_constraintTop_toBottomOf="@+id/homeHealthTipsSymptomsTitle" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/homeHealthTipsSymptomsCardView"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homeHealthTipsSymptomsImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeHealthTipsHeader" />
+
+    <!-- Region Preventive Measure-->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/homeHealthTipsPreventiveMeasureImageView"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:elevation="1dp"
+        android:src="@drawable/person_with_medical_mask"
+        app:layout_constraintBottom_toBottomOf="@+id/homeHealthTipsPreventiveMeasureCardView"
+        app:layout_constraintEnd_toEndOf="@+id/homeHealthTipsSymptomsImageView"
+        app:layout_constraintStart_toStartOf="@+id/homeHealthTipsPreventiveMeasureCardView"
+        app:layout_constraintTop_toBottomOf="@+id/homeHealthTipsSymptomsImageView" />
+
+    <TextView
+        android:id="@+id/homeHealthTipsPreventiveMeasureTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:text="@string/preventive_measures"
+        android:textColor="@color/white800"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/homeHealthTipsPreventiveMeasureSubtitle"
+        app:layout_constraintEnd_toEndOf="@+id/homeHealthTipsPreventiveMeasureCardView"
+        app:layout_constraintStart_toEndOf="@+id/homeHealthTipsSymptomsImageView"
+        app:layout_constraintTop_toTopOf="@+id/homeHealthTipsPreventiveMeasureCardView"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/homeHealthTipsPreventiveMeasureSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:textColor="@color/white500"
+        android:text="@string/preventive_measure_subtitle"
+        app:layout_constraintBottom_toBottomOf="@+id/homeHealthTipsPreventiveMeasureCardView"
+        app:layout_constraintEnd_toEndOf="@+id/homeHealthTipsPreventiveMeasureCardView"
+        app:layout_constraintStart_toEndOf="@+id/homeHealthTipsSymptomsImageView"
+        app:layout_constraintTop_toBottomOf="@+id/homeHealthTipsPreventiveMeasureTitle" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/homeHealthTipsPreventiveMeasureCardView"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="6dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homeHealthTipsPreventiveMeasureImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeHealthTipsSymptomsImageView" />
+
+    <!--  Endregion-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

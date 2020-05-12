@@ -40,6 +40,7 @@ internal class HomeViewModel @Inject constructor(
         val baseItem = mutableListOf<HomeBaseItem>()
         baseItem.add(HomeBaseItem.Header)
         baseItem.add(HomeBaseItem.SummaryItem(summary = summary))
+        baseItem.add(HomeBaseItem.HealthTipsItem)
         baseItem.add(HomeBaseItem.ContinentsHeader)
         continents.map {
             baseItem.add(HomeBaseItem.ContinentsItem(continents = it))

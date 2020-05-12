@@ -9,10 +9,12 @@ import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsHeader
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsTitle
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.Header
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.HealthTipsItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.SummaryItem
 import com.yukarlo.ui.home.databinding.HomeAlternativeSummaryBinding
 import com.yukarlo.ui.home.databinding.HomeContinentHeaderBinding
 import com.yukarlo.ui.home.databinding.HomeHeaderBinding
+import com.yukarlo.ui.home.databinding.HomeHealthTipsBinding
 
 internal fun homeHeaderDelegate() =
     adapterDelegateViewBinding<Header, HomeBaseItem, HomeHeaderBinding>(
@@ -26,9 +28,7 @@ internal fun homeHeaderDelegate() =
         on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
             item is Header && items[position] is Header
         }
-    ) {
-
-    }
+    ) {}
 
 internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
     adapterDelegateViewBinding<SummaryItem, HomeBaseItem, HomeAlternativeSummaryBinding>(
@@ -54,6 +54,22 @@ internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
             binding.homeUpdatedSince.text =
                 String.format(getString(R.string.updated), item.summary.updatedSince)
         }
+    }
+
+internal fun homeHealthTipsDelegate() =
+    adapterDelegateViewBinding<HealthTipsItem, HomeBaseItem, HomeHealthTipsBinding>(
+        { layoutInflater, root ->
+            HomeHealthTipsBinding.inflate(
+                layoutInflater,
+                root,
+                false
+            )
+        },
+        on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
+            item is HealthTipsItem && items[position] is HealthTipsItem
+        }
+    ) {
+
     }
 
 internal fun homeContinentHeader() =

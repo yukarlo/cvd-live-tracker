@@ -17,4 +17,12 @@
     <string name="countries">Countries</string>
     <string name="latest_update_title">Latest Global Update</string>
     <string name="covid_19">Covid-19</string>
+    <string name="health_tips">Health Tips</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="symptoms_subtitle">The Covid-19 affects people in different ways.</string>
+    <string name="preventive_measures">Preventive Measures</string>
+    <string name="preventive_measure_subtitle">Check how to prevent and slow transmission of Covid-19</string>
+    <string name="details">Details</string>
+    <string name="stay_home">Stay Home</string>
+    <string name="stay_safe">Stay Safe</string>
 </resources>
