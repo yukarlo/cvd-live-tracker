@@ -111,10 +111,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:textColor="@color/green300"
-        app:layout_constraintBottom_toTopOf="@+id/affectedDivider"
+        app:layout_constraintBottom_toTopOf="@+id/affectedExpand"
         app:layout_constraintEnd_toStartOf="@+id/affectedTotalActiveCount"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/affectedRecoveredTitle"
+        app:layout_goneMarginBottom="20dp"
         tool:text="86885" />
 
     <TextView
@@ -138,11 +139,32 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:textColor="@color/cyan300"
-        app:layout_constraintBottom_toTopOf="@+id/affectedDivider"
+        app:layout_constraintBottom_toTopOf="@+id/affectedExpand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/affectedTotalRecoveredCount"
         app:layout_constraintTop_toBottomOf="@+id/affectedActiveTitle"
+        app:layout_goneMarginBottom="20dp"
         tool:text="76871" />
+
+    <LinearLayout
+        android:id="@+id/affectedExpand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/affectedDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/affectedTotalActiveCount">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="More Content Here Soon! Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/affectedDivider"
@@ -152,6 +174,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/affectedTotalActiveCount" />
+        app:layout_constraintTop_toBottomOf="@+id/affectedExpand" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

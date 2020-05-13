@@ -12,6 +12,7 @@ import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter.CasesCountriesView
 class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>() {
 
     private val data = arrayListOf<CasesCountriesModel>()
+    private var mExpandedPosition = -1
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -47,6 +48,23 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
             itemBinding.affectedRegionFlag.apply {
                 load(data.countryFlag)
                 visibility = View.VISIBLE
+            }
+
+            val isExpanded = layoutPosition == mExpandedPosition
+
+            if (isExpanded) {
+                Animations.expand(itemBinding.affectedExpand)
+            } else {
+                Animations.collapse(itemBinding.affectedExpand)
+            }
+
+            itemBinding.affectedConstraintLayout.setOnClickListener {
+                mExpandedPosition = if (isExpanded) {
+                    -1
+                } else {
+                    layoutPosition
+                }
+                notifyDataSetChanged()
             }
         }
     }
