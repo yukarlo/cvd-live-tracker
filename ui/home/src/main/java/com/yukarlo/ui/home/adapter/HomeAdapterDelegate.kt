@@ -2,12 +2,10 @@ package com.yukarlo.ui.home.adapter
 
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.yukarlo.common.android.databinding.AffectedAlternativeRowViewBinding
-import com.yukarlo.common.android.databinding.AffectedTitleRowViewBinding
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsHeader
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsItem
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsTitle
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.Header
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.HealthTipsItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.SummaryItem
@@ -83,22 +81,6 @@ internal fun homeContinentHeader() =
         },
         on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
             item is ContinentsHeader && items[position] is ContinentsHeader
-        }
-    ) {
-
-    }
-
-internal fun homeContinentsTitleDelegate() =
-    adapterDelegateViewBinding<ContinentsTitle, HomeBaseItem, AffectedTitleRowViewBinding>(
-        { layoutInflater, root ->
-            AffectedTitleRowViewBinding.inflate(
-                layoutInflater,
-                root,
-                false
-            )
-        },
-        on = { item: HomeBaseItem, items: List<HomeBaseItem>, position: Int ->
-            item is ContinentsTitle && items[position] is ContinentsTitle
         }
     ) {
 

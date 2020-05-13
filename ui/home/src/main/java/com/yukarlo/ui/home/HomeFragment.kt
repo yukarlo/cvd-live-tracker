@@ -17,7 +17,6 @@ import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
 import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.home.adapter.homeContinentHeader
 import com.yukarlo.ui.home.adapter.homeContinentsDelegate
-import com.yukarlo.ui.home.adapter.homeContinentsTitleDelegate
 import com.yukarlo.ui.home.adapter.homeHeaderDelegate
 import com.yukarlo.ui.home.adapter.homeHealthTipsDelegate
 import com.yukarlo.ui.home.adapter.homeSummaryDelegate
@@ -69,7 +68,6 @@ class HomeFragment : Fragment() {
             homeHeaderDelegate(),
             homeSummaryDelegate(navigateToCountries()),
             homeHealthTipsDelegate(),
-            homeContinentsTitleDelegate(),
             homeContinentHeader(),
             homeContinentsDelegate(navigateToContinents())
         )
