@@ -7,8 +7,10 @@
     <string name="information">information</string>
     <string name="sources">Sources:</string>
     <string name="created_by">This app is created by <a href="https://github.com/yukarlo/">Karlo Yu</a>.</string>
-    <string name="information_of_tool">This tool is an attempt to provide well information related to the Coronavirus (COVID-19).</string>
+    <string name="information_of_tool">This tool is an attempt to provide a well information related to the Coronavirus (COVID-19).</string>
     <string name="api_source"><a href="https://corona.lmao.ninja/docs/#/">Novel Covid 19</a></string>
+    <string name="wonderful_illustrations_by">Wonderful illustrations by</string>
+    <string name="illustrations_source"><a href="https://stories.freepik.com/">Stories by Freepik</a></string>
     <string name="updated">Last Updated: %1$s</string>
     <string name="summary">Summary</string>
     <string name="affected_countries">Affected Countries</string>

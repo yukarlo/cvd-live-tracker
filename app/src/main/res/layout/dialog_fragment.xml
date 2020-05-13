@@ -26,6 +26,25 @@
         app:layout_constraintTop_toBottomOf="@+id/dialogCreatedBy" />
 
     <TextView
+        android:id="@+id/dialogIllustrationSourcesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/wonderful_illustrations_by"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogInformation" />
+
+    <TextView
+        android:id="@+id/dialogFreepikApi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/illustrations_source"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogIllustrationSourcesTitle" />
+
+    <TextView
         android:id="@+id/dialogSourcesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +53,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialogInformation" />
+        app:layout_constraintTop_toBottomOf="@+id/dialogFreepikApi" />
 
     <TextView
         android:id="@+id/dialogNovelApi"
