@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
-import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
+import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.home.adapter.homeContinentHeader
 import com.yukarlo.ui.home.adapter.homeContinentsDelegate
 import com.yukarlo.ui.home.adapter.homeContinentsTitleDelegate
@@ -56,7 +56,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpViews()
+        setupObservers()
+    }
 
+    private fun setUpViews() {
         recyclerView = fragmentBinding.homeRecyclerView.also {
             it.layoutManager = LinearLayoutManager(context)
         }
@@ -70,7 +74,11 @@ class HomeFragment : Fragment() {
             homeContinentsDelegate(navigateToContinents())
         )
 
-        mViewModel.getHomeData().observe(viewLifecycleOwner, Observer { homeItems ->
+        mViewModel.initView()
+    }
+
+    private fun setupObservers() {
+        mViewModel.homeBla.observe(viewLifecycleOwner, Observer { homeItems ->
             homeAdapter.items = homeItems
             recyclerView.adapter = homeAdapter
         })

@@ -1,8 +1,8 @@
 package com.yukarlo.ui.home
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
@@ -10,7 +10,9 @@ import com.yukarlo.lib.cases.domain.GetCvdCasesContinentsUseCase
 import com.yukarlo.lib.cases.domain.GetCvdCasesSummaryUseCase
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class HomeViewModel @Inject constructor(
@@ -18,34 +20,36 @@ internal class HomeViewModel @Inject constructor(
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
 ) : ViewModel() {
 
-    fun getSummary(): LiveData<CasesSummaryModel> =
-        mGetCvdCasesSummaryUseCase.execute()
-            .asLiveData(viewModelScope.coroutineContext + Dispatchers.IO)
+    private val homeUpdate: MutableLiveData<List<HomeBaseItem>> = MutableLiveData()
+    val homeBla: LiveData<List<HomeBaseItem>>
+        get() = homeUpdate
 
-    fun getContinents(): LiveData<List<CasesContinentsModel>> =
-        mGetCvdCasesContinentsUseCase.execute()
-            .asLiveData(viewModelScope.coroutineContext + Dispatchers.IO)
-
-    fun getHomeData() =
-        mGetCvdCasesContinentsUseCase.execute().combine(
-            mGetCvdCasesSummaryUseCase.execute()
-        ) { continents, summary ->
-            provideHomeBaseItem(summary = summary, continents = continents)
-        }.asLiveData(viewModelScope.coroutineContext + Dispatchers.IO)
+    fun initView() {
+        viewModelScope.launch(Dispatchers.IO) {
+            combine(
+                mGetCvdCasesContinentsUseCase.execute(),
+                mGetCvdCasesSummaryUseCase.execute()
+            ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
+                provideHomeBaseItem(summary = summary, history = history, continents = continents)
+            }.collect { onHomeUpdate(homeItems = it) }
+        }
+    }
 
     private fun provideHomeBaseItem(
         summary: CasesSummaryModel,
         continents: List<CasesContinentsModel>
-    ): List<HomeBaseItem> {
-        val baseItem = mutableListOf<HomeBaseItem>()
-        baseItem.add(HomeBaseItem.Header)
-        baseItem.add(HomeBaseItem.SummaryItem(summary = summary))
-        baseItem.add(HomeBaseItem.HealthTipsItem)
-        baseItem.add(HomeBaseItem.ContinentsHeader)
+    ): List<HomeBaseItem> = mutableListOf<HomeBaseItem>().apply {
+        add(HomeBaseItem.Header)
+        add(HomeBaseItem.SummaryItem(summary = summary))
+        add(HomeBaseItem.HealthTipsItem)
+        add(HomeBaseItem.ContinentsHeader)
         continents.map {
-            baseItem.add(HomeBaseItem.ContinentsItem(continents = it))
+            add(HomeBaseItem.ContinentsItem(continents = it))
         }
-
-        return baseItem
     }
+
+    private fun onHomeUpdate(homeItems: List<HomeBaseItem>) {
+        homeUpdate.postValue(homeItems)
+    }
+
 }
