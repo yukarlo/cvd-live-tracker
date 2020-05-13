@@ -30,7 +30,7 @@ internal class HomeViewModel @Inject constructor(
                 mGetCvdCasesContinentsUseCase.execute(),
                 mGetCvdCasesSummaryUseCase.execute()
             ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
-                provideHomeBaseItem(summary = summary, history = history, continents = continents)
+                provideHomeBaseItem(summary = summary, continents = continents)
             }.collect { onHomeUpdate(homeItems = it) }
         }
     }
