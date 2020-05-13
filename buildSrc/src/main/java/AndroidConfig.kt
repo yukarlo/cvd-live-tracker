@@ -7,7 +7,7 @@ internal object AndroidConfig {
     const val VERSION_CODE = 1
     const val VERSION_NAME = "1.0"
 
-    const val APP_ID = "com.yukarlo.tmdb"
+    const val APP_ID = "com.yukarlo.coronow"
     const val TEST_INSTRUMENTATION_RUNNER = "android.support.test.runner.AndroidJUnitRunner"
 }
 
