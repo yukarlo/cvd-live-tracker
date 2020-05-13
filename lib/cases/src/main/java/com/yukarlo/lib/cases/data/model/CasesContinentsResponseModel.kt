@@ -19,6 +19,12 @@ data class CasesContinentsResponseModel(
     @Json(name = "recovered")
     val recovered: Long,
 
+    @Json(name = "active")
+    val active: Long,
+
+    @Json(name = "critical")
+    val critical: Long,
+
     @Json(name = "continent")
     val continent: String
 ) : DataModel

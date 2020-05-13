@@ -1,7 +1,7 @@
 package com.yukarlo.ui.home.adapter
 
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import com.yukarlo.common.android.databinding.AffectedAlternativeRowViewBinding
+import com.yukarlo.common.android.databinding.AffectedRowViewBinding
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsHeader
@@ -87,9 +87,9 @@ internal fun homeContinentHeader() =
     }
 
 internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
-    adapterDelegateViewBinding<ContinentsItem, HomeBaseItem, AffectedAlternativeRowViewBinding>(
+    adapterDelegateViewBinding<ContinentsItem, HomeBaseItem, AffectedRowViewBinding>(
         { layoutInflater, root ->
-            AffectedAlternativeRowViewBinding.inflate(
+            AffectedRowViewBinding.inflate(
                 layoutInflater,
                 root,
                 false
@@ -99,13 +99,14 @@ internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
             item is ContinentsItem && items[position] is ContinentsItem
         }
     ) {
-        binding.homeContinentsLayout.setOnClickListener {
+        binding.affectedConstraintLayout.setOnClickListener {
             itemClickedListener(item.continents.continentName)
         }
         bind {
             binding.affectedTotalCasesCount.text = item.continents.totalCasesCount
             binding.affectedTotalRecoveredCount.text = item.continents.totalRecoveredCount
             binding.affectedTotalDeceasedCount.text = item.continents.totalDeceasedCount
+            binding.affectedTotalActiveCount.text = item.continents.totalActiveCount
             binding.affectedRegionName.text = item.continents.continentName
         }
     }

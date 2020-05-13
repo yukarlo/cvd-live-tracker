@@ -2,22 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
-    android:id="@+id/homeContinentsLayout"
+    android:id="@+id/affectedConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp"
-    android:layout_marginBottom="15dp"
-    android:paddingStart="0dp"
-    android:paddingEnd="5dp">
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="5dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/affectedRegionFlag"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="5dp"
         android:foregroundGravity="center"
+        android:src="@drawable/ic_covid_19"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
+        app:layout_constraintEnd_toStartOf="@+id/affectedRegionName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,67 +26,132 @@
         android:id="@+id/affectedRegionName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/affectedRegionGuideline"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white800"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionFlag"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/affectedRegionFlag"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/affectedRegionFlag"
+        app:layout_goneMarginStart="0dp"
         tool:text="Central African Republic" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/affectedRegionGuideline"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/affectedConfirmedTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.37" />
+        android:layout_marginTop="15dp"
+        android:text="@string/confirmed"
+        android:textAllCaps="true"
+        android:textColor="@color/white500"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/affectedTotalCasesCount"
+        app:layout_constraintEnd_toStartOf="@+id/affectedDeceasedTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/affectedRegionFlag" />
 
     <TextView
         android:id="@+id/affectedTotalCasesCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
-        app:drawableStartCompat="@drawable/ic_dot"
-        app:drawableTint="@color/yellow300"
-        app:layout_constraintEnd_toStartOf="@+id/affectedTotalRecoveredCount"
-        app:layout_constraintStart_toEndOf="@+id/affectedRegionGuideline"
-        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/yellow300"
+        app:layout_constraintBottom_toTopOf="@+id/affectedRecoveredTitle"
+        app:layout_constraintEnd_toStartOf="@+id/affectedTotalDeceasedCount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/affectedConfirmedTitle"
         tool:text="100,820,749" />
 
     <TextView
-        android:id="@+id/affectedTotalRecoveredCount"
+        android:id="@+id/affectedDeceasedTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
-        app:drawableStartCompat="@drawable/ic_dot"
-        app:drawableTint="@color/green300"
-        app:layout_constraintEnd_toStartOf="@+id/affectedTotalDeceasedCount"
-        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
-        app:layout_constraintStart_toEndOf="@+id/affectedTotalCasesCount"
-        app:layout_constraintTop_toTopOf="parent"
-        tool:text="86885" />
+        android:layout_marginTop="15dp"
+        android:text="@string/deceased"
+        android:textAllCaps="true"
+        android:textColor="@color/white500"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/affectedTotalDeceasedCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/affectedConfirmedTitle"
+        app:layout_constraintTop_toBottomOf="@+id/affectedRegionFlag" />
 
     <TextView
         android:id="@+id/affectedTotalDeceasedCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
-        app:drawableStartCompat="@drawable/ic_dot"
-        app:drawableTint="@color/red300"
+        android:textColor="@color/red300"
+        app:layout_constraintBottom_toTopOf="@+id/affectedActiveTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/affectedTotalRecoveredCount"
-        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/affectedTotalCasesCount"
+        app:layout_constraintTop_toBottomOf="@+id/affectedDeceasedTitle"
         tool:text="32" />
 
+    <TextView
+        android:id="@+id/affectedRecoveredTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/recovered"
+        android:textAllCaps="true"
+        android:textColor="@color/white500"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/affectedTotalRecoveredCount"
+        app:layout_constraintEnd_toStartOf="@+id/affectedActiveTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/affectedTotalCasesCount" />
+
+    <TextView
+        android:id="@+id/affectedTotalRecoveredCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/green300"
+        app:layout_constraintBottom_toTopOf="@+id/affectedDivider"
+        app:layout_constraintEnd_toStartOf="@+id/affectedTotalActiveCount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/affectedRecoveredTitle"
+        tool:text="86885" />
+
+    <TextView
+        android:id="@+id/affectedActiveTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/active"
+        android:textAllCaps="true"
+        android:textColor="@color/white500"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/affectedTotalRecoveredCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/affectedRecoveredTitle"
+        app:layout_constraintTop_toBottomOf="@+id/affectedTotalDeceasedCount" />
+
+    <TextView
+        android:id="@+id/affectedTotalActiveCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/cyan300"
+        app:layout_constraintBottom_toTopOf="@+id/affectedDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/affectedTotalRecoveredCount"
+        app:layout_constraintTop_toBottomOf="@+id/affectedActiveTitle"
+        tool:text="76871" />
+
     <View
-        android:id="@+id/affectedRegionDivider"
+        android:id="@+id/affectedDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/gray300"
+        android:background="?attr/colorSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/affectedRegionName" />
+        app:layout_constraintTop_toBottomOf="@+id/affectedTotalActiveCount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

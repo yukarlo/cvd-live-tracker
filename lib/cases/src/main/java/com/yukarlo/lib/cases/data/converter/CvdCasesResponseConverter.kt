@@ -36,6 +36,8 @@ internal object CvdContinentsResponseConverter :
             totalCasesCount = numberFormat.format(input.cases),
             totalDeceasedCount = numberFormat.format(input.deaths),
             totalRecoveredCount = numberFormat.format(input.recovered),
+            totalActiveCount = numberFormat.format(input.active),
+            totalCriticalCount = numberFormat.format(input.critical),
             continentName = input.continent
         )
     }
@@ -49,6 +51,7 @@ internal object CvdCountriesResponseConverter :
             totalCasesCount = numberFormat.format(input.cases),
             totalDeceasedCount = numberFormat.format(input.deaths),
             totalRecoveredCount = numberFormat.format(input.recovered),
+            totalActiveCount = numberFormat.format(input.active),
             countryName = input.country,
             countryFlag = input.countryInfo.flag
         )

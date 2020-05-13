@@ -7,5 +7,6 @@ data class CasesCountriesModel(
     val totalCasesCount: String,
     val totalDeceasedCount: String,
     val totalRecoveredCount: String,
+    val totalActiveCount:String,
     val countryFlag: String
 ) : DomainModel

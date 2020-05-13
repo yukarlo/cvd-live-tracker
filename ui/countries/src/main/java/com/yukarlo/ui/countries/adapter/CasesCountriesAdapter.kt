@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.yukarlo.common.android.databinding.AffectedAlternativeRowViewBinding
+import com.yukarlo.common.android.databinding.AffectedRowViewBinding
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter.CasesCountriesViewHolder
 
@@ -18,7 +18,7 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
         viewType: Int
     ): CasesCountriesViewHolder {
         val itemBinding =
-            AffectedAlternativeRowViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            AffectedRowViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CasesCountriesViewHolder(itemBinding)
     }
 
@@ -35,7 +35,7 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
         notifyDataSetChanged()
     }
 
-    inner class CasesCountriesViewHolder(private val itemBinding: AffectedAlternativeRowViewBinding) :
+    inner class CasesCountriesViewHolder(private val itemBinding: AffectedRowViewBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(data: CasesCountriesModel) {
@@ -43,6 +43,7 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
             itemBinding.affectedTotalCasesCount.text = data.totalCasesCount
             itemBinding.affectedTotalRecoveredCount.text = data.totalRecoveredCount
             itemBinding.affectedTotalDeceasedCount.text = data.totalDeceasedCount
+            itemBinding.affectedTotalActiveCount.text = data.totalActiveCount
             itemBinding.affectedRegionFlag.apply {
                 load(data.countryFlag)
                 visibility = View.VISIBLE
