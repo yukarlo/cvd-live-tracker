@@ -1,7 +1,5 @@
 package com.yukarlo.stack.network.di
 
-import com.squareup.moshi.Moshi.Builder
-import com.yukarlo.stack.network.MoshiAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
