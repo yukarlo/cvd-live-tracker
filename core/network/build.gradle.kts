@@ -16,7 +16,7 @@ dependencies {
     api(LibraryDependency.RETROFIT)
     api(LibraryDependency.RETROFIT_ADAPTER_RXJAVA2)
     api(LibraryDependency.MOSHI_CONVERTER)
-    api(LibraryDependency.GOOGLE_GSON)
+    api(LibraryDependency.RETROFIT_CONVERTER_GSON)
     api(LibraryDependency.OKHTTP3_LOGGING)
 
     addDaggerDependencies()

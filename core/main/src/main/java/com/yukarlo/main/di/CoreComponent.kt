@@ -8,6 +8,7 @@ import com.yukarlo.stack.network.di.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import okhttp3.OkHttpClient
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Component(
@@ -29,6 +30,8 @@ interface CoreComponent {
     fun provideOkHttpClient(): OkHttpClient
 
     fun provideMoshiConverterFactory(): MoshiConverterFactory
+
+    fun provideGsonConverterFactory(): GsonConverterFactory
 
     fun provideBaseUrl(): String
 

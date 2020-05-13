@@ -8,7 +8,9 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+
 
 @Module
 internal abstract class LibCvdCasesModule {
@@ -23,9 +25,10 @@ internal abstract class LibCvdCasesModule {
         fun provideCvdCasesApiService(
             okHttpClient: OkHttpClient,
             baseUrl: String,
-            moshiConverterFactory: MoshiConverterFactory
+            moshiConverterFactory: MoshiConverterFactory,
+            gsonConverterFactory: GsonConverterFactory
         ): CvdCasesApiService = Retrofit.Builder()
-            .addConverterFactory(moshiConverterFactory)
+            .addConverterFactory(gsonConverterFactory)
             .baseUrl(baseUrl)
             .client(okHttpClient)
             .build()
