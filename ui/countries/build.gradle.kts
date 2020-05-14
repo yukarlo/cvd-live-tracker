@@ -24,6 +24,7 @@ dependencies {
     implementation(LibraryDependency.GOOGLE_MATERIAL)
     implementation(LibraryDependency.ADAPTER_DELEGATE)
     implementation(LibraryDependency.COIL_KT)
+    implementation(LibraryDependency.ANDROID_RECYCLERVIEW)
 
     addDaggerDependencies()
 }
