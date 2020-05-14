@@ -1,5 +1,6 @@
 package com.yukarlo.ui.home.adapter
 
+import androidx.core.view.isVisible
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
 import com.yukarlo.ui.home.R
@@ -108,5 +109,6 @@ internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
             binding.affectedTotalDeceasedCount.text = item.continents.totalDeceasedCount
             binding.affectedTotalActiveCount.text = item.continents.totalActiveCount
             binding.affectedRegionName.text = item.continents.continentName
+            binding.affectedChevron.isVisible = false
         }
     }
