@@ -22,4 +22,8 @@
     <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />
 
     <style name="Theme.App.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+
+    <style name="ThemeOverlay.Search.Input" parent="">
+        <item name="colorPrimary">#8B8B8B</item>
+    </style>
 </resources>
