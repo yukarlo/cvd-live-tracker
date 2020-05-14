@@ -69,8 +69,10 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
 
             itemBinding.affectedConstraintLayout.setOnClickListener {
                 mExpandedPosition = if (isExpanded) {
+                    itemBinding.affectedChevron.rotate(from = 180f, to = 0f)
                     -1
                 } else {
+                    itemBinding.affectedChevron.rotate(from = 0f, to = 180f)
                     layoutPosition
                 }
                 notifyDataSetChanged()
