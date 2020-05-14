@@ -71,12 +71,10 @@ class HomeFragment : Fragment() {
             homeContinentHeader(),
             homeContinentsDelegate(navigateToContinents())
         )
-
-        mViewModel.initView()
     }
 
     private fun setupObservers() {
-        mViewModel.homeBla.observe(viewLifecycleOwner, Observer { homeItems ->
+        mViewModel.onHomeUpdated.observe(viewLifecycleOwner, Observer { homeItems ->
             homeAdapter.items = homeItems
             recyclerView.adapter = homeAdapter
         })

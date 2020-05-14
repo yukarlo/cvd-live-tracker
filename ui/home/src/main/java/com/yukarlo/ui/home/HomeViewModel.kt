@@ -20,11 +20,11 @@ internal class HomeViewModel @Inject constructor(
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
 ) : ViewModel() {
 
-    private val homeUpdate: MutableLiveData<List<HomeBaseItem>> = MutableLiveData()
-    val homeBla: LiveData<List<HomeBaseItem>>
-        get() = homeUpdate
+    private val updateHome: MutableLiveData<List<HomeBaseItem>> = MutableLiveData()
+    val onHomeUpdated: LiveData<List<HomeBaseItem>>
+        get() = updateHome
 
-    fun initView() {
+    init {
         viewModelScope.launch(Dispatchers.IO) {
             combine(
                 mGetCvdCasesContinentsUseCase.execute(),
@@ -49,7 +49,6 @@ internal class HomeViewModel @Inject constructor(
     }
 
     private fun onHomeUpdate(homeItems: List<HomeBaseItem>) {
-        homeUpdate.postValue(homeItems)
+        updateHome.postValue(homeItems)
     }
-
 }
