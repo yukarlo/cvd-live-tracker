@@ -3,9 +3,15 @@ package com.yukarlo.ui.countries.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnLayout
+import androidx.core.view.doOnPreDraw
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
+import com.yukarlo.common.android.view.collapse
+import com.yukarlo.common.android.view.expand
+import com.yukarlo.common.android.view.rotate
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter.CasesCountriesViewHolder
 
@@ -13,6 +19,7 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
 
     private val data = arrayListOf<CasesCountriesModel>()
     private var mExpandedPosition = -1
+    private var expandedHeight = -1
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -50,12 +57,14 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
                 visibility = View.VISIBLE
             }
 
+            getHiddenViewHeight()
+
             val isExpanded = layoutPosition == mExpandedPosition
 
             if (isExpanded) {
-                Animations.expand(itemBinding.affectedExpand)
+                itemBinding.affectedExpand.expand(expandedHeight = expandedHeight)
             } else {
-                Animations.collapse(itemBinding.affectedExpand)
+                itemBinding.affectedExpand.collapse(expandedHeight = expandedHeight)
             }
 
             itemBinding.affectedConstraintLayout.setOnClickListener {
@@ -65,6 +74,22 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
                     layoutPosition
                 }
                 notifyDataSetChanged()
+            }
+        }
+
+        private fun getHiddenViewHeight() {
+            if (expandedHeight < 0) {
+                expandedHeight = 0
+
+                itemBinding.affectedConstraintLayout.doOnLayout { view ->
+
+                    val expandedView = itemBinding.affectedExpand
+                    expandedView.isVisible = true
+                    view.doOnPreDraw {
+                        expandedHeight = expandedView.height
+                        expandedView.isVisible = false
+                    }
+                }
             }
         }
     }
