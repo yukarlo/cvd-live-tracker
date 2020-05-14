@@ -9,10 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
+import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
+import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
 import com.yukarlo.ui.countries.di.DaggerUiCountriesComponent
 import javax.inject.Inject
@@ -27,12 +29,13 @@ class CountriesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var fragmentBinding: CountriesFragmentBinding
     private lateinit var casesCountriesAdapter: CasesCountriesAdapter
+    private lateinit var casesSearchCountryAdapter: CasesCountrySearchAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val coreComponent = com.yukarlo.main.di.CoreComponentFactory.coreComponent(context = requireContext())
+        val coreComponent = CoreComponentFactory.coreComponent(context = requireContext())
         DaggerUiCountriesComponent.factory()
             .create(
                 countriesFragment = this,
@@ -47,16 +50,29 @@ class CountriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setUpViews()
+        setupObservers()
+    }
 
+    private fun setUpViews() {
         casesCountriesAdapter = CasesCountriesAdapter()
+        casesSearchCountryAdapter = CasesCountrySearchAdapter(filterCountry())
+
+        val mergeAdapter = MergeAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
+
         recyclerView = fragmentBinding.countriesRecyclerView.also {
             it.layoutManager = LinearLayoutManager(context)
-            it.adapter = casesCountriesAdapter
+            it.adapter = mergeAdapter
         }
+    }
 
-        mViewModel.getAll().observe(viewLifecycleOwner, Observer { countries ->
+    private fun setupObservers() {
+        mViewModel.onCountryUpdated.observe(viewLifecycleOwner, Observer { countries ->
             casesCountriesAdapter.updateData(items = countries)
         })
     }
 
+    private fun filterCountry(): (String) -> Unit = {
+        mViewModel.filterCountry(filter = it)
+    }
 }
