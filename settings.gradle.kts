@@ -1,3 +1,5 @@
+include(":ui:preventive-measures")
+include(":ui:symptoms")
 include(":core:dispatchers")
 include(":core:main")
 include(":core:usecase")
