@@ -29,4 +29,27 @@
     <string name="stay_safe">Stay Safe</string>
     <string name="active">Active</string>
     <string name="search">Search</string>
+    <string name="preventive_measures_descriptions">You can reduce your chances of being infected or spreading COVID-19 by taking some simple precautions.</string>
+    <string name="hand_washing_title">Hand-washing</string>
+    <string name="hand_washing_description">Washing your hands especially after you have been in a public place kills viruses that may be on your hands.</string>
+    <string name="hand_washing_description_list">
+        <li>Regularly and thoroughly wash your hands with soap and running water for at least 20 seconds.</li>\n
+        <li>Use an alcohol-based, at least 60% alcohol, hand sanitizers if soap and water are not readily available.</li>\n
+        <li>Avoid touching your eyes, nose, and mouth with unwashed hands.</li>\n
+    </string>
+    <string name="avoid_close_contact">Avoid close contact</string>
+    <string name="avoid_close_contact_description">Where people come together in crowds, you are more likely to come into close contact with someone that has COVID-19.</string>
+    <string name="avoid_close_contact_description_list">
+        <li>Stay at least 6 feet (about 2 arms’ length) from other people outside of your home.</li>\n
+        <li>Avoid close contact with people who are sick, even inside your home.</li>
+    </string>
+    <string name="cover_your_mouth">Cover your mouth and nose</string>
+    <string name="cover_your_mouth_description">Following a good respiratory hygiene such as covering your mouth and nose with a cloth face mask ensures the prevention of spreading of COVID-19 even if you don\'t feel sick.</string>
+    <string name="cover_your_mouth_description_list">
+        <li>Everyone should wear a cloth face mask when they have to go out in public.</li>\n
+        <li>The cloth face mask is meant to protect other people in case you are infected.</li>\n
+        <li>The cloth face mask is not a substitute for social distancing.</li>\n
+        <li>When you cough or sneeze, use the inside of your elbow for cover.</li>
+    </string>
+    <string name="more_information">More information at <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public">WHO</a> and <a href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">CDC</a> website.</string>
 </resources>
