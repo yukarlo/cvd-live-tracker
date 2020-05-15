@@ -13,6 +13,8 @@ dependencies {
     implementation(LibraryDependency.APP_COMPACT)
     implementation(LibraryDependency.CORE_KTX)
     implementation(LibraryDependency.GOOGLE_MATERIAL)
+    implementation(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
+    implementation(LibraryDependency.NAVIGATION_UI_KTX)
 
     api("de.hdodenhof:circleimageview:3.1.0")
 
