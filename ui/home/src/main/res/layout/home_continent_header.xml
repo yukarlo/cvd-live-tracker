@@ -13,6 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/continent"
+        android:textColor="@color/gray300"
         android:includeFontPadding="false"
         android:textSize="20sp"
         android:textStyle="bold"

@@ -12,9 +12,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.yukarlo.coronow.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.dialog_fragment.dialogCDCSource
 import kotlinx.android.synthetic.main.dialog_fragment.dialogCreatedBy
-import kotlinx.android.synthetic.main.dialog_fragment.dialogFreepikApi
+import kotlinx.android.synthetic.main.dialog_fragment.dialogIllustrationSourcesTitle
 import kotlinx.android.synthetic.main.dialog_fragment.dialogNovelApi
+import kotlinx.android.synthetic.main.dialog_fragment.dialogWHOSource
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.HomeFragment -> R.string.app_name
                 R.id.ContinentsFragment -> R.string.continent
                 R.id.CountriesFragment -> R.string.countries
+                R.id.PreventiveMeasuresFragment -> R.string.preventive_measures
+                R.id.SymptomsFragment -> R.string.symptoms
                 else -> R.string.app_name
             }
 
@@ -86,7 +90,11 @@ class MainActivity : AppCompatActivity() {
                 LinkMovementMethod.getInstance()
             dialogNovelApi.movementMethod =
                 LinkMovementMethod.getInstance()
-            dialogFreepikApi.movementMethod =
+            dialogIllustrationSourcesTitle.movementMethod =
+                LinkMovementMethod.getInstance()
+            dialogWHOSource.movementMethod =
+                LinkMovementMethod.getInstance()
+            dialogCDCSource.movementMethod =
                 LinkMovementMethod.getInstance()
         }
     }

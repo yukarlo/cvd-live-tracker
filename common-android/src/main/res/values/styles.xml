@@ -7,8 +7,8 @@
         <item name="colorPrimaryDark">@color/white00</item>
         <item name="colorAccent">@color/teal200</item>
 
-        <item name="android:textColor">@color/gray300</item>
-        <item name="subtitleTextColor">@color/white800</item>
+        <item name="android:textColor">@color/white800</item>
+        <item name="subtitleTextColor">@color/gray300</item>
 
         <item name="android:windowBackground">@color/white00</item>
 

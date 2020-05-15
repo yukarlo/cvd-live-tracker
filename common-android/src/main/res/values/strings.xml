@@ -6,10 +6,12 @@
     <string name="deceased">Deceased</string>
     <string name="information">information</string>
     <string name="sources">Sources:</string>
+    <string name="api_source_title">API Source:</string>
     <string name="created_by">This app is created by <a href="https://github.com/yukarlo/">Karlo Yu</a>.</string>
     <string name="information_of_tool">This tool is an attempt to provide a well information related to the Coronavirus (COVID-19).</string>
     <string name="api_source"><a href="https://corona.lmao.ninja/docs/#/">Novel Covid 19</a></string>
     <string name="wonderful_illustrations_by">Wonderful illustrations by</string>
+    <string name="wonderful_illustrations"><b>Wonderful illustrations by</b> <a href="https://stories.freepik.com/">Freepik</a></string>
     <string name="illustrations_source"><a href="https://stories.freepik.com/">Stories by Freepik</a></string>
     <string name="updated">Last Updated: %1$s</string>
     <string name="summary">Summary</string>
@@ -23,6 +25,7 @@
     <string name="symptoms">Symptoms</string>
     <string name="symptoms_subtitle">The Covid-19 affects people in different ways.</string>
     <string name="preventive_measures">Preventive Measures</string>
+    <string name="preventive_measures_title_long">Protect yourself and others</string>
     <string name="preventive_measure_subtitle">Check how to prevent and slow transmission of Covid-19</string>
     <string name="details">Details</string>
     <string name="stay_home">Stay Home</string>
@@ -33,23 +36,25 @@
     <string name="hand_washing_title">Hand-washing</string>
     <string name="hand_washing_description">Washing your hands especially after you have been in a public place kills viruses that may be on your hands.</string>
     <string name="hand_washing_description_list">
-        <li>Regularly and thoroughly wash your hands with soap and running water for at least 20 seconds.</li>\n
-        <li>Use an alcohol-based, at least 60% alcohol, hand sanitizers if soap and water are not readily available.</li>\n
+        <li>Regularly and thoroughly wash your hands with soap and running water for at least 20 seconds.</li>\n\n
+        <li>Use an alcohol-based, at least 60% alcohol, hand sanitizers if soap and water are not readily available.</li>\n\n
         <li>Avoid touching your eyes, nose, and mouth with unwashed hands.</li>\n
     </string>
     <string name="avoid_close_contact">Avoid close contact</string>
     <string name="avoid_close_contact_description">Where people come together in crowds, you are more likely to come into close contact with someone that has COVID-19.</string>
     <string name="avoid_close_contact_description_list">
-        <li>Stay at least 6 feet (about 2 arms’ length) from other people outside of your home.</li>\n
+        <li>Stay at least 6 feet (about 2 arms’ length) from other people outside of your home.</li>\n\n
         <li>Avoid close contact with people who are sick, even inside your home.</li>
     </string>
     <string name="cover_your_mouth">Cover your mouth and nose</string>
     <string name="cover_your_mouth_description">Following a good respiratory hygiene such as covering your mouth and nose with a cloth face mask ensures the prevention of spreading of COVID-19 even if you don\'t feel sick.</string>
     <string name="cover_your_mouth_description_list">
-        <li>Everyone should wear a cloth face mask when they have to go out in public.</li>\n
-        <li>The cloth face mask is meant to protect other people in case you are infected.</li>\n
-        <li>The cloth face mask is not a substitute for social distancing.</li>\n
+        <li>Everyone should wear a cloth face mask when they have to go out in public.</li>\n\n
+        <li>The cloth face mask is meant to protect other people in case you are infected.</li>\n\n
+        <li>The cloth face mask is not a substitute for social distancing.</li>\n\n
         <li>When you cough or sneeze, use the inside of your elbow for cover.</li>
     </string>
     <string name="more_information">More information at <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public">WHO</a> and <a href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">CDC</a> website.</string>
+    <string name="world_health_organization"><a href="https://www.who.int/">World Health Organization</a></string>
+    <string name="cdc"><a href="https://www.cdc.gov/">Center for Disease Control and Prevention</a></string>
 </resources>

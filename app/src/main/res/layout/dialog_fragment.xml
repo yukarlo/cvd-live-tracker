@@ -25,24 +25,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialogCreatedBy" />
 
+    <View
+        android:id="@+id/dialogDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/colorSurface"
+        app:layout_constraintBottom_toTopOf="@+id/dialogIllustrationSourcesTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogInformation" />
+
     <TextView
         android:id="@+id/dialogIllustrationSourcesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/wonderful_illustrations_by"
+        android:text="@string/wonderful_illustrations"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/dialogApiSourcesTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogDivider" />
+
+    <TextView
+        android:id="@+id/dialogApiSourcesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/api_source_title"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialogInformation" />
+        app:layout_constraintTop_toBottomOf="@+id/dialogIllustrationSourcesTitle" />
 
     <TextView
-        android:id="@+id/dialogFreepikApi"
+        android:id="@+id/dialogNovelApi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/illustrations_source"
+        android:text="@string/api_source"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialogIllustrationSourcesTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/dialogApiSourcesTitle" />
 
     <TextView
         android:id="@+id/dialogSourcesTitle"
@@ -53,14 +75,22 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialogFreepikApi" />
+        app:layout_constraintTop_toBottomOf="@+id/dialogNovelApi" />
 
     <TextView
-        android:id="@+id/dialogNovelApi"
+        android:id="@+id/dialogWHOSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/api_source"
+        android:text="@string/world_health_organization"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialogSourcesTitle" />
+
+    <TextView
+        android:id="@+id/dialogCDCSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cdc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogWHOSource" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
