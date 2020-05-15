@@ -26,6 +26,7 @@
     <string name="symptoms_subtitle">The Covid-19 affects people in different ways.</string>
     <string name="preventive_measures">Preventive Measures</string>
     <string name="preventive_measures_title_long">Protect yourself and others</string>
+    <string name="symptoms_title_long">Symptoms of COVID-19</string>
     <string name="preventive_measure_subtitle">Check how to prevent and slow transmission of Covid-19</string>
     <string name="details">Details</string>
     <string name="stay_home">Stay Home</string>
@@ -54,7 +55,33 @@
         <li>The cloth face mask is not a substitute for social distancing.</li>\n\n
         <li>When you cough or sneeze, use the inside of your elbow for cover.</li>
     </string>
-    <string name="more_information">More information at <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public">WHO</a> and <a href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">CDC</a> website.</string>
+    <string name="more_information_prevention">More information at <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public">WHO</a> and <a href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">CDC</a> website.</string>
     <string name="world_health_organization"><a href="https://www.who.int/">World Health Organization</a></string>
     <string name="cdc"><a href="https://www.cdc.gov/">Center for Disease Control and Prevention</a></string>
+    <string name="symptoms_description">COVID-19 is a respiratory condition. Most people will have mild symptoms and get better on their own. There are wide range of symptoms reported.</string>
+    <string name="common_symptoms">Most Common Symptoms</string>
+    <string name="common_symptoms_description">People can catch COVID-19 from others who have the virus. It spreads primarily from person to person through small droplets. \n\nSymptoms may appear <b><i>2-14 days after exposure to the virus</i></b>. People with these symptoms <b>may</b> have COVID-19:</string>
+    <string name="common_symptoms_list">
+        <li>Fever</li>\n\n
+        <li>Dry Cough</li>\n\n
+        <li>Tiredness</li>
+    </string>
+    <string name="less_common_symptoms_list">
+        <li>Aches and pains</li>\n\n
+        <li>Sore throat</li>\n\n
+        <li>Diarrhoea</li>\n\n
+        <li>Conjunctivitis</li>\n\n
+        <li>Headache</li>\n\n
+        <li>Loss of taste or smell</li>\n\n
+        <li>skin rash or discolouration of fingers or toes</li>
+    </string>
+    <string name="less_common_symptoms">Less Common Symptoms</string>
+    <string name="serious_symptoms">Serious Symptoms</string>
+    <string name="serious_symptoms_list">
+        <li>Difficulty breathing or shortness of breath</li>\n\n
+        <li>Chest pain</li>\n\n
+        <li>Loss of speech or movement</li>
+    </string>
+    <string name="serious_symptoms_description">If someone is showing any of these symptoms, <b>seek medical attention immediately</b>.</string>
+    <string name="more_information_symptoms">More information at <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/q-a-coronaviruses#:~:text=symptoms">WHO</a> and <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">CDC</a> website.</string>
 </resources>
