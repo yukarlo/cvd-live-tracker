@@ -1,6 +1,7 @@
 package com.yukarlo.ui.symptoms
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,10 +22,8 @@ class SymptomsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setUpViews()
-    }
 
-    private fun setUpViews() {
-
+        fragmentBinding.symptomsMoreInformationTextView.movementMethod =
+            LinkMovementMethod.getInstance()
     }
 }
