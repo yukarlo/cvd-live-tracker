@@ -21,6 +21,7 @@
 
     <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
         <item name="android:background">@color/gray1000</item>
+        <item name="android:textColorPrimary">@color/gray300</item>
     </style>
 
     <style name="Theme.App.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />

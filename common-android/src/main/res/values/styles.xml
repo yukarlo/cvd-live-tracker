@@ -19,7 +19,10 @@
         <item name="colorOnSurface">@color/white500</item>
     </style>
 
-    <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />
+    <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
+        <item name="android:textColorPrimary">@color/gray300</item>
+        <item name="android:actionMenuTextColor">@color/gray300</item>
+    </style>
 
     <style name="Theme.App.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
 

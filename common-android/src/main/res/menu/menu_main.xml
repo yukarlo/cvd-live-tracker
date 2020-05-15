@@ -7,5 +7,7 @@
         android:icon="@drawable/ic_information_transparent"
         android:orderInCategory="100"
         android:title="@string/information"
+        android:iconTint="@color/gray300"
+        app:iconTint="@color/gray300"
         app:showAsAction="always" />
 </menu>
