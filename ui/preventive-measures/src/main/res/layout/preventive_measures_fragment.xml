@@ -1,13 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PreventiveMeasuresFragment">
+    android:layout_height="match_parent">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/preventiveMeasuresTitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="@string/preventive_measures"
+            android:textAlignment="viewStart"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresDescriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:includeFontPadding="false"
+            android:text="@string/preventive_measures_descriptions"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresDescriptionHandWashingImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresTitleTextView" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/preventiveMeasuresDescriptionHandWashingImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/handwashing"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresDescriptionHandWashingTitleTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresDescriptionTextView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresDescriptionHandWashingTitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:includeFontPadding="false"
+            android:text="@string/hand_washing_title"
+            android:textAlignment="viewStart"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresHandWashingDescriptionTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresDescriptionHandWashingImageView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresHandWashingDescriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/hand_washing_description"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresHandWashingDescriptionListTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresDescriptionHandWashingTitleTextView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresHandWashingDescriptionListTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/hand_washing_description_list"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresSocialDistancingImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresHandWashingDescriptionTextView" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/preventiveMeasuresSocialDistancingImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/social_distancing"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresDescriptionSocialDistancingTitleTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresHandWashingDescriptionListTextView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresDescriptionSocialDistancingTitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:includeFontPadding="false"
+            android:text="@string/avoid_close_contact"
+            android:textAlignment="viewStart"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresSocialDistancingDescriptionTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresSocialDistancingImageView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresSocialDistancingDescriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/avoid_close_contact_description"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresSocialDistancingDescriptionListTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresDescriptionSocialDistancingTitleTextView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresSocialDistancingDescriptionListTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/avoid_close_contact_description_list"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresSocialDistancingDescriptionTextView" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/preventiveMeasuresMedicalMaskImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/person_with_medical_mask"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresMedicalMaskTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresSocialDistancingDescriptionListTextView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresMedicalMaskTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:includeFontPadding="false"
+            android:text="@string/cover_your_mouth"
+            android:textAlignment="viewStart"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresMedicalMaskDescriptionTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresMedicalMaskImageView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresMedicalMaskDescriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/cover_your_mouth_description"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresMedicalMaskDescriptionListTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresMedicalMaskTextView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresMedicalMaskDescriptionListTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/avoid_close_contact_description_list"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresMoreInformationTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresMedicalMaskDescriptionTextView" />
+
+        <TextView
+            android:id="@+id/preventiveMeasuresMoreInformationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/more_information"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preventiveMeasuresMedicalMaskDescriptionListTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
