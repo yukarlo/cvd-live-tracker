@@ -25,7 +25,7 @@ import com.yukarlo.ui.home.databinding.HomeFragmentBinding
 import com.yukarlo.ui.home.di.DaggerUiHomeComponent
 import javax.inject.Inject
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), IHomeInteraction {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelProvider.Factory
@@ -66,10 +66,10 @@ class HomeFragment : Fragment() {
 
         homeAdapter = ListDelegationAdapter(
             homeHeaderDelegate(),
-            homeSummaryDelegate(navigateToCountries()),
-            homeHealthTipsDelegate(),
+            homeSummaryDelegate(homeInteraction = this),
+            homeHealthTipsDelegate(homeInteraction = this),
             homeContinentHeader(),
-            homeContinentsDelegate(navigateToContinents())
+            homeContinentsDelegate(homeInteraction = this)
         )
     }
 
@@ -80,12 +80,20 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun navigateToCountries(): () -> Unit = {
+    override fun navigateToCountries() {
         findNavController().navigate(R.id.action_Summary_to_CountriesFragment)
     }
 
-    private fun navigateToContinents(): (String) -> Unit = {
-        val bundle = bundleOf("continent" to it)
+    override fun navigateToContinents(continentName: String) {
+        val bundle = bundleOf("continent" to continentName)
         findNavController().navigate(R.id.action_Continents_to_ContinentsFragment, bundle)
+    }
+
+    override fun navigateToSymptoms() {
+        TODO("Not yet implemented")
+    }
+
+    override fun navigateToPreventiveMeasures() {
+        TODO("Not yet implemented")
     }
 }

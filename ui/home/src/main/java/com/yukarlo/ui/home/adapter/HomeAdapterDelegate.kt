@@ -3,6 +3,7 @@ package com.yukarlo.ui.home.adapter
 import androidx.core.view.isVisible
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
+import com.yukarlo.ui.home.IHomeInteraction
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsHeader
@@ -29,7 +30,7 @@ internal fun homeHeaderDelegate() =
         }
     ) {}
 
-internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
+internal fun homeSummaryDelegate(homeInteraction: IHomeInteraction) =
     adapterDelegateViewBinding<SummaryItem, HomeBaseItem, HomeAlternativeSummaryBinding>(
         { layoutInflater, root ->
             HomeAlternativeSummaryBinding.inflate(
@@ -43,7 +44,7 @@ internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
         }
     ) {
         binding.homeSummaryLayout.setOnClickListener {
-            itemClickedListener()
+            homeInteraction.navigateToCountries()
         }
         bind {
             binding.homeConfirmedCount.text = item.summary.totalCasesCount
@@ -55,7 +56,7 @@ internal fun homeSummaryDelegate(itemClickedListener: () -> Unit) =
         }
     }
 
-internal fun homeHealthTipsDelegate() =
+internal fun homeHealthTipsDelegate(homeInteraction: IHomeInteraction) =
     adapterDelegateViewBinding<HealthTipsItem, HomeBaseItem, HomeHealthTipsBinding>(
         { layoutInflater, root ->
             HomeHealthTipsBinding.inflate(
@@ -87,7 +88,7 @@ internal fun homeContinentHeader() =
 
     }
 
-internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
+internal fun homeContinentsDelegate(homeInteraction: IHomeInteraction) =
     adapterDelegateViewBinding<ContinentsItem, HomeBaseItem, AffectedRowViewBinding>(
         { layoutInflater, root ->
             AffectedRowViewBinding.inflate(
@@ -101,7 +102,7 @@ internal fun homeContinentsDelegate(itemClickedListener: (String) -> Unit) =
         }
     ) {
         binding.affectedConstraintLayout.setOnClickListener {
-            itemClickedListener(item.continents.continentName)
+            homeInteraction.navigateToContinents(continentName = item.continents.continentName)
         }
         bind {
             binding.affectedTotalCasesCount.text = item.continents.totalCasesCount
