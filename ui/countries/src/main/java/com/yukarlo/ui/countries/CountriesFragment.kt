@@ -19,7 +19,7 @@ import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
 import com.yukarlo.ui.countries.di.DaggerUiCountriesComponent
 import javax.inject.Inject
 
-class CountriesFragment : Fragment() {
+class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelProvider.Factory
@@ -56,7 +56,7 @@ class CountriesFragment : Fragment() {
 
     private fun setUpViews() {
         casesCountriesAdapter = CasesCountriesAdapter()
-        casesSearchCountryAdapter = CasesCountrySearchAdapter(filterCountry())
+        casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySearchInteraction = this)
 
         val mergeAdapter = MergeAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
 
@@ -72,7 +72,7 @@ class CountriesFragment : Fragment() {
         })
     }
 
-    private fun filterCountry(): (String) -> Unit = {
-        mViewModel.filterCountry(filter = it)
+    override fun filterCountry(query: String) {
+        mViewModel.filterCountry(filter = query)
     }
 }

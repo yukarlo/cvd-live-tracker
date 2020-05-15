@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.yukarlo.ui.countries.ICountrySearchInteraction
 import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter.CasesCountrySearchViewHolder
 import com.yukarlo.ui.countries.databinding.SearchRowBinding
 
-class CasesCountrySearchAdapter(val filterCountry: (String) -> Unit) :
+class CasesCountrySearchAdapter(val countrySearchInteraction: ICountrySearchInteraction) :
     RecyclerView.Adapter<CasesCountrySearchViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -30,7 +31,7 @@ class CasesCountrySearchAdapter(val filterCountry: (String) -> Unit) :
 
         fun bind() {
             itemBinding.affectedPlaceSearchTextInput.doAfterTextChanged {
-                filterCountry(it.toString())
+                countrySearchInteraction.filterCountry(it.toString())
             }
         }
     }
