@@ -69,7 +69,12 @@ internal fun homeHealthTipsDelegate(homeInteraction: IHomeInteraction) =
             item is HealthTipsItem && items[position] is HealthTipsItem
         }
     ) {
-
+        binding.homeHealthTipsPreventiveMeasureCardView.setOnClickListener {
+            homeInteraction.navigateToPreventiveMeasures()
+        }
+        binding.homeHealthTipsSymptomsCardView.setOnClickListener {
+            homeInteraction.navigateToSymptoms()
+        }
     }
 
 internal fun homeContinentHeader() =

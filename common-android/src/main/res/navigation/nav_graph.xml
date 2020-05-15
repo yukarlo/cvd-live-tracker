@@ -16,12 +16,30 @@
         <action
             android:id="@+id/action_Continents_to_ContinentsFragment"
             app:destination="@id/ContinentsFragment" />
+
+        <action
+            android:id="@+id/action_Symptoms_to_SymptomsFragment"
+            app:destination="@id/SymptomsFragment" />
+
+        <action
+            android:id="@+id/action_Preventive_Measures_to_PreventiveMeasuresFragment"
+            app:destination="@id/PreventiveMeasuresFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/CountriesFragment"
         android:name="com.yukarlo.ui.countries.CountriesFragment"
         tools:layout="@layout/countries_fragment" />
+
+    <fragment
+        android:id="@+id/SymptomsFragment"
+        android:name="com.yukarlo.ui.symptoms.SymptomsFragment"
+        tools:layout="@layout/symptoms_fragment" />
+
+    <fragment
+        android:id="@+id/PreventiveMeasuresFragment"
+        android:name="com.yukarlo.ui.preventive.measures.PreventiveMeasuresFragment"
+        tools:layout="@layout/preventive_measures_fragment" />
 
     <fragment
         android:id="@+id/ContinentsFragment"

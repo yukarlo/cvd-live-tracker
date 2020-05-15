@@ -90,10 +90,10 @@ class HomeFragment : Fragment(), IHomeInteraction {
     }
 
     override fun navigateToSymptoms() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_Symptoms_to_SymptomsFragment)
     }
 
     override fun navigateToPreventiveMeasures() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_Preventive_Measures_to_PreventiveMeasuresFragment)
     }
 }
