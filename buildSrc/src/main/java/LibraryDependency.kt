@@ -16,6 +16,8 @@ internal object LibraryVersion {
     internal const val PAGING = "2.1.2"
     internal const val COIL = "0.9.5"
     internal const val ADAPTER_DELEGATE = "4.3.0"
+    internal const val WILLIAM_CHART = "3.3.0"
+    internal const val CIRCULAR_IMAGE_VIEW = "3.1.0"
 }
 
 object LibraryDependency {
@@ -55,6 +57,8 @@ object LibraryDependency {
     const val PAGING_RUNTIME = "androidx.paging:paging-runtime:${LibraryVersion.PAGING}"
     const val PAGING_RUNTIME_KTX = "androidx.paging:paging-runtime-ktx:${LibraryVersion.PAGING}"
     const val COIL_KT = "io.coil-kt:coil:${LibraryVersion.COIL}"
+    const val WILLIAM_CHART = "com.diogobernardino:williamchart:${LibraryVersion.WILLIAM_CHART}"
+    const val CIRCULAR_IMAGE_VIEW = "de.hdodenhof:circleimageview:${LibraryVersion.CIRCULAR_IMAGE_VIEW}"
     const val ADAPTER_DELEGATE =
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${LibraryVersion.ADAPTER_DELEGATE}"
 }

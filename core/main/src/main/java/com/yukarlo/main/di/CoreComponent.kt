@@ -9,7 +9,6 @@ import dagger.BindsInstance
 import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Component(
     modules = [
@@ -28,8 +27,6 @@ interface CoreComponent {
     fun provideContext(): Context
 
     fun provideOkHttpClient(): OkHttpClient
-
-    fun provideMoshiConverterFactory(): MoshiConverterFactory
 
     fun provideGsonConverterFactory(): GsonConverterFactory
 

@@ -1,15 +1,15 @@
 package com.yukarlo.lib.cases.data.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 import com.yukarlo.stack.network.model.DataModel
 
 internal data class CasesCountryHistoryResponseModel(
-    @Json(name = "country")
+    @SerializedName(value = "country")
     val country: String,
 
-    @Json(name = "province")
+    @SerializedName(value = "province")
     val province: String?,
 
-    @Json(name = "timeline")
+    @SerializedName(value = "timeline")
     val timeline: CasesHistoryResponseModel
 ) : DataModel

@@ -42,10 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_chevron"
-        app:layout_constraintTop_toTopOf="@+id/affectedRegionName"
+        app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/affectedRegionName"
-       app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="@+id/affectedRegionName" />
 
     <TextView
         android:id="@+id/affectedConfirmedTitle"
@@ -64,15 +64,27 @@
 
     <TextView
         android:id="@+id/affectedTotalCasesCount"
-        android:layout_width="0dp"
+        android:layout_width="91dp"
         android:layout_height="wrap_content"
+        android:lines="1"
         android:textColor="@color/yellow300"
         app:layout_constraintBottom_toTopOf="@+id/affectedRecoveredTitle"
-        app:layout_constraintEnd_toStartOf="@+id/affectedTotalDeceasedCount"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/affectedTotalTodayCasesCount"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/affectedConfirmedTitle"
         tool:text="100,820,749" />
+
+    <TextView
+        android:id="@+id/affectedTotalTodayCasesCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textColor="@color/yellow300"
+        app:layout_constraintEnd_toStartOf="@+id/affectedDeceasedTitle"
+        app:layout_constraintStart_toEndOf="@+id/affectedTotalCasesCount"
+        app:layout_constraintTop_toBottomOf="@+id/affectedConfirmedTitle"
+        tool:text="100,820" />
 
     <TextView
         android:id="@+id/affectedDeceasedTitle"
@@ -85,7 +97,6 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/affectedTotalDeceasedCount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/affectedConfirmedTitle"
         app:layout_constraintTop_toBottomOf="@+id/affectedRegionFlag" />
 
@@ -93,13 +104,24 @@
         android:id="@+id/affectedTotalDeceasedCount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:lines="1"
         android:textColor="@color/red300"
         app:layout_constraintBottom_toTopOf="@+id/affectedActiveTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/affectedTotalCasesCount"
+        app:layout_constraintEnd_toStartOf="@+id/affectedTotalTodayDeceasedCount"
+        app:layout_constraintStart_toStartOf="@+id/affectedDeceasedTitle"
         app:layout_constraintTop_toBottomOf="@+id/affectedDeceasedTitle"
         tool:text="32" />
+
+    <TextView
+        android:id="@+id/affectedTotalTodayDeceasedCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textColor="@color/red300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/affectedTotalDeceasedCount"
+        app:layout_constraintTop_toBottomOf="@+id/affectedDeceasedTitle"
+        tool:text="32(4.1%)" />
 
     <TextView
         android:id="@+id/affectedRecoveredTitle"
@@ -167,13 +189,14 @@
         app:layout_constraintBottom_toTopOf="@+id/affectedDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/affectedTotalActiveCount">
+        app:layout_constraintTop_toBottomOf="@+id/affectedTotalActiveCount"
+        tool:visibility="visible">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="More Content Here Soon! Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+            android:text="More Content Here Soon!" />
 
     </LinearLayout>
 

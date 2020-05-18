@@ -35,9 +35,7 @@ internal class CvdCasesRepository @Inject constructor(
     }
 
     override fun getAllCountries(): Flow<List<CasesCountriesModel>> = flow {
-        emit(mCvdCasesApiService.getCountries().filter {
-            it.countryInfo.iso2 != null
-        }
-            .map(CvdCountriesResponseConverter::convert))
+        val a = mCvdCasesApiService.getCountries()
+        emit(mCvdCasesApiService.getCountries().map(CvdCountriesResponseConverter::convert))
     }
 }

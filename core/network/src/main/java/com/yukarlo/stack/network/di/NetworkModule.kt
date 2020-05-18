@@ -5,7 +5,6 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 class NetworkModule {
@@ -23,11 +22,8 @@ class NetworkModule {
         .build()
 
     @Provides
-    fun provideMoshiConverterFactory(): MoshiConverterFactory = MoshiConverterFactory.create()
-
-    @Provides
     fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
 
     @Provides
-    fun provideBaseUrl(): String = "https://corona.lmao.ninja/v2/"
+    fun provideBaseUrl(): String = "https://disease.sh/v2/"
 }

@@ -1,15 +1,15 @@
 package com.yukarlo.lib.cases.data.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 import com.yukarlo.stack.network.model.DataModel
 
 internal data class CasesHistoryResponseModel(
-    @Json(name = "cases")
+    @SerializedName(value = "cases")
     val cases: LinkedHashMap<String, Int>,
 
-    @Json(name = "deaths")
+    @SerializedName(value = "deaths")
     val deaths: LinkedHashMap<String, Int>,
 
-    @Json(name = "recovered")
+    @SerializedName(value = "recovered")
     val recovered: LinkedHashMap<String, Int>
 ) : DataModel

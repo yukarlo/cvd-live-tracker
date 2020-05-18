@@ -1,37 +1,37 @@
 package com.yukarlo.lib.cases.data.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 import com.yukarlo.stack.network.model.DataModel
 
 internal data class CasesSummaryResponseModel(
-    @Json(name = "updated")
+   @SerializedName(value = "updated")
     val updated: Long,
 
-    @Json(name = "cases")
+   @SerializedName(value = "cases")
     val cases: Long,
 
-    @Json(name = "todayCases")
+   @SerializedName(value = "todayCases")
     val casesToday: Long,
 
-    @Json(name = "deaths")
+   @SerializedName(value = "deaths")
     val deaths: Long,
 
-    @Json(name = "todayDeaths")
+   @SerializedName(value = "todayDeaths")
     val deathsToday: Long,
 
-    @Json(name = "recovered")
+   @SerializedName(value = "recovered")
     val recovered: Long,
 
-    @Json(name = "active")
+   @SerializedName(value = "active")
     val active: Long,
 
-    @Json(name = "critical")
+   @SerializedName(value = "critical")
     val critical: Long,
 
-    @Json(name = "tests")
+   @SerializedName(value = "tests")
     val tests: Long,
 
-    @Json(name = "affectedCountries")
+   @SerializedName(value = "affectedCountries")
     val affectedCountries: Long
 ) : DataModel
 

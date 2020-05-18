@@ -52,6 +52,8 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
             itemBinding.affectedTotalRecoveredCount.text = data.totalRecoveredCount
             itemBinding.affectedTotalDeceasedCount.text = data.totalDeceasedCount
             itemBinding.affectedTotalActiveCount.text = data.totalActiveCount
+            itemBinding.affectedTotalTodayCasesCount.text = data.totalTodayCases
+            itemBinding.affectedTotalTodayDeceasedCount.text = data.totalTodayDeceased
             itemBinding.affectedRegionFlag.apply {
                 load(data.countryFlag)
                 visibility = View.VISIBLE
