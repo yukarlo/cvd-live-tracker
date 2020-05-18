@@ -13,13 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import com.yukarlo.common.android.ContinentInputModel
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
 import com.yukarlo.main.di.CoreComponentFactory
-import com.yukarlo.ui.home.adapter.homeContinentHeader
-import com.yukarlo.ui.home.adapter.homeContinentsDelegate
-import com.yukarlo.ui.home.adapter.homeHeaderDelegate
-import com.yukarlo.ui.home.adapter.homeHealthTipsDelegate
-import com.yukarlo.ui.home.adapter.homeSummaryDelegate
+import com.yukarlo.ui.home.adapter.*
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.databinding.HomeFragmentBinding
 import com.yukarlo.ui.home.di.DaggerUiHomeComponent
@@ -85,7 +82,11 @@ class HomeFragment : Fragment(), IHomeInteraction {
     }
 
     override fun navigateToContinents(continentName: String) {
-        val bundle = bundleOf("continent" to continentName)
+        val bundle = bundleOf(
+            "continent" to ContinentInputModel(
+                mContinentName = continentName
+            )
+        )
         findNavController().navigate(R.id.action_Continents_to_ContinentsFragment, bundle)
     }
 

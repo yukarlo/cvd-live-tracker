@@ -34,6 +34,9 @@ internal data class CasesCountryResponseModel(
     @SerializedName(value = "critical")
     val critical: Long,
 
+    @SerializedName(value = "continent")
+    val continent: String,
+
     @SerializedName(value = "tests")
     val tests: Long
 ) : DataModel

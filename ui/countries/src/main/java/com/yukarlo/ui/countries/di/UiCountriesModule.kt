@@ -13,5 +13,5 @@ internal abstract class UiCountriesModule {
     @Binds
     @IntoMap
     @ViewModelKey(CountriesViewModel::class)
-    abstract fun bindHomeViewModel(viewModel: CountriesViewModel): ViewModel
+    abstract fun bindCountriesViewModel(viewModel: CountriesViewModel): ViewModel
 }

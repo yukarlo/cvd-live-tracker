@@ -5,7 +5,6 @@ import com.yukarlo.core.domain.model.*
 import com.yukarlo.lib.cases.data.model.*
 import com.yukarlo.stack.network.model.DataToDomainConverter
 import java.text.NumberFormat
-import kotlin.math.roundToLong
 
 internal object CvdCasesResponseConverter :
     DataToDomainConverter<CasesSummaryResponseModel, CasesSummaryModel> {
@@ -49,6 +48,7 @@ internal object CvdCountriesResponseConverter :
             totalRecoveredCount = formatNumber(input.recovered),
             totalActiveCount = formatNumber(input.active),
             countryName = input.country,
+            continent = input.continent,
             countryIso = input.countryInfo.iso2 ?: "",
             countryFlag = input.countryInfo.flag
         )

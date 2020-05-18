@@ -46,9 +46,8 @@
         android:name="com.yukarlo.ui.continents.ContinentsFragment"
         tools:layout="@layout/continents_fragment">
         <argument
-            android:name="continentName"
-            android:defaultValue="@null"
-            app:argType="string" />
+            android:name="continentInputModel"
+            app:argType="com.yukarlo.common.android.ContinentInputModel" />
     </fragment>
 
 </navigation>

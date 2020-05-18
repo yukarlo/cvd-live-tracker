@@ -18,7 +18,7 @@ internal interface CvdCasesApiService {
     @GET("historical/{country}?lastdays=all")
     suspend fun getCountryHistoricalData(@Path("country") country: String): CasesCountryHistoryResponseModel
 
-    @GET("countries")
+    @GET("countries?allowNull=false")
     suspend fun getCountries(): List<CasesCountryResponseModel>
 
     @GET("continents")

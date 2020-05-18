@@ -7,8 +7,8 @@ internal data class CountryInfo(
     val flag: String,
 
     @SerializedName(value = "iso2")
-    val iso2: String,
+    val iso2: String?,
 
     @SerializedName(value = "iso3")
-    val iso3: String
+    val iso3: String?
 )

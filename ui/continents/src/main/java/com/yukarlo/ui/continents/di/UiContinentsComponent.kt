@@ -1,10 +1,10 @@
-package com.yukarlo.ui.countries.di
+package com.yukarlo.ui.continents.di
 
 import com.yukarlo.common.android.di.viewmodel.ViewModelModule
+import com.yukarlo.lib.cases.di.LibCvdCasesComponent
 import com.yukarlo.main.di.CoreComponent
 import com.yukarlo.main.di.FeatureScope
-import com.yukarlo.lib.cases.di.LibCvdCasesComponent
-import com.yukarlo.ui.countries.CountriesFragment
+import com.yukarlo.ui.continents.ContinentsFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -16,18 +16,18 @@ import dagger.Component
     ],
     modules = [
         ViewModelModule::class,
-        UiCountriesModule::class
+        UiContinentsModule::class
     ]
 )
-interface UiCountriesComponent {
+interface UiContinentsComponent {
     @Component.Factory
     interface Factory {
         fun create(
-            @BindsInstance countriesFragment: CountriesFragment,
+            @BindsInstance continentsFragment: ContinentsFragment,
             coreComponent: CoreComponent,
             libCvdCasesComponent: LibCvdCasesComponent
-        ): UiCountriesComponent
+        ): UiContinentsComponent
     }
 
-    fun inject(fragment: CountriesFragment)
+    fun inject(fragment: ContinentsFragment)
 }
