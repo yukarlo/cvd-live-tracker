@@ -11,13 +11,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/affectedPlaceSearchBoxTextInput"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
         android:theme="@style/ThemeOverlay.Search.Input"
         app:endIconMode="clear_text"
         app:helperTextEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/affectedPlaceFilterImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_search">
@@ -25,6 +26,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/affectedPlaceSearchTextInput"
             android:layout_width="match_parent"
+            android:includeFontPadding="false"
             android:layout_height="wrap_content"
             android:hint="@string/search"
             android:imeOptions="actionUnspecified"
@@ -33,5 +35,16 @@
             android:theme="@style/ThemeOverlay.Search.Input" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/affectedPlaceFilterImageView"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:tint="#8B8B8B"
+        android:src="@drawable/ic_sort"
+        app:layout_constraintBottom_toBottomOf="@+id/affectedPlaceSearchBoxTextInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/affectedPlaceSearchBoxTextInput"
+        app:layout_constraintTop_toTopOf="@+id/affectedPlaceSearchBoxTextInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

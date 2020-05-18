@@ -33,6 +33,9 @@ class CasesCountrySearchAdapter(val countrySearchInteraction: ICountrySearchInte
             itemBinding.affectedPlaceSearchTextInput.doAfterTextChanged {
                 countrySearchInteraction.filterCountry(it.toString())
             }
+            itemBinding.affectedPlaceFilterImageView.setOnClickListener {
+                countrySearchInteraction.showSortCountryBottomSheet()
+            }
         }
     }
 }
