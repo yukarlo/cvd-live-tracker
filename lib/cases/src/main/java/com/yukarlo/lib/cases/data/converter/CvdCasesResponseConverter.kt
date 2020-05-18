@@ -10,10 +10,10 @@ internal object CvdCasesResponseConverter :
     DataToDomainConverter<CasesSummaryResponseModel, CasesSummaryModel> {
     override fun convert(input: CasesSummaryResponseModel): CasesSummaryModel {
         return CasesSummaryModel(
-            totalCasesCount = formatNumber(input.cases),
-            totalDeceasedCount = formatNumber(input.deaths),
-            totalRecoveredCount = formatNumber(input.recovered),
-            affectedCountries = input.affectedCountries.toString(),
+            totalCasesCount = input.cases,
+            totalDeceasedCount = input.deaths,
+            totalRecoveredCount = input.recovered,
+            affectedCountries = input.affectedCountries,
             updatedSince = DateUtils.getRelativeTimeSpanString(input.updated).toString()
         )
     }
@@ -23,11 +23,11 @@ internal object CvdContinentsResponseConverter :
     DataToDomainConverter<CasesContinentsResponseModel, CasesContinentsModel> {
     override fun convert(input: CasesContinentsResponseModel): CasesContinentsModel {
         return CasesContinentsModel(
-            totalCasesCount = formatNumber(input.cases),
-            totalDeceasedCount = formatNumber(input.deaths),
-            totalRecoveredCount = formatNumber(input.recovered),
-            totalActiveCount = formatNumber(input.active),
-            totalCriticalCount = formatNumber(input.critical),
+            totalCasesCount = input.cases,
+            totalDeceasedCount = input.deaths,
+            totalRecoveredCount = input.recovered,
+            totalActiveCount = input.active,
+            totalCriticalCount = input.critical,
             continentName = input.continent
         )
     }
@@ -37,16 +37,12 @@ internal object CvdCountriesResponseConverter :
     DataToDomainConverter<CasesCountryResponseModel, CasesCountriesModel> {
     override fun convert(input: CasesCountryResponseModel): CasesCountriesModel {
         return CasesCountriesModel(
-            totalCasesCount = formatNumber(input.cases),
-            totalTodayCases = provideCasesTodayString(
-                value = input.casesToday
-            ),
-            totalDeceasedCount = formatNumber(input.deaths),
-            totalTodayDeceased = provideCasesTodayString(
-                value = input.deathsToday
-            ),
-            totalRecoveredCount = formatNumber(input.recovered),
-            totalActiveCount = formatNumber(input.active),
+            totalCasesCount = input.cases,
+            totalTodayCases = input.casesToday,
+            totalDeceasedCount = input.deaths,
+            totalTodayDeceased = input.deathsToday,
+            totalRecoveredCount = input.recovered,
+            totalActiveCount = input.active,
             countryName = input.country,
             continent = input.continent,
             countryIso = input.countryInfo.iso2 ?: "",
@@ -86,17 +82,4 @@ internal object CvdCountryHistoryResponseConverter :
             province = input.province ?: "",
             countryTimeline = CvdHistoryResponseConverter.convert(input = input.timeline)
         )
-}
-
-private fun formatNumber(value: Long): String {
-    val numberFormat = NumberFormat.getNumberInstance()
-    return numberFormat.format(value)
-}
-
-private fun provideCasesTodayString(value: Long): String {
-    return if (value > 0) {
-        "+${formatNumber(value = value)} today"
-    } else {
-        ""
-    }
 }

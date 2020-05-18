@@ -3,14 +3,11 @@ package com.yukarlo.ui.home.adapter
 import androidx.core.view.isVisible
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
+import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.ui.home.IHomeInteraction
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsHeader
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsItem
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.Header
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.HealthTipsItem
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.SummaryItem
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.*
 import com.yukarlo.ui.home.databinding.HomeAlternativeSummaryBinding
 import com.yukarlo.ui.home.databinding.HomeContinentHeaderBinding
 import com.yukarlo.ui.home.databinding.HomeHeaderBinding
@@ -30,7 +27,10 @@ internal fun homeHeaderDelegate() =
         }
     ) {}
 
-internal fun homeSummaryDelegate(homeInteraction: IHomeInteraction) =
+internal fun homeSummaryDelegate(
+    homeInteraction: IHomeInteraction,
+    textProvider: TextProvider
+) =
     adapterDelegateViewBinding<SummaryItem, HomeBaseItem, HomeAlternativeSummaryBinding>(
         { layoutInflater, root ->
             HomeAlternativeSummaryBinding.inflate(
@@ -47,10 +47,14 @@ internal fun homeSummaryDelegate(homeInteraction: IHomeInteraction) =
             homeInteraction.navigateToCountries()
         }
         bind {
-            binding.homeConfirmedCount.text = item.summary.totalCasesCount
-            binding.homeDeceasedCount.text = item.summary.totalDeceasedCount
-            binding.homeRecoveredCount.text = item.summary.totalRecoveredCount
-            binding.homeAffectedCountriesCount.text = item.summary.affectedCountries
+            binding.homeConfirmedCount.text =
+                textProvider.formatNumber(item.summary.totalCasesCount)
+            binding.homeDeceasedCount.text =
+                textProvider.formatNumber(item.summary.totalDeceasedCount)
+            binding.homeRecoveredCount.text =
+                textProvider.formatNumber(item.summary.totalRecoveredCount)
+            binding.homeAffectedCountriesCount.text =
+                textProvider.formatNumber(item.summary.affectedCountries)
             binding.homeUpdatedSince.text =
                 String.format(getString(R.string.updated), item.summary.updatedSince)
         }
@@ -93,7 +97,7 @@ internal fun homeContinentHeader() =
 
     }
 
-internal fun homeContinentsDelegate(homeInteraction: IHomeInteraction) =
+internal fun homeContinentsDelegate(homeInteraction: IHomeInteraction, textProvider: TextProvider) =
     adapterDelegateViewBinding<ContinentsItem, HomeBaseItem, AffectedRowViewBinding>(
         { layoutInflater, root ->
             AffectedRowViewBinding.inflate(
@@ -110,10 +114,14 @@ internal fun homeContinentsDelegate(homeInteraction: IHomeInteraction) =
             homeInteraction.navigateToContinents(continentName = item.continents.continentName)
         }
         bind {
-            binding.affectedTotalCasesCount.text = item.continents.totalCasesCount
-            binding.affectedTotalRecoveredCount.text = item.continents.totalRecoveredCount
-            binding.affectedTotalDeceasedCount.text = item.continents.totalDeceasedCount
-            binding.affectedTotalActiveCount.text = item.continents.totalActiveCount
+            binding.affectedTotalCasesCount.text =
+                textProvider.formatNumber(item.continents.totalCasesCount)
+            binding.affectedTotalRecoveredCount.text =
+                textProvider.formatNumber(item.continents.totalRecoveredCount)
+            binding.affectedTotalDeceasedCount.text =
+                textProvider.formatNumber(item.continents.totalDeceasedCount)
+            binding.affectedTotalActiveCount.text =
+                textProvider.formatNumber(item.continents.totalActiveCount)
             binding.affectedRegionName.text = item.continents.continentName
             binding.affectedChevron.isVisible = false
         }

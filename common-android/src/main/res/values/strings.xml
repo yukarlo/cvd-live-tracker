@@ -85,4 +85,5 @@
     </string>
     <string name="serious_symptoms_description">If someone is showing any of these symptoms, <b>seek medical attention immediately</b>.</string>
     <string name="more_information_symptoms">More information at <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/q-a-coronaviruses#:~:text=symptoms">WHO</a> and <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">CDC</a> website.</string>
+    <string name="sort_by">Sort By</string>
 </resources>

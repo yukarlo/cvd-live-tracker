@@ -69,9 +69,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showInformationDialog() {
-        val inflater = layoutInflater
-
-        val view = inflater.inflate(R.layout.dialog_fragment, null)
+        val view = layoutInflater.inflate(R.layout.dialog_fragment, null)
         val dialog = AlertDialog
             .Builder(this)
             .setView(view)

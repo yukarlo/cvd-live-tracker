@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.yukarlo.common.android.ContinentInputModel
+import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
 import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.home.adapter.*
@@ -26,6 +27,9 @@ class HomeFragment : Fragment(), IHomeInteraction {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var mTextProvider: TextProvider
 
     private val mViewModel: HomeViewModel by viewModels { mViewModelFactory }
 
@@ -63,10 +67,10 @@ class HomeFragment : Fragment(), IHomeInteraction {
 
         homeAdapter = ListDelegationAdapter(
             homeHeaderDelegate(),
-            homeSummaryDelegate(homeInteraction = this),
+            homeSummaryDelegate(homeInteraction = this, textProvider = mTextProvider),
             homeHealthTipsDelegate(homeInteraction = this),
             homeContinentHeader(),
-            homeContinentsDelegate(homeInteraction = this)
+            homeContinentsDelegate(homeInteraction = this, textProvider = mTextProvider)
         )
     }
 

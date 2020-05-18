@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
 import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.continents.adapter.CasesContinentAdapter
@@ -23,6 +24,8 @@ class ContinentsFragment : Fragment() {
     @Inject
     lateinit var mViewModelFactory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var mTextProvider: TextProvider
 
     private val mViewModel: ContinentsViewModel by viewModels { mViewModelFactory }
 
@@ -56,7 +59,7 @@ class ContinentsFragment : Fragment() {
 
     private fun setUpViews() {
         casesContinentAdapter =
-            CasesContinentAdapter()
+            CasesContinentAdapter(textProvider = mTextProvider)
 
         recyclerView = fragmentBinding.countriesRecyclerView.also {
             it.layoutManager = LinearLayoutManager(context)

@@ -9,13 +9,17 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
+import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.common.android.view.collapse
 import com.yukarlo.common.android.view.expand
 import com.yukarlo.common.android.view.rotate
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter.CasesCountriesViewHolder
+import javax.inject.Inject
 
-class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>() {
+class CasesCountriesAdapter @Inject constructor(
+    val textProvider: TextProvider
+) : RecyclerView.Adapter<CasesCountriesViewHolder>() {
 
     private val data = arrayListOf<CasesCountriesModel>()
     private var mExpandedPosition = -1
@@ -48,12 +52,18 @@ class CasesCountriesAdapter() : RecyclerView.Adapter<CasesCountriesViewHolder>()
 
         fun bind(data: CasesCountriesModel) {
             itemBinding.affectedRegionName.text = data.countryName
-            itemBinding.affectedTotalCasesCount.text = data.totalCasesCount
-            itemBinding.affectedTotalRecoveredCount.text = data.totalRecoveredCount
-            itemBinding.affectedTotalDeceasedCount.text = data.totalDeceasedCount
-            itemBinding.affectedTotalActiveCount.text = data.totalActiveCount
-            itemBinding.affectedTotalTodayCasesCount.text = data.totalTodayCases
-            itemBinding.affectedTotalTodayDeceasedCount.text = data.totalTodayDeceased
+            itemBinding.affectedTotalCasesCount.text =
+                textProvider.formatNumber(data.totalCasesCount)
+            itemBinding.affectedTotalRecoveredCount.text =
+                textProvider.formatNumber(data.totalRecoveredCount)
+            itemBinding.affectedTotalDeceasedCount.text =
+                textProvider.formatNumber(data.totalDeceasedCount)
+            itemBinding.affectedTotalActiveCount.text =
+                textProvider.formatNumber(data.totalActiveCount)
+            itemBinding.affectedTotalTodayCasesCount.text =
+                textProvider.formatNumber(data.totalTodayCases)
+            itemBinding.affectedTotalTodayDeceasedCount.text =
+                textProvider.formatNumber(data.totalTodayDeceased)
             itemBinding.affectedRegionFlag.apply {
                 load(data.countryFlag)
                 visibility = View.VISIBLE

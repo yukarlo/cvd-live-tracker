@@ -3,9 +3,9 @@ package com.yukarlo.core.domain.model
 import com.yukarlo.core.domain.DomainModel
 
 data class CasesSummaryModel(
-    val totalCasesCount: String,
-    val totalDeceasedCount: String,
-    val totalRecoveredCount: String,
-    val affectedCountries: String,
+    val totalCasesCount: Long,
+    val totalDeceasedCount: Long,
+    val totalRecoveredCount: Long,
+    val affectedCountries: Long,
     val updatedSince: String
 ) : DomainModel

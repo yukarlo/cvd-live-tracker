@@ -20,33 +20,38 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <RadioButton
-        android:id="@+id/sortByCountry"
+    <RadioGroup
+        android:id="@+id/sortGroup"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:checked="true"
-        android:text="@string/countries" />
+        android:layout_height="wrap_content">
 
-    <RadioButton
-        android:id="@+id/sortByConfirmed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/confirmed" />
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sortByCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/countries" />
 
-    <RadioButton
-        android:id="@+id/sortByRecovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/recovered" />
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sortByConfirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/confirmed" />
 
-    <RadioButton
-        android:id="@+id/sortByDeceased"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/deceased" />
+        <RadioButton
+            android:id="@+id/sortByRecovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/recovered" />
+
+        <RadioButton
+            android:id="@+id/sortByDeceased"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/deceased" />
+    </RadioGroup>
 
 </LinearLayout>

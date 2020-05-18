@@ -45,4 +45,32 @@ class CountriesViewModel @Inject constructor(
         }
         updateCountry.postValue(filteredCountry)
     }
+
+    fun sortCountry(sortBy: SortBy) {
+        val sortedCountry = when (sortBy) {
+            SortBy.Confirmed -> {
+                completeCountryList.sortedByDescending {
+                    it.totalCasesCount
+                }
+            }
+            SortBy.Deceased -> {
+                completeCountryList.sortedByDescending {
+                    it.totalDeceasedCount
+                }
+            }
+            SortBy.Recovered -> {
+                completeCountryList.sortedByDescending {
+                    it.totalRecoveredCount
+                }
+            }
+            else -> {
+                completeCountryList.sortedBy {
+                    it.countryName
+                }
+            }
+        }
+
+        updateCountry.postValue(sortedCountry)
+
+    }
 }

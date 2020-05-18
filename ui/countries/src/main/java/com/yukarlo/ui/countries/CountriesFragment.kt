@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,12 +15,14 @@ import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
 import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
 import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
 import com.yukarlo.ui.countries.di.DaggerUiCountriesComponent
+import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
 import javax.inject.Inject
 
 
@@ -27,6 +30,9 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var mTextProvider: TextProvider
 
     private val mViewModel: CountriesViewModel by viewModels { mViewModelFactory }
 
@@ -60,7 +66,7 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
     }
 
     private fun setUpViews() {
-        casesCountriesAdapter = CasesCountriesAdapter()
+        casesCountriesAdapter = CasesCountriesAdapter(textProvider = mTextProvider)
         casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySearchInteraction = this)
 
         val mergeAdapter = MergeAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
@@ -83,8 +89,31 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
     override fun showSortCountryBottomSheet() {
         val view = layoutInflater.inflate(R.layout.bottom_sheet_sorting, null)
-        val dialog = BottomSheetDialog(requireContext())
-        dialog.setContentView(view)
-        dialog.show()
+        BottomSheetDialog(requireContext()).run {
+            setContentView(view)
+
+            sortGroup.setOnCheckedChangeListener { _: RadioGroup, checkedId: Int ->
+                when (checkedId) {
+                    R.id.sortByCountry -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Country)
+                        dismissWithAnimation
+                    }
+                    R.id.sortByConfirmed -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Confirmed)
+                        dismissWithAnimation
+                    }
+                    R.id.sortByDeceased -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Deceased)
+                        dismissWithAnimation
+                    }
+                    R.id.sortByRecovered -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Recovered)
+                        dismissWithAnimation
+                    }
+                }
+            }
+
+            show()
+        }
     }
 }

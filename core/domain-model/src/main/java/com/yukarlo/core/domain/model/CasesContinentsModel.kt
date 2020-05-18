@@ -4,9 +4,9 @@ import com.yukarlo.core.domain.DomainModel
 
 data class CasesContinentsModel(
     val continentName: String,
-    val totalCasesCount: String,
-    val totalDeceasedCount: String,
-    val totalRecoveredCount: String,
-    val totalActiveCount: String,
-    val totalCriticalCount: String
+    val totalCasesCount: Long,
+    val totalDeceasedCount: Long,
+    val totalRecoveredCount: Long,
+    val totalActiveCount: Long,
+    val totalCriticalCount: Long
 ) : DomainModel
