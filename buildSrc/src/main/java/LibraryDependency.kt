@@ -18,6 +18,7 @@ internal object LibraryVersion {
     internal const val ADAPTER_DELEGATE = "4.3.0"
     internal const val WILLIAM_CHART = "3.3.0"
     internal const val CIRCULAR_IMAGE_VIEW = "3.1.0"
+    internal const val SQL_DELIGHT = "1.3.0"
 }
 
 object LibraryDependency {
@@ -59,6 +60,7 @@ object LibraryDependency {
     const val COIL_KT = "io.coil-kt:coil:${LibraryVersion.COIL}"
     const val WILLIAM_CHART = "com.diogobernardino:williamchart:${LibraryVersion.WILLIAM_CHART}"
     const val CIRCULAR_IMAGE_VIEW = "de.hdodenhof:circleimageview:${LibraryVersion.CIRCULAR_IMAGE_VIEW}"
+    const val SQL_DELIGHT = "com.squareup.sqldelight:gradle-plugin:${LibraryVersion.SQL_DELIGHT}"
     const val ADAPTER_DELEGATE =
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${LibraryVersion.ADAPTER_DELEGATE}"
 }
