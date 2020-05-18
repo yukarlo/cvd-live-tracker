@@ -9,7 +9,7 @@ import com.yukarlo.lib.cases.domain.GetAllCountriesCasesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 class CountriesViewModel @Inject constructor(
@@ -38,7 +38,10 @@ class CountriesViewModel @Inject constructor(
     fun filterCountry(filter: String) {
         val filteredCountry = completeCountryList.filter {
             val countryName = it.countryName.toLowerCase(Locale.getDefault())
-            countryName.contains(filter)
+            val countryIso = it.countryIso.toLowerCase(Locale.getDefault())
+            countryName.contains(filter.toLowerCase(Locale.getDefault())) || countryIso.contains(
+                filter.toLowerCase(Locale.getDefault())
+            )
         }
         updateCountry.postValue(filteredCountry)
     }

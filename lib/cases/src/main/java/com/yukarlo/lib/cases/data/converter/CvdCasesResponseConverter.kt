@@ -1,16 +1,8 @@
 package com.yukarlo.lib.cases.data.converter
 
 import android.text.format.DateUtils
-import com.yukarlo.core.domain.model.CasesContinentsModel
-import com.yukarlo.core.domain.model.CasesCountriesModel
-import com.yukarlo.core.domain.model.CasesCountryHistoryModel
-import com.yukarlo.core.domain.model.CasesHistoryModel
-import com.yukarlo.core.domain.model.CasesSummaryModel
-import com.yukarlo.lib.cases.data.model.CasesContinentsResponseModel
-import com.yukarlo.lib.cases.data.model.CasesCountryHistoryResponseModel
-import com.yukarlo.lib.cases.data.model.CasesCountryResponseModel
-import com.yukarlo.lib.cases.data.model.CasesHistoryResponseModel
-import com.yukarlo.lib.cases.data.model.CasesSummaryResponseModel
+import com.yukarlo.core.domain.model.*
+import com.yukarlo.lib.cases.data.model.*
 import com.yukarlo.stack.network.model.DataToDomainConverter
 import java.text.NumberFormat
 
@@ -53,6 +45,7 @@ internal object CvdCountriesResponseConverter :
             totalRecoveredCount = numberFormat.format(input.recovered),
             totalActiveCount = numberFormat.format(input.active),
             countryName = input.country,
+            countryIso = input.countryInfo.iso2 ?: "",
             countryFlag = input.countryInfo.flag
         )
     }
