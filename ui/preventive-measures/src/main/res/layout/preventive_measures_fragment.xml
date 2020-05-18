@@ -184,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="@string/avoid_close_contact_description_list"
+            android:text="@string/cover_your_mouth_description_list"
             android:textAlignment="viewStart"
             app:layout_constraintBottom_toTopOf="@+id/preventiveMeasuresMoreInformationTextView"
             app:layout_constraintEnd_toEndOf="parent"
