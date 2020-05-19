@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yukarlo.common.android.ContinentInputModel
+import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.coronow.stack.cases.domain.GetAllCountriesCasesUseCase
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +14,7 @@ import java.util.*
 import javax.inject.Inject
 
 class CountriesViewModel @Inject constructor(
-    private val mInputModel: ContinentInputModel,
+    private val mInputModel: CountriesInputModel,
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase
 ) : ViewModel() {
 

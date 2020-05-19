@@ -14,10 +14,6 @@
             app:destination="@id/CountriesFragment" />
 
         <action
-            android:id="@+id/action_Continents_to_ContinentsFragment"
-            app:destination="@id/ContinentsFragment" />
-
-        <action
             android:id="@+id/action_Symptoms_to_SymptomsFragment"
             app:destination="@id/SymptomsFragment" />
 
@@ -31,8 +27,8 @@
         android:name="com.yukarlo.ui.countries.CountriesFragment"
         tools:layout="@layout/countries_fragment">
         <argument
-            android:name="continentInputModel"
-            app:argType="com.yukarlo.common.android.ContinentInputModel" />
+            android:name="countriesInputModel"
+            app:argType="com.yukarlo.common.android.CountriesInputModel" />
     </fragment>
 
     <fragment
@@ -44,14 +40,5 @@
         android:id="@+id/PreventiveMeasuresFragment"
         android:name="com.yukarlo.ui.preventive.measures.PreventiveMeasuresFragment"
         tools:layout="@layout/preventive_measures_fragment" />
-
-    <fragment
-        android:id="@+id/ContinentsFragment"
-        android:name="com.yukarlo.ui.continents.ContinentsFragment"
-        tools:layout="@layout/continents_fragment">
-        <argument
-            android:name="continentInputModel"
-            app:argType="com.yukarlo.common.android.ContinentInputModel" />
-    </fragment>
 
 </navigation>

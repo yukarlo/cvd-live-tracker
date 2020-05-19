@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val title = when (destination.id) {
                 R.id.HomeFragment -> R.string.app_name
-                R.id.ContinentsFragment -> R.string.continent
                 R.id.CountriesFragment -> R.string.countries
                 R.id.PreventiveMeasuresFragment -> R.string.preventive_measures
                 R.id.SymptomsFragment -> R.string.symptoms

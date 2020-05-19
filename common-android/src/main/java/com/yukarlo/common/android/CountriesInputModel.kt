@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ContinentInputModel(
+data class CountriesInputModel(
     val mContinentName: String
 ) : Parcelable

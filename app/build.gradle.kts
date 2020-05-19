@@ -9,7 +9,6 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":common-android"))
     implementation(featureModule("home"))
-    implementation(featureModule("continents"))
     implementation(featureModule("countries"))
     implementation(featureModule("symptoms"))
     implementation(featureModule("preventive-measures"))

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
-import com.yukarlo.common.android.ContinentInputModel
+import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.coronow.stack.cases.di.DaggerUseCaseComponent
 import com.yukarlo.main.di.CoreComponentFactory
@@ -41,7 +41,6 @@ class HomeFragment : Fragment(), IHomeInteraction {
     private val mViewModel: HomeViewModel by viewModels { mViewModelFactory }
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var fragmentBinding: HomeFragmentBinding
     private lateinit var homeAdapter: ListDelegationAdapter<List<HomeBaseItem>>
 
@@ -98,20 +97,11 @@ class HomeFragment : Fragment(), IHomeInteraction {
 
     override fun navigateToCountries(continentName: String) {
         val bundle = bundleOf(
-            "continent" to ContinentInputModel(
+            "continent" to CountriesInputModel(
                 mContinentName = continentName
             )
         )
         findNavController().navigate(R.id.action_Summary_to_CountriesFragment, bundle)
-    }
-
-    override fun navigateToContinents(continentName: String) {
-        val bundle = bundleOf(
-            "continent" to ContinentInputModel(
-                mContinentName = continentName
-            )
-        )
-        findNavController().navigate(R.id.action_Continents_to_ContinentsFragment, bundle)
     }
 
     override fun navigateToSymptoms() {
