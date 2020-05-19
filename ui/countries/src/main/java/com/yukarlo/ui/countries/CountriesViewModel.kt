@@ -36,37 +36,24 @@ class CountriesViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             mGetAllCountriesCasesUseCase.execute().collect { countryList ->
                 completeCountryList = countryList
-                onCountryUpdate(countryList = filterContinent(continentName = mInputModel.mContinentName))
+                onCountryUpdate(countryList = filterContinent(countryList = countryList))
             }
         }
     }
-
-    private fun onCountryUpdate(countryList: List<CasesCountriesModel>) {
-        updateCountry.postValue(countryList)
-    }
-
-    private fun filterContinent(continentName: String): List<CasesCountriesModel> =
-        if (continentName.isNotEmpty()) {
-            completeCountryList.filter {
-                it.continent == continentName
-            }
-        } else {
-            completeCountryList
-        }
 
     fun filterCountry(filter: String) {
-        val filteredCountry = completeCountryList.filter {
+        val filteredCountryList = completeCountryList.filter {
             val countryName = it.countryName.toLowerCase(Locale.getDefault())
             val countryIso = it.countryIso.toLowerCase(Locale.getDefault())
             countryName.contains(filter.toLowerCase(Locale.getDefault())) || countryIso.contains(
                 filter.toLowerCase(Locale.getDefault())
             )
         }
-        onCountryUpdate(countryList = filteredCountry)
+        onCountryUpdate(countryList = filterContinent(countryList = filteredCountryList))
     }
 
     fun sortCountry(sortBy: SortBy) {
-        val sortedCountry = when (sortBy) {
+        val sortedCountryList = when (sortBy) {
             SortBy.Confirmed -> {
                 completeCountryList.sortedByDescending {
                     it.totalCasesCount
@@ -89,6 +76,19 @@ class CountriesViewModel @Inject constructor(
             }
         }
 
-        onCountryUpdate(countryList = sortedCountry)
+        onCountryUpdate(countryList = filterContinent(countryList = sortedCountryList))
     }
+
+    private fun onCountryUpdate(countryList: List<CasesCountriesModel>) {
+        updateCountry.postValue(countryList)
+    }
+
+    private fun filterContinent(countryList: List<CasesCountriesModel>): List<CasesCountriesModel> =
+        if (mInputModel.mContinentName.isNotEmpty()) {
+            countryList.filter {
+                it.continent == mInputModel.mContinentName
+            }
+        } else {
+            countryList
+        }
 }
