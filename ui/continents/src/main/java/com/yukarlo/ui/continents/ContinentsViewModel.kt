@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yukarlo.common.android.ContinentInputModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
-import com.yukarlo.lib.cases.domain.GetAllCountriesCasesUseCase
+import com.yukarlo.coronow.stack.cases.domain.GetAllCountriesCasesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

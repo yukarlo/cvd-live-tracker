@@ -29,7 +29,11 @@
     <fragment
         android:id="@+id/CountriesFragment"
         android:name="com.yukarlo.ui.countries.CountriesFragment"
-        tools:layout="@layout/countries_fragment" />
+        tools:layout="@layout/countries_fragment">
+        <argument
+            android:name="continentInputModel"
+            app:argType="com.yukarlo.common.android.ContinentInputModel" />
+    </fragment>
 
     <fragment
         android:id="@+id/SymptomsFragment"

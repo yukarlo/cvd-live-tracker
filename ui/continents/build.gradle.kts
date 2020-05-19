@@ -14,7 +14,7 @@ dependencies {
     implementation(coreModule("main"))
     implementation(coreModule("domain-model"))
     implementation(project(":common-android"))
-    implementation(libModule("cases"))
+    implementation(libModule("usecase"))
 
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.APP_COMPACT)

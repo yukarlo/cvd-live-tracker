@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.yukarlo.common.android.text.TextProvider
-import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
+import com.yukarlo.coronow.stack.cases.di.DaggerUseCaseComponent
 import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
 import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
@@ -51,7 +52,7 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
             .create(
                 countriesFragment = this,
                 coreComponent = coreComponent,
-                libCvdCasesComponent = DaggerLibCvdCasesComponent.factory().create(coreComponent)
+                useCaseComponent = DaggerUseCaseComponent.factory().create(coreComponent)
             )
             .inject(fragment = this)
 
@@ -80,6 +81,10 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
     private fun setupObservers() {
         mViewModel.onCountryUpdated.observe(viewLifecycleOwner, Observer { countries ->
             casesCountriesAdapter.updateData(items = countries)
+        })
+
+        mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, Observer { continentName ->
+            (activity as AppCompatActivity).supportActionBar?.title = continentName
         })
     }
 

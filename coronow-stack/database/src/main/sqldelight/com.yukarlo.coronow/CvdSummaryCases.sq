@@ -1,0 +1,23 @@
+CREATE TABLE summaryCases(
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    updated INTEGER NOT NULL,
+    total_cases INTEGER NOT NULL,
+    total_deaths INTEGER NOT NULL,
+    total_recovered INTEGER NOT NULL,
+    affected_countries INTEGER NOT NULL
+);
+
+selectAllSummary:
+SELECT * FROM summaryCases;
+
+insertSummary:
+INSERT INTO summaryCases(
+    updated,
+    total_cases,
+    total_deaths,
+    total_recovered,
+    affected_countries
+) VALUES (?,?,?,?,?);
+
+deleteAllSummary:
+DELETE FROM summaryCases;

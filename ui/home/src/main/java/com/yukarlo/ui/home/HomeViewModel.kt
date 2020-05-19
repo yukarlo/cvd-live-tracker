@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
-import com.yukarlo.lib.cases.domain.GetCvdCasesContinentsUseCase
-import com.yukarlo.lib.cases.domain.GetCvdCasesSummaryUseCase
+import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesContinentsUseCase
+import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesSummaryUseCase
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -26,13 +26,17 @@ internal class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            combine(
-                mGetCvdCasesContinentsUseCase.execute(),
-                mGetCvdCasesSummaryUseCase.execute()
-            ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
-                provideHomeBaseItem(summary = summary, continents = continents)
-            }.collect { onHomeUpdate(homeItems = it) }
+            refreshData()
         }
+    }
+
+    suspend fun refreshData() {
+        combine(
+            mGetCvdCasesContinentsUseCase.execute(),
+            mGetCvdCasesSummaryUseCase.execute(params = Unit)
+        ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
+            provideHomeBaseItem(summary = summary, continents = continents)
+        }.collect { onHomeUpdate(homeItems = it) }
     }
 
     private fun provideHomeBaseItem(

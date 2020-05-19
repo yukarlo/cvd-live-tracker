@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yukarlo.common.android.text.TextProvider
-import com.yukarlo.lib.cases.di.DaggerLibCvdCasesComponent
+import com.yukarlo.coronow.stack.cases.di.DaggerUseCaseComponent
 import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.continents.adapter.CasesContinentAdapter
 import com.yukarlo.ui.continents.databinding.ContinentsFragmentBinding
@@ -42,7 +42,8 @@ class ContinentsFragment : Fragment() {
             .create(
                 continentsFragment = this,
                 coreComponent = coreComponent,
-                libCvdCasesComponent = DaggerLibCvdCasesComponent.factory().create(coreComponent)
+                useCaseComponent = DaggerUseCaseComponent.factory()
+                    .create(coreComponent = coreComponent)
             )
             .inject(fragment = this)
 

@@ -39,3 +39,6 @@ val PluginDependenciesSpec.kotlinKapt: PluginDependencySpec
 
 val PluginDependenciesSpec.androidSafeArgs: PluginDependencySpec
     get() = id("androidx.navigation.safeargs")
+
+val PluginDependenciesSpec.sqlDelight: PluginDependencySpec
+    get() = id("com.squareup.sqldelight")

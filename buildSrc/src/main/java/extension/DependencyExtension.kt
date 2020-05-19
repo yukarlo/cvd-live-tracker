@@ -15,6 +15,7 @@ fun DependencyHandler.addPluginDependencies() {
     classpath(dependencyNotation = GradlePlugin.ANDROID_TOOLS_BUILD_GRADLE)
     classpath(kotlin(module = GradlePlugin.KOTLIN_GRADLE_PLUGIN, version = LibraryVersion.KOTLIN))
     classpath(dependencyNotation = LibraryDependency.NAVIGATION_SAFE_ARGS)
+    classpath(dependencyNotation = LibraryDependency.SQL_DELIGHT)
 }
 
 fun DependencyHandler.addDaggerDependencies() {
@@ -26,7 +27,7 @@ fun DependencyHandler.coreModule(moduleNotation: String) =
     project(":core:$moduleNotation")
 
 fun DependencyHandler.libModule(moduleNotation: String) =
-    project(":lib:$moduleNotation")
+    project(":coronow-stack:$moduleNotation")
 
 fun DependencyHandler.featureModule(moduleNotation: String) =
     project(":ui:$moduleNotation")

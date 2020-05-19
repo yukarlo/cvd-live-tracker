@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yukarlo.common.android.ContinentInputModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
-import com.yukarlo.lib.cases.domain.GetAllCountriesCasesUseCase
+import com.yukarlo.coronow.stack.cases.domain.GetAllCountriesCasesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -13,27 +14,45 @@ import java.util.*
 import javax.inject.Inject
 
 class CountriesViewModel @Inject constructor(
+    private val mInputModel: ContinentInputModel,
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase
 ) : ViewModel() {
 
     private var completeCountryList: List<CasesCountriesModel> = emptyList()
+
+    private val continentName: MutableLiveData<String> = MutableLiveData()
+    val onContinentNameUpdated: LiveData<String>
+        get() = continentName
 
     private val updateCountry: MutableLiveData<List<CasesCountriesModel>> = MutableLiveData()
     val onCountryUpdated: LiveData<List<CasesCountriesModel>>
         get() = updateCountry
 
     init {
+        if (mInputModel.mContinentName.isNotEmpty()) {
+            continentName.postValue(mInputModel.mContinentName)
+        }
+
         viewModelScope.launch(Dispatchers.IO) {
             mGetAllCountriesCasesUseCase.execute().collect { countryList ->
-                onCountryUpdate(countryList = countryList)
+                completeCountryList = countryList
+                onCountryUpdate(countryList = filterContinent(continentName = mInputModel.mContinentName))
             }
         }
     }
 
     private fun onCountryUpdate(countryList: List<CasesCountriesModel>) {
-        completeCountryList = countryList
         updateCountry.postValue(countryList)
     }
+
+    private fun filterContinent(continentName: String): List<CasesCountriesModel> =
+        if (continentName.isNotEmpty()) {
+            completeCountryList.filter {
+                it.continent == continentName
+            }
+        } else {
+            completeCountryList
+        }
 
     fun filterCountry(filter: String) {
         val filteredCountry = completeCountryList.filter {
@@ -43,7 +62,7 @@ class CountriesViewModel @Inject constructor(
                 filter.toLowerCase(Locale.getDefault())
             )
         }
-        updateCountry.postValue(filteredCountry)
+        onCountryUpdate(countryList = filteredCountry)
     }
 
     fun sortCountry(sortBy: SortBy) {
@@ -70,7 +89,6 @@ class CountriesViewModel @Inject constructor(
             }
         }
 
-        updateCountry.postValue(sortedCountry)
-
+        onCountryUpdate(countryList = sortedCountry)
     }
 }

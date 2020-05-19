@@ -19,6 +19,8 @@ internal object LibraryVersion {
     internal const val WILLIAM_CHART = "3.3.0"
     internal const val CIRCULAR_IMAGE_VIEW = "3.1.0"
     internal const val SQL_DELIGHT = "1.3.0"
+    internal const val SQL_DELIGHT_COROUTINES = "1.2.1"
+    internal const val SQL_DELIGHT_DRIVER = "1.2.2"
 }
 
 object LibraryDependency {
@@ -59,8 +61,13 @@ object LibraryDependency {
     const val PAGING_RUNTIME_KTX = "androidx.paging:paging-runtime-ktx:${LibraryVersion.PAGING}"
     const val COIL_KT = "io.coil-kt:coil:${LibraryVersion.COIL}"
     const val WILLIAM_CHART = "com.diogobernardino:williamchart:${LibraryVersion.WILLIAM_CHART}"
-    const val CIRCULAR_IMAGE_VIEW = "de.hdodenhof:circleimageview:${LibraryVersion.CIRCULAR_IMAGE_VIEW}"
+    const val CIRCULAR_IMAGE_VIEW =
+        "de.hdodenhof:circleimageview:${LibraryVersion.CIRCULAR_IMAGE_VIEW}"
     const val SQL_DELIGHT = "com.squareup.sqldelight:gradle-plugin:${LibraryVersion.SQL_DELIGHT}"
+    const val SQL_DELIGHT_DRIVER =
+        "com.squareup.sqldelight:android-driver:${LibraryVersion.SQL_DELIGHT_DRIVER}"
+    const val SQL_DELIGHT_COROUTINES =
+        "com.squareup.sqldelight:coroutines-extensions:${LibraryVersion.SQL_DELIGHT_COROUTINES}"
     const val ADAPTER_DELEGATE =
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${LibraryVersion.ADAPTER_DELEGATE}"
 }

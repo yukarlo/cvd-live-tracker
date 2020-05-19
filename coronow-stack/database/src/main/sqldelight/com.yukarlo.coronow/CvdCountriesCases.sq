@@ -1,0 +1,33 @@
+CREATE TABLE countries(
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    country_name TEXT NOT NULL,
+    country_iso TEXT NOT NULL,
+    continent_name TEXT NOT NULL,
+    country_flag TEXT NOT NULL,
+    total_cases INTEGER NOT NULL,
+    total_today_cases INTEGER NOT NULL,
+    total_deaths INTEGER NOT NULL,
+    total_today_deaths INTEGER NOT NULL,
+    total_recovered INTEGER NOT NULL,
+    total_active INTEGER NOT NULL
+);
+
+selectAllCountries:
+SELECT * FROM countries;
+
+insertCountry:
+INSERT INTO countries(
+    country_name,
+    country_iso,
+    continent_name,
+    country_flag,
+    total_cases,
+    total_today_cases,
+    total_deaths,
+    total_today_deaths,
+    total_recovered,
+    total_active
+) VALUES (?,?,?,?,?,?,?,?,?,?);
+
+deleteAllCountries:
+DELETE FROM countries;

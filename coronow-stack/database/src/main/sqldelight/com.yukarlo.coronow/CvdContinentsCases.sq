@@ -1,0 +1,25 @@
+CREATE TABLE continent(
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    continent_name TEXT NOT NULL,
+    total_cases INTEGER NOT NULL,
+    total_deaths INTEGER NOT NULL,
+    total_recovered INTEGER NOT NULL,
+    total_active INTEGER NOT NULL,
+    total_critical INTEGER NOT NULL
+);
+
+selectAllContinents:
+SELECT * FROM continent;
+
+insertContinent:
+INSERT OR REPLACE INTO continent(
+    continent_name,
+    total_cases,
+    total_deaths,
+    total_recovered,
+    total_active,
+    total_critical
+) VALUES (?,?,?,?,?,?);
+
+deleteAllContinents:
+DELETE FROM continent;

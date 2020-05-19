@@ -1,5 +1,6 @@
 package com.yukarlo.ui.home.adapter
 
+import android.text.format.DateUtils
 import androidx.core.view.isVisible
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
@@ -7,7 +8,11 @@ import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.ui.home.IHomeInteraction
 import com.yukarlo.ui.home.R
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
-import com.yukarlo.ui.home.adapter.model.HomeBaseItem.*
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsHeader
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.ContinentsItem
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.Header
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.HealthTipsItem
+import com.yukarlo.ui.home.adapter.model.HomeBaseItem.SummaryItem
 import com.yukarlo.ui.home.databinding.HomeAlternativeSummaryBinding
 import com.yukarlo.ui.home.databinding.HomeContinentHeaderBinding
 import com.yukarlo.ui.home.databinding.HomeHeaderBinding
@@ -56,7 +61,10 @@ internal fun homeSummaryDelegate(
             binding.homeAffectedCountriesCount.text =
                 textProvider.formatNumber(item.summary.affectedCountries)
             binding.homeUpdatedSince.text =
-                String.format(getString(R.string.updated), item.summary.updatedSince)
+                String.format(
+                    getString(R.string.updated),
+                    DateUtils.getRelativeTimeSpanString(item.summary.updatedSince).toString()
+                )
         }
     }
 
@@ -111,7 +119,7 @@ internal fun homeContinentsDelegate(homeInteraction: IHomeInteraction, textProvi
         }
     ) {
         binding.affectedConstraintLayout.setOnClickListener {
-            homeInteraction.navigateToContinents(continentName = item.continents.continentName)
+            homeInteraction.navigateToCountries(continentName = item.continents.continentName)
         }
         bind {
             binding.affectedTotalCasesCount.text =
