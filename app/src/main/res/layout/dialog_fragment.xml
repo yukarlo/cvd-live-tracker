@@ -90,7 +90,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cdc"
+        app:layout_constraintBottom_toTopOf="@+id/dialogDivider2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialogWHOSource" />
+
+    <View
+        android:id="@+id/dialogDivider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/colorSurface"
+        app:layout_constraintBottom_toTopOf="@+id/dialogLatestAppUpdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogCDCSource" />
+
+    <TextView
+        android:id="@+id/dialogLatestAppUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/get_the_latest_app_update_here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogDivider2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

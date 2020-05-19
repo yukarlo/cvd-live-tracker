@@ -12,11 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.yukarlo.coronow.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.toolbar
-import kotlinx.android.synthetic.main.dialog_fragment.dialogCDCSource
-import kotlinx.android.synthetic.main.dialog_fragment.dialogCreatedBy
-import kotlinx.android.synthetic.main.dialog_fragment.dialogIllustrationSourcesTitle
-import kotlinx.android.synthetic.main.dialog_fragment.dialogNovelApi
-import kotlinx.android.synthetic.main.dialog_fragment.dialogWHOSource
+import kotlinx.android.synthetic.main.dialog_fragment.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -92,6 +88,8 @@ class MainActivity : AppCompatActivity() {
             dialogWHOSource.movementMethod =
                 LinkMovementMethod.getInstance()
             dialogCDCSource.movementMethod =
+                LinkMovementMethod.getInstance()
+            dialogLatestAppUpdate.movementMethod =
                 LinkMovementMethod.getInstance()
         }
     }
