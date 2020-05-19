@@ -3,7 +3,7 @@ Cvd-live-tracker is a simple app that tracks the current statistics of COVID-19 
 
 ![Imgur](https://i.imgur.com/rlyf980.png)
 ____
-Since google is restricting uploading of any covid-19 apps, I will be uploading the app [here](https://drive.google.com/file/d/1D2U05NfFTFEQsKuVGYwnDziq2KpVNcq7/view).
+Since google is restricting uploading of any covid-19 apps, I will be uploading the app [here](https://drive.google.com/open?id=1OtYrMWmD2eYJsSqzgbhgA72PQpXPIASY).
 
 ### Features
 1. Global numbers for COVID-19.
