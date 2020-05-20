@@ -61,9 +61,9 @@ class CasesCountriesAdapter @Inject constructor(
             itemBinding.affectedTotalActiveCount.text =
                 textProvider.formatNumber(data.totalActiveCount)
             itemBinding.affectedTotalTodayCasesCount.text =
-                textProvider.formatNumber(data.totalTodayCases)
+                textProvider.provideCasesTodayString(data.totalTodayCases)
             itemBinding.affectedTotalTodayDeceasedCount.text =
-                textProvider.formatNumber(data.totalTodayDeceased)
+                textProvider.provideCasesTodayString(data.totalTodayDeceased)
             itemBinding.affectedRegionFlag.apply {
                 load(data.countryFlag)
                 visibility = View.VISIBLE
