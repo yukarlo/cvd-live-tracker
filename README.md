@@ -19,10 +19,15 @@ Since google is restricting uploading of any covid-19 apps, I will be uploading 
 1. [Novel Covid 19](https://corona.lmao.ninja/docs/#/)
 
 ### Library References
-1. [Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
-2. [Dagger](https://github.com/square/dagger)
-3. [Retrofit](https://github.com/square/retrofit)
-4. [SqlDelight](https://github.com/cashapp/sqldelight)
-5. [Circle Image View](https://github.com/hdodenhof/CircleImageView)
-6. [Adapter Delegate] (https://github.com/sockeqwe/AdapterDelegates)
-6. Android ViewBinding
+1. [Android Architecture](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps.
+    - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying data changes.
+    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on app rotations.
+    -  [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - Generates a binding class for each XML layout file present in that module and allows you to more easily write code that interacts with views.
+4. [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) - Coroutines for asynchronous programming
+5. [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/index.html) - A cold asynchronous data stream that sequentially emits values and completes normally or with an exception.
+6. [Dagger](https://github.com/square/dagger) - Dependency Injection Framework
+7. [Retrofit](https://github.com/square/retrofit) - A typesafe HTTP client for Android and Java.
+8. [SqlDelight](https://github.com/cashapp/sqldelight) - A typesafe APIs from your SQL statements
+9. [Circle Image View](https://github.com/hdodenhof/CircleImageView) - A fast circular ImageView.
+10. [Adapter Delegate](https://github.com/sockeqwe/AdapterDelegates) - Delegates the responsibility for creating ViewHolder and binding ViewHolder for a certain view type.
+11. [Coil-kt](https://coil-kt.github.io/coil/) - An image loading library for Android backed by Kotlin Coroutines
