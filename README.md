@@ -24,4 +24,5 @@ Since google is restricting uploading of any covid-19 apps, I will be uploading 
 3. [Retrofit](https://github.com/square/retrofit)
 4. [SqlDelight](https://github.com/cashapp/sqldelight)
 5. [Circle Image View](https://github.com/hdodenhof/CircleImageView)
-4. Android ViewBinding
+6. [Adapter Delegate] (https://github.com/sockeqwe/AdapterDelegates)
+6. Android ViewBinding
