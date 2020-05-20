@@ -12,7 +12,7 @@ Since google is restricting uploading of any covid-19 apps, I will be uploading 
 
 ### Todo
 
-1. Add database for local caching.
+1. Add more table for local caching of data.
 
 
 ### API Reference
