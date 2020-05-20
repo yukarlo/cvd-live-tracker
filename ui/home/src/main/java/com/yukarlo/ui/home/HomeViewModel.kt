@@ -24,6 +24,10 @@ internal class HomeViewModel @Inject constructor(
     val onHomeUpdated: LiveData<List<HomeBaseItem>>
         get() = updateHome
 
+    private val showError: MutableLiveData<Boolean> = MutableLiveData()
+    val onShowError: LiveData<Boolean>
+        get() = showError
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             refreshData()
@@ -31,12 +35,16 @@ internal class HomeViewModel @Inject constructor(
     }
 
     suspend fun refreshData() {
-        combine(
-            mGetCvdCasesContinentsUseCase.execute(),
-            mGetCvdCasesSummaryUseCase.execute(params = Unit)
-        ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
-            provideHomeBaseItem(summary = summary, continents = continents)
-        }.collect { onHomeUpdate(homeItems = it) }
+        try {
+            combine(
+                mGetCvdCasesContinentsUseCase.execute(),
+                mGetCvdCasesSummaryUseCase.execute(params = Unit)
+            ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
+                provideHomeBaseItem(summary = summary, continents = continents)
+            }.collect { onHomeUpdate(homeItems = it) }
+        } catch (e: Exception) {
+            showError.postValue(true)
+        }
     }
 
     private fun provideHomeBaseItem(
@@ -53,6 +61,7 @@ internal class HomeViewModel @Inject constructor(
     }
 
     private fun onHomeUpdate(homeItems: List<HomeBaseItem>) {
+        showError.postValue(false)
         updateHome.postValue(homeItems)
     }
 }

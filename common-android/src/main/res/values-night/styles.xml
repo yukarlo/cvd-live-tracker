@@ -25,4 +25,10 @@
     </style>
 
     <style name="Theme.App.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+
+    <style name="Widget.Button" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:backgroundTint">@color/gray800</item>
+        <item name="rippleColor">@color/gray50</item>
+        <item name="android:textColor">@color/white800</item>
+    </style>
 </resources>

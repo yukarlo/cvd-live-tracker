@@ -29,4 +29,10 @@
     <style name="ThemeOverlay.Search.Input" parent="">
         <item name="colorPrimary">#8B8B8B</item>
     </style>
+
+    <style name="Widget.Button" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:backgroundTint">@color/white50</item>
+        <item name="rippleColor">@color/gray50</item>
+        <item name="android:textColor">@color/white800</item>
+    </style>
 </resources>

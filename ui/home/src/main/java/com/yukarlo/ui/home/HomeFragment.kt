@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.common.android.text.TextProvider
@@ -81,9 +81,11 @@ class HomeFragment : Fragment(), IHomeInteraction {
         )
 
         fragmentBinding.swipeHomeLayout.setOnRefreshListener {
-            lifecycleScope.launch {
-                mViewModel.refreshData()
-            }
+            refreshData()
+        }
+
+        fragmentBinding.homeRetry.setOnClickListener {
+            refreshData()
         }
     }
 
@@ -93,6 +95,19 @@ class HomeFragment : Fragment(), IHomeInteraction {
             homeAdapter.items = homeItems
             recyclerView.adapter = homeAdapter
         })
+
+        mViewModel.onShowError.observe(viewLifecycleOwner, Observer { show ->
+            fragmentBinding.swipeHomeLayout.isRefreshing = false
+            fragmentBinding.homeRecyclerView.isVisible = !show
+            fragmentBinding.homeError.isVisible = show
+            fragmentBinding.homeRetry.isVisible = show
+        })
+    }
+
+    private fun refreshData() {
+        lifecycleScope.launch {
+            mViewModel.refreshData()
+        }
     }
 
     override fun navigateToCountries(continentName: String) {

@@ -87,4 +87,5 @@
     <string name="more_information_symptoms">More information at <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/q-a-coronaviruses#:~:text=symptoms">WHO</a> and <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">CDC</a> website.</string>
     <string name="sort_by">Sort By</string>
     <string name="get_the_latest_app_update_here">Get the latest app update <a href="https://drive.google.com/open?id=14CK6V4FYq0-1A27uIpqJa4lNccoj_THY">here</a>.</string>
+    <string name="retry">Retry</string>
 </resources>
