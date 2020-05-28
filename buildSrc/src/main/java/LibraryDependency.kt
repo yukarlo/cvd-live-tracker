@@ -21,6 +21,7 @@ internal object LibraryVersion {
     internal const val SQL_DELIGHT = "1.3.0"
     internal const val SQL_DELIGHT_COROUTINES = "1.2.1"
     internal const val SQL_DELIGHT_DRIVER = "1.2.2"
+    internal const val APP_UPDATER = "2.7"
 }
 
 object LibraryDependency {
@@ -70,4 +71,5 @@ object LibraryDependency {
         "com.squareup.sqldelight:coroutines-extensions:${LibraryVersion.SQL_DELIGHT_COROUTINES}"
     const val ADAPTER_DELEGATE =
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${LibraryVersion.ADAPTER_DELEGATE}"
+    const val APP_UPDATER = "com.github.javiersantos:AppUpdater:${LibraryVersion.APP_UPDATER}"
 }

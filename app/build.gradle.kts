@@ -20,4 +20,5 @@ dependencies {
     implementation(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
     implementation(LibraryDependency.NAVIGATION_UI_KTX)
     implementation(LibraryDependency.GOOGLE_MATERIAL)
+    implementation(LibraryDependency.APP_UPDATER)
 }
