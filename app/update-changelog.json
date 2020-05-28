@@ -1,6 +1,6 @@
 {
-  "latestVersion": "0.60",
-  "latestVersionCode": 1,
+  "latestVersion": "0.70",
+  "latestVersionCode": 2,
   "url": "https://github.com/yukarlo/cvd-live-tracker/releases",
   "releaseNotes": [
     "[FIX] Crash when no internet connection"
