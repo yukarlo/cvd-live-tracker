@@ -5,7 +5,9 @@ import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.coronow.stack.database.Database
 import javax.inject.Inject
+import kotlin.time.minutes
 
+@OptIn(kotlin.time.ExperimentalTime::class)
 class CvdCasesLocalRepository @Inject constructor(
     private val database: Database
 ) : ICvdCasesLocalRepository {
@@ -98,13 +100,17 @@ class CvdCasesLocalRepository @Inject constructor(
     override fun getSummary(): CasesSummaryModel? {
         val summaryQueries = database.cvdSummaryCasesQueries
         return summaryQueries.selectAllSummary().executeAsOneOrNull()?.run {
-            CasesSummaryModel(
-                updatedSince = updated,
-                affectedCountries = affected_countries,
-                totalCasesCount = total_cases,
-                totalDeceasedCount = total_deaths,
-                totalRecoveredCount = total_recovered
-            )
+            if (updated.minutes < 10.minutes) {
+                CasesSummaryModel(
+                    updatedSince = updated,
+                    affectedCountries = affected_countries,
+                    totalCasesCount = total_cases,
+                    totalDeceasedCount = total_deaths,
+                    totalRecoveredCount = total_recovered
+                )
+            } else {
+              null
+            }
         }
     }
 }

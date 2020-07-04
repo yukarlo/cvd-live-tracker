@@ -9,7 +9,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
-import kotlin.time.minutes
 
 @OptIn(kotlin.time.ExperimentalTime::class)
 class GetCvdCasesSummaryUseCase @Inject constructor(
@@ -19,14 +18,13 @@ class GetCvdCasesSummaryUseCase @Inject constructor(
 ) : FlowUseCase<CasesSummaryModel, Unit>() {
 
     override fun doWork(params: Unit): Flow<CasesSummaryModel> = flow {
-        mCvdCasesLocalRepository.getSummary().let { observedSummary ->
-            if (observedSummary == null || observedSummary.updatedSince.minutes > 10.minutes) {
-                val summary = mCvdCasesRemoteRepository.getSummary()
-                mCvdCasesLocalRepository.addSummary(casesSummary = summary)
-                emit(summary)
-            } else {
-                emit(observedSummary)
-            }
+        mCvdCasesLocalRepository.getSummary()
+            ?.let {
+                emit(it)
+            } ?: kotlin.run {
+            val summary = mCvdCasesRemoteRepository.getSummary()
+            mCvdCasesLocalRepository.addSummary(casesSummary = summary)
+            emit(summary)
         }
     }
 
