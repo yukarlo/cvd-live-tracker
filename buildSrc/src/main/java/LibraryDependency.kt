@@ -5,7 +5,9 @@ internal object LibraryVersion {
     internal const val CORE_KTX = "1.3.0-rc01"
     internal const val ANDROID_NAVIGATION = "2.3.0-alpha05"
     internal const val GOOGLE_MATERIAL = "1.2.0-alpha06"
-    internal const val DAGGER = "2.27"
+    internal const val DAGGER = "2.28"
+    internal const val DAGGER_HILT_ANDROID = "2.28.1-alpha"
+    internal const val DAGGER_HILT = "1.0.0-alpha01"
     internal const val ANDROID_LIFECYCLE = "2.3.0-alpha01"
     internal const val RECYCLERVIEW = "1.2.0-alpha02"
     internal const val RETROFIT = "2.8.1"
@@ -38,8 +40,14 @@ object LibraryDependency {
         "androidx.navigation:navigation-ui-ktx:${LibraryVersion.ANDROID_NAVIGATION}"
     const val GOOGLE_MATERIAL =
         "com.google.android.material:material:${LibraryVersion.GOOGLE_MATERIAL}"
+
     const val DAGGER = "com.google.dagger:dagger:${LibraryVersion.DAGGER}"
     const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:${LibraryVersion.DAGGER}"
+    const val DAGGER_HILT_ANDROID = "com.google.dagger:hilt-android:${LibraryVersion.DAGGER_HILT_ANDROID}"
+    const val DAGGER_HILT_ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${LibraryVersion.DAGGER_HILT_ANDROID}"
+    const val DAGGER_HILT = "androidx.hilt:hilt-common:${LibraryVersion.DAGGER_HILT}"
+    const val DAGGER_HILT_LIFECYCLE_VIEWMODEL = "androidx.hilt:hilt-lifecycle-viewmodel:${LibraryVersion.DAGGER_HILT}"
+    const val DAGGER_HILT_COMPILER = "androidx.hilt:hilt-compiler:${LibraryVersion.DAGGER_HILT}"
 
     // alternatively - just ViewModel
     const val ANDROID_LIFECYCLE_VIEWMODEL_KTX =
