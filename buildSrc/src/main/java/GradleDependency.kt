@@ -14,7 +14,7 @@ internal object GradlePluginId {
 }
 
 internal object GradlePluginVersion {
-    const val ANDROID_GRADLE = "4.2.0-alpha01"
+    const val ANDROID_GRADLE = "4.2.0-alpha03"
 }
 
 internal object GradlePlugin {
