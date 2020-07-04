@@ -6,8 +6,11 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.yukarlo.coronow.stack.database.Database
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class DatabaseModule {
 
     @Provides

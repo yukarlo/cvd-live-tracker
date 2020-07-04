@@ -16,6 +16,7 @@ fun DependencyHandler.addPluginDependencies() {
     classpath(kotlin(module = GradlePlugin.KOTLIN_GRADLE_PLUGIN, version = LibraryVersion.KOTLIN))
     classpath(dependencyNotation = LibraryDependency.NAVIGATION_SAFE_ARGS)
     classpath(dependencyNotation = LibraryDependency.SQL_DELIGHT)
+    classpath(dependencyNotation = GradlePlugin.DAGGER_HILT_ANDROID_GRADLE_PLUGIN)
 }
 
 fun DependencyHandler.addDaggerDependencies() {

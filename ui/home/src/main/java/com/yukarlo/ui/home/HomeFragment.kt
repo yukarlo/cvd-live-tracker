@@ -17,8 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.common.android.text.TextProvider
-import com.yukarlo.coronow.stack.cases.di.DaggerUseCaseComponent
-import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.home.adapter.homeContinentHeader
 import com.yukarlo.ui.home.adapter.homeContinentsDelegate
 import com.yukarlo.ui.home.adapter.homeHeaderDelegate
@@ -26,10 +24,13 @@ import com.yukarlo.ui.home.adapter.homeHealthTipsDelegate
 import com.yukarlo.ui.home.adapter.homeSummaryDelegate
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.databinding.HomeFragmentBinding
-import com.yukarlo.ui.home.di.DaggerUiHomeComponent
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
+@WithFragmentBindings
 class HomeFragment : Fragment(), IHomeInteraction {
 
     @Inject
@@ -48,15 +49,6 @@ class HomeFragment : Fragment(), IHomeInteraction {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val coreComponent = CoreComponentFactory.coreComponent(context = requireContext())
-        DaggerUiHomeComponent.factory()
-            .create(
-                homeFragment = this,
-                coreComponent = coreComponent,
-                useCaseComponent = DaggerUseCaseComponent.factory().create(coreComponent)
-            )
-            .inject(fragment = this)
-
         fragmentBinding = HomeFragmentBinding.inflate(inflater, container, false)
         return fragmentBinding.root
     }

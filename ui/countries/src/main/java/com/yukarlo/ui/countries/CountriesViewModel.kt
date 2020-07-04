@@ -1,5 +1,6 @@
 package com.yukarlo.ui.countries
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
-class CountriesViewModel @Inject constructor(
+class CountriesViewModel @ViewModelInject constructor(
     private val mInputModel: CountriesInputModel,
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase
 ) : ViewModel() {

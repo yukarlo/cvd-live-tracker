@@ -2,11 +2,14 @@ package com.yukarlo.core.network.di
 
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class NetworkModule {
 
     @Provides

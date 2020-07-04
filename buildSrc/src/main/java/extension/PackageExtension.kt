@@ -42,3 +42,6 @@ val PluginDependenciesSpec.androidSafeArgs: PluginDependencySpec
 
 val PluginDependenciesSpec.sqlDelight: PluginDependencySpec
     get() = id("com.squareup.sqldelight")
+
+val PluginDependenciesSpec.daggerHilt: PluginDependencySpec
+    get() = id("dagger.hilt.android.plugin")

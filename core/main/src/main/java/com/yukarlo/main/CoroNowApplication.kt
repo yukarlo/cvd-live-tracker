@@ -1,14 +1,7 @@
 package com.yukarlo.main
 
 import android.app.Application
-import com.yukarlo.main.di.CoreComponentFactory
+import dagger.hilt.android.HiltAndroidApp
 
-class CoroNowApplication : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-
-        CoreComponentFactory.coreComponent(context = this)
-            .inject(coroNowApplication = this)
-    }
-}
+@HiltAndroidApp
+class CoroNowApplication : Application()

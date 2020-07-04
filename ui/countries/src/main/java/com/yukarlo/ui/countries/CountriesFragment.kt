@@ -17,16 +17,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.yukarlo.common.android.text.TextProvider
-import com.yukarlo.coronow.stack.cases.di.DaggerUseCaseComponent
-import com.yukarlo.main.di.CoreComponentFactory
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
 import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
-import com.yukarlo.ui.countries.di.DaggerUiCountriesComponent
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
 import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
+@WithFragmentBindings
 class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
     @Inject
@@ -47,15 +47,6 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val coreComponent = CoreComponentFactory.coreComponent(context = requireContext())
-        DaggerUiCountriesComponent.factory()
-            .create(
-                countriesFragment = this,
-                coreComponent = coreComponent,
-                useCaseComponent = DaggerUseCaseComponent.factory().create(coreComponent)
-            )
-            .inject(fragment = this)
-
         fragmentBinding = CountriesFragmentBinding.inflate(inflater, container, false)
         return fragmentBinding.root
     }

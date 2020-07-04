@@ -3,6 +3,7 @@ plugins {
     androidLibrary
     kotlinAndroid
     kotlinKapt
+    daggerHilt
 }
 
 dependencies {

@@ -8,9 +8,12 @@ import com.yukarlo.ui.countries.CountriesViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import dagger.multibindings.IntoMap
 
 @Module
+@InstallIn(ApplicationComponent::class)
 internal abstract class UiCountriesModule {
 
     @Binds

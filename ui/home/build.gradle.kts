@@ -5,6 +5,7 @@ plugins {
     kotlinAndroidExtensions
     kotlinKapt
     androidSafeArgs
+    daggerHilt
 }
 
 dependencies {
