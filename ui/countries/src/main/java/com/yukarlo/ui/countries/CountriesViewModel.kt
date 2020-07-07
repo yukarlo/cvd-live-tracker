@@ -1,8 +1,10 @@
 package com.yukarlo.ui.countries
 
+import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yukarlo.common.android.CountriesInputModel
@@ -12,12 +14,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
-import javax.inject.Inject
 
 class CountriesViewModel @ViewModelInject constructor(
-    private val mInputModel: CountriesInputModel,
-    private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase
+    private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
+    @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    private val continentNameArgs =
+        savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
 
     private var completeCountryList: List<CasesCountriesModel> = emptyList()
 
@@ -30,8 +34,8 @@ class CountriesViewModel @ViewModelInject constructor(
         get() = updateCountry
 
     init {
-        if (mInputModel.mContinentName.isNotEmpty()) {
-            continentName.postValue(mInputModel.mContinentName)
+        if (continentNameArgs.isNotEmpty()) {
+            continentName.postValue(continentNameArgs)
         }
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -85,9 +89,9 @@ class CountriesViewModel @ViewModelInject constructor(
     }
 
     private fun filterContinent(countryList: List<CasesCountriesModel>): List<CasesCountriesModel> =
-        if (mInputModel.mContinentName.isNotEmpty()) {
+        if (continentNameArgs.isNotEmpty()) {
             countryList.filter {
-                it.continent == mInputModel.mContinentName
+                it.continent == continentNameArgs
             }
         } else {
             countryList

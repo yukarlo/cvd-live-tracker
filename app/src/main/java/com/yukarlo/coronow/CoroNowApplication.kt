@@ -1,4 +1,4 @@
-package com.yukarlo.main
+package com.yukarlo.coronow
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

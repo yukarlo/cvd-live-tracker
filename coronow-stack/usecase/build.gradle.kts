@@ -7,7 +7,6 @@ plugins {
 }
 
 dependencies {
-    implementation(coreModule("main"))
     implementation(coreModule("domain-model"))
     implementation(coreModule("network"))
     implementation(libModule("remote-repository"))

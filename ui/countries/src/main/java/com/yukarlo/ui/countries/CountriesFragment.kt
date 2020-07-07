@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,16 +25,12 @@ import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-@WithFragmentBindings
 class CountriesFragment : Fragment(), ICountrySearchInteraction {
-
-    @Inject
-    lateinit var mViewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var mTextProvider: TextProvider
 
-    private val mViewModel: CountriesViewModel by viewModels { mViewModelFactory }
+    private val mViewModel: CountriesViewModel by viewModels()
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var fragmentBinding: CountriesFragmentBinding

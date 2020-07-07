@@ -3,7 +3,7 @@ internal object LibraryVersion {
     internal const val APP_COMPACT = "1.2.0-beta01"
     internal const val CONSTRAINT_LAYOUT = "2.0.0-beta4"
     internal const val CORE_KTX = "1.3.0-rc01"
-    internal const val ANDROID_NAVIGATION = "2.3.0-alpha05"
+    internal const val ANDROID_NAVIGATION = "2.3.0"
     internal const val GOOGLE_MATERIAL = "1.2.0-alpha06"
     internal const val DAGGER = "2.28"
     internal const val DAGGER_HILT_ANDROID = "2.28.1-alpha"

@@ -30,16 +30,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-@WithFragmentBindings
 class HomeFragment : Fragment(), IHomeInteraction {
-
-    @Inject
-    lateinit var mViewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var mTextProvider: TextProvider
 
-    private val mViewModel: HomeViewModel by viewModels { mViewModelFactory }
+    private val mViewModel: HomeViewModel by viewModels()
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var fragmentBinding: HomeFragmentBinding

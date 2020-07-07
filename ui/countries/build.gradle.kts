@@ -9,7 +9,6 @@ plugins {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(coreModule("main"))
     implementation(coreModule("domain-model"))
     implementation(project(":common-android"))
     implementation(libModule("usecase"))
