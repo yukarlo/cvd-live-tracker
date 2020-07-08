@@ -34,7 +34,7 @@ jobs:
             gradle-${{ hashFiles('gradle-checksums.txt') }}-
 
       - name: make gradle executable
-        run: chmor +x /.gradlew
+        run: chmod +x /.gradlew
 
       - name: lintDebug
         run: ./gradlew lint
