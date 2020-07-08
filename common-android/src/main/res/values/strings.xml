@@ -39,7 +39,7 @@
     <string name="hand_washing_description">Washing your hands especially after you have been in a public place kills viruses that may be on your hands.</string>
     <string name="hand_washing_description_list">
         <li>Regularly and thoroughly wash your hands with soap and running water for at least 20 seconds.</li>\n\n
-        <li>Use an alcohol-based, at least 60% alcohol, hand sanitizers if soap and water are not readily available.</li>\n\n
+        <li>Use an alcohol-based, at least 60\% alcohol, hand sanitizers if soap and water are not readily available.</li>\n\n
         <li>Avoid touching your eyes, nose, and mouth with unwashed hands.</li>\n
     </string>
     <string name="avoid_close_contact">Avoid close contact</string>
