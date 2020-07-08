@@ -2,7 +2,7 @@ name: android lint
 
 on:
   push:
-    branches: [master] # Just in case master was not up to date while merging PR
+    branches: [master]
   pull_request:
     types: [opened, synchronize]
 
@@ -32,6 +32,9 @@ jobs:
           key: gradle-${{ hashFiles('gradle-checksums.txt') }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ hashFiles('gradle-checksums.txt') }}-
+
+      - name: make gradle executable
+        run: chmor +x /.gradlew
 
       - name: lintDebug
         run: ./gradlew lint
