@@ -10,6 +10,7 @@ include(":core:dispatchers")
 include(":core:usecase")
 include(":core:domain-model")
 include(":core:network")
+include(":core:base")
 include(":common-android")
 include(":app")
 rootProject.name = "CoroNow"
