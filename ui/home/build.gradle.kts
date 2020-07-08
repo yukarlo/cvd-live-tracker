@@ -24,6 +24,6 @@ dependencies {
     implementation(LibraryDependency.NAVIGATION_UI_KTX)
     implementation(LibraryDependency.GOOGLE_MATERIAL)
     implementation(LibraryDependency.ADAPTER_DELEGATE)
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+    implementation(LibraryDependency.SWIPE_REFRESH_LAYOUT)
     addDaggerDependencies()
 }

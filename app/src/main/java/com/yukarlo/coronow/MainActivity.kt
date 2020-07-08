@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         AppUpdater(this)
             .setUpdateFrom(UpdateFrom.JSON)
-            .setUpdateJSON("https://raw.githubusercontent.com/yukarlo/cvd-live-tracker/master/app/update-changelog.json")
+            .setUpdateJSON(BuildConfig.GRADLE_UPDATE_JSON_CHANGELOG)
             .start()
 
         NavigationUI.setupActionBarWithNavController(this, navController)

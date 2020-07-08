@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.dsl.BaseFlavor
+
 plugins {
     coroNowPlugin
     androidApplication
@@ -6,6 +8,22 @@ plugins {
     kotlinKapt
     daggerHilt
 }
+
+android {
+    defaultConfig {
+        buildConfigFieldFromGradleProperty("updateJsonChangelog")
+    }
+}
+
+fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
+    val propertyValue = project.properties[gradlePropertyName] as? String
+    checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
+
+    val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
+    buildConfigField("String", androidResourceName, propertyValue)
+}
+
+fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
