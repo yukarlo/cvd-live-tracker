@@ -49,6 +49,12 @@ class CoroNowPlugin : Plugin<Project> {
     private fun setUpCommon(project: Project, extension: BaseExtension) {
         with(extension) {
 
+            project.allprojects {
+                tasks.withType(KotlinCompile::class.java).all {
+                    kotlinOptions.freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
+                }
+            }
+
             packagingOptions {
                 pickFirst("META-INF/usecase_debug.kotlin_module")
                 pickFirst("META-INF/kotlinx-coroutines-core.kotlin_module")
