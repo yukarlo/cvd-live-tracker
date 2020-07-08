@@ -9,11 +9,11 @@ plugins {
     daggerHilt
 }
 
-android {
-    lintOptions {
-        lintConfig = file("lint.xml")
-    }
+kapt {
+    correctErrorTypes = true
+}
 
+android {
     defaultConfig {
         buildConfigFieldFromGradleProperty("updateJsonChangelog")
     }
