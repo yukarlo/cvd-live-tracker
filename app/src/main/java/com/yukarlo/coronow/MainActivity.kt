@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.github.javiersantos.appupdater.AppUpdater
+import com.github.javiersantos.appupdater.enums.UpdateFrom
 import com.yukarlo.coronow.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.toolbar
@@ -31,6 +33,11 @@ class MainActivity : AppCompatActivity() {
             setContentView(root)
             setSupportActionBar(toolbar)
         }
+
+        AppUpdater(this)
+            .setUpdateFrom(UpdateFrom.JSON)
+            .setUpdateJSON("https://raw.githubusercontent.com/yukarlo/cvd-live-tracker/master/app/update-changelog.json")
+            .start()
 
         NavigationUI.setupActionBarWithNavController(this, navController)
 

@@ -1,8 +1,8 @@
 {
-  "latestVersion": "0.70",
+  "latestVersion": "0.80",
   "latestVersionCode": 2,
-  "url": "https://drive.google.com/file/d/1KsTY8188LdolvAFOVgarL6QwLMZvcrI9/view?usp=sharingt",
+  "url": "https://drive.google.com/file/d/1Ux_snB4VVwvR9UFeKlloi-N09EQZEDy6/view?usp=sharing",
   "releaseNotes": [
-    "Add App Updater"
+    "Update App to Dagger Hilt"
   ]
 }
