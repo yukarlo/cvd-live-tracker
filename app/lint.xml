@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
-    <issue id="all">
+    <issue id="InvalidPackage">
+        <ignore path="/build" />
         <ignore path="build" />
     </issue>
 </lint>
