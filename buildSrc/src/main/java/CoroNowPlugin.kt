@@ -9,7 +9,6 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.io.File
 
 class CoroNowPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -50,9 +49,9 @@ class CoroNowPlugin : Plugin<Project> {
     private fun setUpCommon(project: Project, extension: BaseExtension) {
         with(extension) {
 
-            lintOptions {
-                lintConfig = File("lint.xml")
-            }
+//            lintOptions {
+//                lintConfig = File("lint.xml")
+//            }
 
             project.allprojects {
                 tasks.withType(KotlinCompile::class.java).all {
