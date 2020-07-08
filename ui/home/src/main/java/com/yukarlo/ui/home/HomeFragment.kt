@@ -8,25 +8,16 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.common.android.text.TextProvider
-import com.yukarlo.ui.home.adapter.homeContinentHeader
-import com.yukarlo.ui.home.adapter.homeContinentsDelegate
-import com.yukarlo.ui.home.adapter.homeHeaderDelegate
-import com.yukarlo.ui.home.adapter.homeHealthTipsDelegate
-import com.yukarlo.ui.home.adapter.homeSummaryDelegate
+import com.yukarlo.ui.home.adapter.*
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.databinding.HomeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.WithFragmentBindings
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -78,24 +69,23 @@ class HomeFragment : Fragment(), IHomeInteraction {
     }
 
     private fun setupObservers() {
-        mViewModel.onHomeUpdated.observe(viewLifecycleOwner, Observer { homeItems ->
-            fragmentBinding.swipeHomeLayout.isRefreshing = false
-            homeAdapter.items = homeItems
-            recyclerView.adapter = homeAdapter
-        })
-
-        mViewModel.onShowError.observe(viewLifecycleOwner, Observer { show ->
-            fragmentBinding.swipeHomeLayout.isRefreshing = false
-            fragmentBinding.homeRecyclerView.isVisible = !show
-            fragmentBinding.homeError.isVisible = show
-            fragmentBinding.homeRetry.isVisible = show
+        mViewModel.stateLiveData.observe(viewLifecycleOwner, {
+            renderUi(it)
         })
     }
 
+    private fun renderUi(it: ViewState) {
+        fragmentBinding.swipeHomeLayout.isRefreshing = it.isLoading
+        fragmentBinding.homeRecyclerView.isVisible = it.homeItems.isNotEmpty()
+        fragmentBinding.homeError.isVisible = it.isError
+        fragmentBinding.homeRetry.isVisible = it.isError
+
+        homeAdapter.items = it.homeItems
+        recyclerView.adapter = homeAdapter
+    }
+
     private fun refreshData() {
-        lifecycleScope.launch {
-            mViewModel.refreshData()
-        }
+        mViewModel.refreshData()
     }
 
     override fun navigateToCountries(continentName: String) {
