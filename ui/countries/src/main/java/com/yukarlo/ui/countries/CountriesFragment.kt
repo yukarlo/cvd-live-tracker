@@ -65,11 +65,11 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
     }
 
     private fun setupObservers() {
-        mViewModel.onCountryUpdated.observe(viewLifecycleOwner, Observer { countries ->
-            casesCountriesAdapter.updateData(items = countries)
+        mViewModel.stateLiveData.observe(viewLifecycleOwner, {
+            casesCountriesAdapter.updateData(items = it.countries)
         })
 
-        mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, Observer { continentName ->
+        mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, { continentName ->
             (activity as AppCompatActivity).supportActionBar?.title = continentName
         })
     }

@@ -5,20 +5,21 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yukarlo.base.BaseViewModel
 import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.coronow.stack.cases.domain.GetAllCountriesCasesUseCase
+import com.yukarlo.ui.countries.CountriesViewAction.CountriesLoadSuccess
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 
-class CountriesViewModel @ViewModelInject constructor(
+internal class CountriesViewModel @ViewModelInject constructor(
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
+) : BaseViewModel<CountriesViewState, CountriesViewAction>(CountriesViewState()) {
 
     private val continentNameArgs =
         savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
@@ -29,22 +30,36 @@ class CountriesViewModel @ViewModelInject constructor(
     val onContinentNameUpdated: LiveData<String>
         get() = continentName
 
-    private val updateCountry: MutableLiveData<List<CasesCountriesModel>> = MutableLiveData()
-    val onCountryUpdated: LiveData<List<CasesCountriesModel>>
-        get() = updateCountry
-
     init {
         if (continentNameArgs.isNotEmpty()) {
             continentName.postValue(continentNameArgs)
         }
 
         viewModelScope.launch(Dispatchers.IO) {
+            sendAction(CountriesViewAction.CountriesLoading)
             mGetAllCountriesCasesUseCase.execute().collect { countryList ->
                 completeCountryList = countryList
-                onCountryUpdate(countryList = filterContinent(countryList = countryList))
+                sendAction(CountriesLoadSuccess(countries = countryList))
             }
         }
     }
+
+
+    override fun onReduceState(viewAction: CountriesViewAction): CountriesViewState =
+        when (viewAction) {
+            is CountriesViewAction.CountriesLoading -> state.copy()
+            is CountriesLoadSuccess -> state.copy(
+                isLoading = false,
+                isError = false,
+                countries = viewAction.countries
+            )
+            is CountriesViewAction.CountriesLoadFailure -> state.copy(
+                isLoading = false,
+                isError = true,
+                countries = listOf()
+            )
+        }
+
 
     fun filterCountry(filter: String) {
         val filteredCountryList = completeCountryList.filter {
@@ -54,7 +69,7 @@ class CountriesViewModel @ViewModelInject constructor(
                 filter.toLowerCase(Locale.getDefault())
             )
         }
-        onCountryUpdate(countryList = filterContinent(countryList = filteredCountryList))
+        sendAction(CountriesLoadSuccess(countries = filterContinent(countryList = filteredCountryList)))
     }
 
     fun sortCountry(sortBy: SortBy) {
@@ -80,12 +95,7 @@ class CountriesViewModel @ViewModelInject constructor(
                 }
             }
         }
-
-        onCountryUpdate(countryList = filterContinent(countryList = sortedCountryList))
-    }
-
-    private fun onCountryUpdate(countryList: List<CasesCountriesModel>) {
-        updateCountry.postValue(countryList)
+        sendAction(CountriesLoadSuccess(countries = filterContinent(countryList = sortedCountryList)))
     }
 
     private fun filterContinent(countryList: List<CasesCountriesModel>): List<CasesCountriesModel> =
