@@ -1,8 +1,9 @@
 {
-  "latestVersion": "0.80",
-  "latestVersionCode": 2,
+  "latestVersion": "0.85",
+  "latestVersionCode": 3,
   "url": "https://drive.google.com/file/d/16JEdtcr0Wg8xjK045ov0cbPHLPqHpIEJ/view?usp=sharing",
   "releaseNotes": [
-    "Update App to Dagger Hilt"
+    "Bump Target Android Version to 11",
+    "Improve Codebase"
   ]
 }

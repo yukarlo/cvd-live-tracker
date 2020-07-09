@@ -50,10 +50,6 @@ class CoroNowPlugin : Plugin<Project> {
     private fun setUpCommon(project: Project, extension: BaseExtension) {
         with(extension) {
 
-            lintOptions {
-                lintConfig = File("lint.xml")
-            }
-
             project.allprojects {
                 tasks.withType(KotlinCompile::class.java).all {
                     kotlinOptions.freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
