@@ -3,6 +3,7 @@
 <p align="center">
     <a href=""><img alt="Kotlin" src="https://img.shields.io/badge/kotlin-1.4--M3-blue?style=flat-square&logo=kotlin"/></a>
     <a href="https://actions-badge.atrox.dev/yukarlo/cvd-live-tracker/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fyukarlo%2Fcvd-live-tracker%2Fbadge&style=flat-square" /></a>
+    <a href="https://www.codefactor.io/repository/github/yukarlo/cvd-live-tracker"><img src="https://www.codefactor.io/repository/github/yukarlo/cvd-live-tracker/badge" alt="CodeFactor" /></a>
 </p>
 
 Cvd-live-tracker is a simple app that tracks the current statistics of COVID-19 across the globe and also offers useful information regarding the COVID-19.
