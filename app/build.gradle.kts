@@ -14,6 +14,10 @@ kapt {
 }
 
 android {
+    lintOptions {
+        lintConfig = file("lint.xml")
+    }
+
     defaultConfig {
         buildConfigFieldFromGradleProperty("updateJsonChangelog")
     }
