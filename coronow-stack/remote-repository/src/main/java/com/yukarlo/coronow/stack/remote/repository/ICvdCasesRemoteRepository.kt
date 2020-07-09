@@ -5,16 +5,15 @@ import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.CasesCountryHistoryModel
 import com.yukarlo.core.domain.model.CasesHistoryModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
-import kotlinx.coroutines.flow.Flow
 
 interface ICvdCasesRemoteRepository {
     suspend fun getSummary(): CasesSummaryModel
 
-    fun getHistoricalData(): Flow<CasesHistoryModel>
+    suspend fun getHistoricalData(): CasesHistoryModel
 
-    fun getCountryHistoricalData(country: String): Flow<CasesCountryHistoryModel>
+    suspend fun getCountryHistoricalData(country: String): CasesCountryHistoryModel
 
-    fun getContinents(): Flow<List<CasesContinentsModel>>
+    suspend fun getContinents(): List<CasesContinentsModel>
 
-    fun getAllCountries(): Flow<List<CasesCountriesModel>>
+    suspend fun getAllCountries(): List<CasesCountriesModel>
 }

@@ -43,7 +43,7 @@ internal class HomeViewModel @ViewModelInject constructor(
             try {
                 sendAction(HomeLoading)
                 combine(
-                    mGetCvdCasesContinentsUseCase.execute(),
+                    mGetCvdCasesContinentsUseCase.execute(params = Unit),
                     mGetCvdCasesSummaryUseCase.execute(params = Unit)
                 ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
                     provideHomeBaseItem(summary = summary, continents = continents)

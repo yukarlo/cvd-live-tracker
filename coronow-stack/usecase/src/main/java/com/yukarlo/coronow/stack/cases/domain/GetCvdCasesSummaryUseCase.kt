@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-@OptIn(kotlin.time.ExperimentalTime::class)
 class GetCvdCasesSummaryUseCase @Inject constructor(
     private val mAppCoroutineDispatcher: AppCoroutineDispatchers,
     private val mCvdCasesRemoteRepository: ICvdCasesRemoteRepository,

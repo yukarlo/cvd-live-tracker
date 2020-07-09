@@ -37,10 +37,11 @@ internal class CountriesViewModel @ViewModelInject constructor(
 
         viewModelScope.launch(Dispatchers.IO) {
             sendAction(CountriesViewAction.CountriesLoading)
-            mGetAllCountriesCasesUseCase.execute().collect { countryList ->
-                completeCountryList = countryList
-                sendAction(CountriesLoadSuccess(countries = countryList))
-            }
+            mGetAllCountriesCasesUseCase.execute(params = Unit)
+                .collect { countryList ->
+                    completeCountryList = countryList
+                    sendAction(CountriesLoadSuccess(countries = countryList))
+                }
         }
     }
 
