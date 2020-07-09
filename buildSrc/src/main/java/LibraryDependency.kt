@@ -1,29 +1,26 @@
 internal object LibraryVersion {
     internal const val KOTLIN = "1.4-M1"
-    internal const val APP_COMPACT = "1.2.0-beta01"
-    internal const val CONSTRAINT_LAYOUT = "2.0.0-beta4"
-    internal const val CORE_KTX = "1.3.0-rc01"
+    internal const val APP_COMPACT = "1.3.0-alpha01"
+    internal const val CONSTRAINT_LAYOUT = "2.0.0-beta8"
+    internal const val CORE_KTX = "1.5.0-alpha01"
     internal const val ANDROID_NAVIGATION = "2.3.0"
-    internal const val GOOGLE_MATERIAL = "1.2.0-alpha06"
+    internal const val GOOGLE_MATERIAL = "1.3.0-alpha01"
     internal const val SWIPE_REFRESH_LAYOUT = "1.1.0"
-    internal const val DAGGER = "2.28"
     internal const val DAGGER_HILT_ANDROID = "2.28.1-alpha"
     internal const val DAGGER_HILT = "1.0.0-alpha01"
-    internal const val ANDROID_LIFECYCLE = "2.3.0-alpha01"
-    internal const val RECYCLERVIEW = "1.2.0-alpha02"
-    internal const val RETROFIT = "2.8.1"
+    internal const val ANDROID_LIFECYCLE = "2.3.0-alpha05"
+    internal const val RECYCLERVIEW = "1.2.0-alpha04"
+    internal const val RETROFIT = "2.9.0"
     internal const val GSON = "2.8.6"
-    internal const val COROUTINES = "1.3.4"
-    internal const val OKHTTP3 = "4.5.0"
-    internal const val MOSHI = "2.8.1"
-    internal const val PAGING = "2.1.2"
-    internal const val COIL = "0.9.5"
+    internal const val COROUTINES = "1.3.7"
+    internal const val OKHTTP3 = "4.7.2"
+    internal const val MOSHI = "2.9.0"
+    internal const val PAGING = "3.0.0-alpha02"
+    internal const val COIL = "0.11.0"
     internal const val ADAPTER_DELEGATE = "4.3.0"
-    internal const val WILLIAM_CHART = "3.3.0"
+    internal const val WILLIAM_CHART = "3.7.1"
     internal const val CIRCULAR_IMAGE_VIEW = "3.1.0"
-    internal const val SQL_DELIGHT = "1.3.0"
-    internal const val SQL_DELIGHT_COROUTINES = "1.2.1"
-    internal const val SQL_DELIGHT_DRIVER = "1.2.2"
+    internal const val SQL_DELIGHT = "1.4.0"
     internal const val APP_UPDATER = "2.7"
 }
 
@@ -44,8 +41,6 @@ object LibraryDependency {
     const val SWIPE_REFRESH_LAYOUT =
         "androidx.swiperefreshlayout:swiperefreshlayout:${LibraryVersion.SWIPE_REFRESH_LAYOUT}"
 
-    const val DAGGER = "com.google.dagger:dagger:${LibraryVersion.DAGGER}"
-    const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:${LibraryVersion.DAGGER}"
     const val DAGGER_HILT_ANDROID =
         "com.google.dagger:hilt-android:${LibraryVersion.DAGGER_HILT_ANDROID}"
     const val DAGGER_HILT_ANDROID_COMPILER =
@@ -80,9 +75,9 @@ object LibraryDependency {
         "de.hdodenhof:circleimageview:${LibraryVersion.CIRCULAR_IMAGE_VIEW}"
     const val SQL_DELIGHT = "com.squareup.sqldelight:gradle-plugin:${LibraryVersion.SQL_DELIGHT}"
     const val SQL_DELIGHT_DRIVER =
-        "com.squareup.sqldelight:android-driver:${LibraryVersion.SQL_DELIGHT_DRIVER}"
+        "com.squareup.sqldelight:android-driver:${LibraryVersion.SQL_DELIGHT}"
     const val SQL_DELIGHT_COROUTINES =
-        "com.squareup.sqldelight:coroutines-extensions:${LibraryVersion.SQL_DELIGHT_COROUTINES}"
+        "com.squareup.sqldelight:coroutines-extensions-jvm:${LibraryVersion.SQL_DELIGHT}"
     const val ADAPTER_DELEGATE =
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${LibraryVersion.ADAPTER_DELEGATE}"
     const val APP_UPDATER = "com.github.javiersantos:AppUpdater:${LibraryVersion.APP_UPDATER}"

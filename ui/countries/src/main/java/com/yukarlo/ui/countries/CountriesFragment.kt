@@ -9,9 +9,8 @@ import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -20,7 +19,6 @@ import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
 import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.WithFragmentBindings
 import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
 import javax.inject.Inject
 
@@ -56,11 +54,11 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
         casesCountriesAdapter = CasesCountriesAdapter(textProvider = mTextProvider)
         casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySearchInteraction = this)
 
-        val mergeAdapter = MergeAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
+        val concatAdapter = ConcatAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
 
         recyclerView = fragmentBinding.countriesRecyclerView.also {
             it.layoutManager = LinearLayoutManager(context)
-            it.adapter = mergeAdapter
+            it.adapter = concatAdapter
         }
     }
 

@@ -20,11 +20,9 @@ fun DependencyHandler.addPluginDependencies() {
 }
 
 fun DependencyHandler.addDaggerDependencies() {
-    implement(LibraryDependency.DAGGER)
     implement(LibraryDependency.DAGGER_HILT_ANDROID)
     implement(LibraryDependency.DAGGER_HILT)
     implement(LibraryDependency.DAGGER_HILT_LIFECYCLE_VIEWMODEL)
-    kapt(LibraryDependency.DAGGER_COMPILER)
     kapt(LibraryDependency.DAGGER_HILT_ANDROID_COMPILER)
     kapt(LibraryDependency.DAGGER_HILT_COMPILER)
 }
