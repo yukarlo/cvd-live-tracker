@@ -2,7 +2,6 @@ plugins {
     coroNowPlugin
     androidLibrary
     kotlinAndroid
-    kotlinAndroidExtensions
     kotlinKapt
     daggerHilt
 }
@@ -10,7 +9,6 @@ plugins {
 dependencies {
     implementation(coreModule("domain-model"))
     implementation(LibraryDependency.KOTLIN)
-    implementation(LibraryDependency.APP_COMPACT)
     implementation(LibraryDependency.CORE_KTX)
     implementation(LibraryDependency.KOTLIN_COROUTINES)
 

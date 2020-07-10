@@ -1,9 +1,6 @@
 plugins {
     coroNowPlugin
-    androidLibrary
-    kotlinAndroid
-    kotlinAndroidExtensions
-    kotlinKapt
+    kotlinJvm
 }
 
 dependencies {

@@ -30,7 +30,7 @@ fun DependencyHandler.addDaggerDependencies() {
 fun DependencyHandler.coreModule(moduleNotation: String) =
     project(":core:$moduleNotation")
 
-fun DependencyHandler.libModule(moduleNotation: String) =
+fun DependencyHandler.stackModule(moduleNotation: String) =
     project(":coronow-stack:$moduleNotation")
 
 fun DependencyHandler.featureModule(moduleNotation: String) =

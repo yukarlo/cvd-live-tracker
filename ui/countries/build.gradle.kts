@@ -11,8 +11,9 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(coreModule("base"))
     implementation(coreModule("domain-model"))
+    implementation(coreModule("usecase"))
     implementation(project(":common-android"))
-    implementation(libModule("usecase"))
+    implementation(stackModule("usecase"))
 
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.APP_COMPACT)

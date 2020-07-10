@@ -2,17 +2,16 @@ plugins {
     coroNowPlugin
     androidLibrary
     kotlinAndroid
-    kotlinAndroidExtensions
     kotlinKapt
 }
 
 dependencies {
     implementation(coreModule("domain-model"))
     implementation(coreModule("network"))
-    implementation(libModule("remote-repository"))
-    implementation(libModule("local-repository"))
-    api(coreModule("dispatchers"))
-    api(coreModule("usecase"))
+    implementation(coreModule("usecase"))
+    implementation(coreModule("dispatchers"))
+    implementation(stackModule("remote-repository"))
+    implementation(stackModule("local-repository"))
 
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.ANDROID_LIFECYCLE_LIVEDATA_KTX)

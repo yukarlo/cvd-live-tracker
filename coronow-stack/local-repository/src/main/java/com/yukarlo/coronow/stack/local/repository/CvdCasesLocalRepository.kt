@@ -1,5 +1,6 @@
 package com.yukarlo.coronow.stack.local.repository
 
+import com.squareup.sqldelight.db.SqlDriver
 import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
@@ -9,8 +10,10 @@ import kotlin.time.minutes
 
 @OptIn(kotlin.time.ExperimentalTime::class)
 class CvdCasesLocalRepository @Inject constructor(
-    private val database: Database
+    sqlDriver: SqlDriver
 ) : ICvdCasesLocalRepository {
+
+    private val database: Database = Database(driver = sqlDriver)
 
     override suspend fun addCountries(countries: List<CasesCountriesModel>) {
         val countriesQueries = database.cvdCountriesCasesQueries
@@ -109,7 +112,7 @@ class CvdCasesLocalRepository @Inject constructor(
                     totalRecoveredCount = total_recovered
                 )
             } else {
-              null
+                null
             }
         }
     }

@@ -56,11 +56,6 @@ class CoroNowPlugin : Plugin<Project> {
                 }
             }
 
-            packagingOptions {
-                pickFirst("META-INF/usecase_debug.kotlin_module")
-                pickFirst("META-INF/kotlinx-coroutines-core.kotlin_module")
-            }
-
             buildFeatures.viewBinding = true
 
             project.tasks.withType<KotlinCompile> {

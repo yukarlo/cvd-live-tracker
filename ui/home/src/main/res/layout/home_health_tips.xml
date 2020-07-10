@@ -17,7 +17,6 @@
         android:textColor="@color/gray300"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/homeHealthTipsSymptomsImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,10 +25,9 @@
         android:id="@+id/homeHealthTipsSymptomsImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="6dp"
         android:elevation="1dp"
         android:src="@drawable/person_with_a_cold"
-        app:layout_constraintBottom_toBottomOf="@+id/homeHealthTipsSymptomsCardView"
         app:layout_constraintStart_toStartOf="@+id/homeHealthTipsSymptomsCardView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,7 +78,7 @@
         android:id="@+id/homeHealthTipsPreventiveMeasureImageView"
         android:layout_width="165dp"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="1dp"
         android:elevation="1dp"
         android:src="@drawable/fighting_against_coronavirus"
         app:layout_constraintBottom_toBottomOf="@+id/homeHealthTipsPreventiveMeasureCardView"

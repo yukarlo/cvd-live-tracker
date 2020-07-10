@@ -12,8 +12,9 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(coreModule("base"))
     implementation(coreModule("domain-model"))
+    implementation(coreModule("usecase"))
     implementation(project(":common-android"))
-    implementation(libModule("usecase"))
+    implementation(stackModule("usecase"))
 
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.APP_COMPACT)
@@ -26,5 +27,6 @@ dependencies {
     implementation(LibraryDependency.GOOGLE_MATERIAL)
     implementation(LibraryDependency.ADAPTER_DELEGATE)
     implementation(LibraryDependency.SWIPE_REFRESH_LAYOUT)
+
     addDaggerDependencies()
 }

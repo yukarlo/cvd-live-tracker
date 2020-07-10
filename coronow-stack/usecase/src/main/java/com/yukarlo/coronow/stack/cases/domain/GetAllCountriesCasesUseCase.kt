@@ -5,7 +5,6 @@ import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.usecase.FlowUseCase
 import com.yukarlo.coronow.stack.remote.repository.ICvdCasesRemoteRepository
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -20,5 +19,5 @@ class GetAllCountriesCasesUseCase @Inject constructor(
     }
 
     override val dispatcher: CoroutineDispatcher
-        get() = Dispatchers.IO
+        get() = mAppCoroutineDispatcher.io
 }

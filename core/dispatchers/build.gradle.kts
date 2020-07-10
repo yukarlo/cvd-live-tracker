@@ -2,8 +2,8 @@ plugins {
     coroNowPlugin
     androidLibrary
     kotlinAndroid
-    kotlinAndroidExtensions
     kotlinKapt
+    daggerHilt
 }
 
 dependencies {
