@@ -8,6 +8,10 @@ plugins {
     daggerHilt
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.KOTLIN_COROUTINES)
