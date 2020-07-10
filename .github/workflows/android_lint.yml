@@ -36,5 +36,8 @@ jobs:
       - name: make gradle executable
         run: chmod +x ./gradlew
 
+      - name: clean build directory
+        run: ./gradlew clean
+
       - name: lintDebug
         run: ./gradlew lint
