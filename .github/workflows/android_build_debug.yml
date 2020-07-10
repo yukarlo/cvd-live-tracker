@@ -1,43 +1,23 @@
-name: build debug
+name: Android CI
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    types: [opened, synchronize]
+    branches:
+      - master
 
 jobs:
-  run:
-    continue-on-error: false
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     steps:
       - name: checkout
         uses: actions/checkout@v2
-
-      - name: Set up JDK 1.8
+      - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
-      - name: Generate Gradle checksums
-        run: |
-          find buildSrc -name "*.kt" -type f | sort | xargs shasum  > gradle-checksums.txt
-          cat gradle-checksums.txt
-
-      - uses: actions/cache@v2
-        with:
-          path: ~/.gradle
-          key: gradle-${{ hashFiles('gradle-checksums.txt') }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ hashFiles('gradle-checksums.txt') }}-
-
-      - name: make gradle executable
+      - name: Make Gradle executable
         run: chmod +x ./gradlew
-
-      - name: clean build directory
-        run: ./gradlew clean
-
-      - name: Build App
-        run: ./gradlew :app:assembleDebug
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
