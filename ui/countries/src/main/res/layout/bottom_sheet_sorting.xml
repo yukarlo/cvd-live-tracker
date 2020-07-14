@@ -22,36 +22,65 @@
 
     <RadioGroup
         android:id="@+id/sortGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/sortByCountry"
+        android:orientation="vertical">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/sortByCountry"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/countries" />
+            android:background="?android:selectableItemBackground"
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:text="@string/countries"
+            android:textAlignment="textStart" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/sortByConfirmed"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/confirmed" />
+            android:background="?android:selectableItemBackground"
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:text="@string/confirmed"
+            android:textAlignment="textStart" />
 
-        <RadioButton
+        <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/sortByRecovered"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/recovered" />
+            android:background="?android:selectableItemBackground"
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:text="@string/recovered"
+            android:textAlignment="textStart" />
 
-        <RadioButton
-            android:id="@+id/sortByDeceased"
-            android:layout_width="wrap_content"
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sortByActive"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/deceased" />
+            android:background="?android:selectableItemBackground"
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:text="@string/active"
+            android:textAlignment="textStart" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sortByDeceased"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="?android:selectableItemBackground"
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:text="@string/deceased"
+            android:textAlignment="textStart" />
     </RadioGroup>
 
 </LinearLayout>

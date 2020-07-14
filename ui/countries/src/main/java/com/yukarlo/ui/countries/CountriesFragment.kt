@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -12,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
@@ -34,7 +32,7 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
     private lateinit var fragmentBinding: CountriesFragmentBinding
     private lateinit var casesCountriesAdapter: CasesCountriesAdapter
     private lateinit var casesSearchCountryAdapter: CasesCountrySearchAdapter
-    private lateinit var sheetBehavior: BottomSheetBehavior<LinearLayout>
+    private lateinit var bottomSheetDialog: BottomSheetDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +58,32 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
             it.layoutManager = LinearLayoutManager(context)
             it.adapter = concatAdapter
         }
+
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_sorting, null)
+        bottomSheetDialog = BottomSheetDialog(requireContext()).apply {
+            setContentView(view)
+
+            sortGroup.setOnCheckedChangeListener { _: RadioGroup, checkedId: Int ->
+                when (checkedId) {
+                    R.id.sortByCountry -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Country)
+                    }
+                    R.id.sortByConfirmed -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Confirmed)
+                    }
+                    R.id.sortByDeceased -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Deceased)
+                    }
+                    R.id.sortByRecovered -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Recovered)
+                    }
+                    R.id.sortByActive -> {
+                        mViewModel.sortCountry(sortBy = SortBy.Active)
+                    }
+                }
+                dismiss()
+            }
+        }
     }
 
     private fun setupObservers() {
@@ -77,32 +101,6 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
     }
 
     override fun showSortCountryBottomSheet() {
-        val view = layoutInflater.inflate(R.layout.bottom_sheet_sorting, null)
-        BottomSheetDialog(requireContext()).run {
-            setContentView(view)
-
-            sortGroup.setOnCheckedChangeListener { _: RadioGroup, checkedId: Int ->
-                when (checkedId) {
-                    R.id.sortByCountry -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Country)
-                        dismissWithAnimation
-                    }
-                    R.id.sortByConfirmed -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Confirmed)
-                        dismissWithAnimation
-                    }
-                    R.id.sortByDeceased -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Deceased)
-                        dismissWithAnimation
-                    }
-                    R.id.sortByRecovered -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Recovered)
-                        dismissWithAnimation
-                    }
-                }
-            }
-
-            show()
-        }
+        bottomSheetDialog.show()
     }
 }

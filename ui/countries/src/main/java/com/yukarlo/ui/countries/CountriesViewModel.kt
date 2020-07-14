@@ -74,28 +74,23 @@ internal class CountriesViewModel @ViewModelInject constructor(
     }
 
     fun sortCountry(sortBy: SortBy) {
-        val sortedCountryList = when (sortBy) {
-            SortBy.Confirmed -> {
-                completeCountryList.sortedByDescending {
-                    it.totalCasesCount
+        val sortedCountryList =
+            when (sortBy) {
+                SortBy.Country -> {
+                    completeCountryList.sortedBy { it.countryName }
+                }
+                else -> {
+                    completeCountryList.sortedByDescending {
+                        when (sortBy) {
+                            SortBy.Confirmed -> it.totalCasesCount
+                            SortBy.Deceased -> it.totalDeceasedCount
+                            SortBy.Recovered -> it.totalRecoveredCount
+                            else -> it.totalActiveCount
+                        }
+                    }
                 }
             }
-            SortBy.Deceased -> {
-                completeCountryList.sortedByDescending {
-                    it.totalDeceasedCount
-                }
-            }
-            SortBy.Recovered -> {
-                completeCountryList.sortedByDescending {
-                    it.totalRecoveredCount
-                }
-            }
-            else -> {
-                completeCountryList.sortedBy {
-                    it.countryName
-                }
-            }
-        }
+
         sendAction(CountriesLoadSuccess(countries = filterContinent(countryList = sortedCountryList)))
     }
 

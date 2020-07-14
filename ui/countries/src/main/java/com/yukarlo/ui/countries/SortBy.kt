@@ -5,4 +5,5 @@ sealed class SortBy {
     object Confirmed : SortBy()
     object Recovered : SortBy()
     object Deceased : SortBy()
+    object Active : SortBy()
 }
