@@ -7,11 +7,14 @@ import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesContinentsUseCase
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesSummaryUseCase
-import com.yukarlo.ui.home.Action.*
+import com.yukarlo.ui.home.Action.HomeLoadFailure
+import com.yukarlo.ui.home.Action.HomeLoadSuccess
+import com.yukarlo.ui.home.Action.HomeLoading
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
@@ -41,15 +44,16 @@ internal class HomeViewModel @ViewModelInject constructor(
     fun refreshData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                sendAction(HomeLoading)
                 combine(
                     mGetCvdCasesContinentsUseCase.execute(params = Unit),
                     mGetCvdCasesSummaryUseCase.execute(params = Unit)
                 ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
                     provideHomeBaseItem(summary = summary, continents = continents)
-                }.collect {
-                    sendAction(HomeLoadSuccess(homeItems = it))
                 }
+                    .onStart { sendAction(HomeLoading) }
+                    .collect {
+                        sendAction(HomeLoadSuccess(homeItems = it))
+                    }
             } catch (e: Exception) {
                 sendAction(HomeLoadFailure)
             }
