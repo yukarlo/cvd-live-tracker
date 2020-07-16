@@ -2,9 +2,12 @@ package com.yukarlo.ui.countries
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -38,6 +41,7 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         fragmentBinding = CountriesFragmentBinding.inflate(inflater, container, false)
         return fragmentBinding.root
     }
@@ -46,6 +50,33 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
         super.onActivityCreated(savedInstanceState)
         setUpViews()
         setupObservers()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        with(menu) {
+            clear()
+            inflater.inflate(R.menu.menu_main, this)
+            findItem(R.id.action_information).isVisible = false
+
+            val searchView = menu.findItem(R.id.action_search).run {
+                isVisible = true
+                actionView as SearchView
+            }
+
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String): Boolean {
+                    mViewModel.filterCountry(filter = newText)
+                    return true
+                }
+
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    mViewModel.filterCountry(filter = query)
+                    return true
+                }
+            })
+
+            super.onCreateOptionsMenu(menu, inflater)
+        }
     }
 
     private fun setUpViews() {
