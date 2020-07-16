@@ -14,7 +14,7 @@ import com.github.javiersantos.appupdater.AppUpdater
 import com.github.javiersantos.appupdater.enums.UpdateFrom
 import com.yukarlo.coronow.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_fragment.*
 
 @AndroidEntryPoint
@@ -40,18 +40,6 @@ class MainActivity : AppCompatActivity() {
             .start()
 
         NavigationUI.setupActionBarWithNavController(this, navController)
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            val title = when (destination.id) {
-                R.id.HomeFragment -> R.string.app_name
-                R.id.CountriesFragment -> R.string.countries
-                R.id.PreventiveMeasuresFragment -> R.string.preventive_measures
-                R.id.SymptomsFragment -> R.string.symptoms
-                else -> R.string.app_name
-            }
-
-            activityBinding.toolbar.title = getString(title)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

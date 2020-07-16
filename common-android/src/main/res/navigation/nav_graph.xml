@@ -8,6 +8,7 @@
     <fragment
         android:id="@+id/HomeFragment"
         android:name="com.yukarlo.ui.home.HomeFragment"
+        android:label="@string/app_name"
         tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_Summary_to_CountriesFragment"
@@ -25,6 +26,7 @@
     <fragment
         android:id="@+id/CountriesFragment"
         android:name="com.yukarlo.ui.countries.CountriesFragment"
+        android:label="@string/countries"
         tools:layout="@layout/countries_fragment">
         <argument
             android:name="countriesInputModel"
@@ -34,11 +36,13 @@
     <fragment
         android:id="@+id/SymptomsFragment"
         android:name="com.yukarlo.ui.symptoms.SymptomsFragment"
+        android:label="@string/symptoms"
         tools:layout="@layout/symptoms_fragment" />
 
     <fragment
         android:id="@+id/PreventiveMeasuresFragment"
         android:name="com.yukarlo.ui.preventive.measures.PreventiveMeasuresFragment"
+        android:label="@string/preventive_measures"
         tools:layout="@layout/preventive_measures_fragment" />
 
 </navigation>
