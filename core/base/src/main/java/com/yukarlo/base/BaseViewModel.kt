@@ -5,15 +5,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlin.properties.Delegates
 
-abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseViewAction>(initialSate: ViewState) :
-    ViewModel() {
+abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseViewAction, ViewEvent : BaseViewEvent>(
+    initialSate: ViewState
+) : ViewModel() {
 
-    private val stateMutableLiveData: MutableLiveData<ViewState> = MutableLiveData<ViewState>()
-    val stateLiveData: LiveData<ViewState>
-        get() = stateMutableLiveData
+    private val updateUiState: MutableLiveData<ViewState> = MutableLiveData<ViewState>()
+    val onUiStateUpdated: LiveData<ViewState>
+        get() = updateUiState
+
+    private val updateUiEvent: MutableLiveData<ViewEvent> = MutableLiveData()
+    val onUiEventUpdated: LiveData<ViewEvent>
+        get() = updateUiEvent
 
     protected var state by Delegates.observable(initialSate) { _, _, new ->
-        stateMutableLiveData.postValue(new)
+        updateUiState.postValue(new)
+    }
+
+    fun sendEvent(event: ViewEvent) {
+        updateUiEvent.postValue(event)
     }
 
     fun sendAction(viewAction: ViewAction) {
