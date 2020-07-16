@@ -69,12 +69,12 @@ class HomeFragment : Fragment(), IHomeInteraction {
     }
 
     private fun setupObservers() {
-        mViewModel.stateLiveData.observe(viewLifecycleOwner, {
-            renderUi(it)
+        mViewModel.onUiStateUpdated.observe(viewLifecycleOwner, {
+            renderUiState(it)
         })
     }
 
-    private fun renderUi(it: ViewState) {
+    private fun renderUiState(it: HomeViewState) {
         fragmentBinding.swipeHomeLayout.isRefreshing = it.isLoading
         fragmentBinding.homeRecyclerView.isVisible = it.homeItems.isNotEmpty()
         fragmentBinding.homeError.isVisible = it.isError

@@ -7,9 +7,9 @@ import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesContinentsUseCase
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesSummaryUseCase
-import com.yukarlo.ui.home.Action.HomeLoadFailure
-import com.yukarlo.ui.home.Action.HomeLoadSuccess
-import com.yukarlo.ui.home.Action.HomeLoading
+import com.yukarlo.ui.home.HomeViewAction.HomeLoadFailure
+import com.yukarlo.ui.home.HomeViewAction.HomeLoadSuccess
+import com.yukarlo.ui.home.HomeViewAction.HomeLoading
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -21,13 +21,13 @@ import kotlinx.coroutines.launch
 internal class HomeViewModel @ViewModelInject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase,
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
-) : BaseViewModel<ViewState, Action>(ViewState()) {
+) : BaseViewModel<HomeViewState, HomeViewAction, HomeViewEvent>(HomeViewState()) {
 
     init {
         refreshData()
     }
 
-    override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
+    override fun onReduceState(viewAction: HomeViewAction): HomeViewState = when (viewAction) {
         is HomeLoading -> state.copy()
         is HomeLoadSuccess -> state.copy(
             isLoading = false,
