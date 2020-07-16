@@ -3,14 +3,16 @@ package com.yukarlo.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlin.properties.Delegates
 
 abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseViewAction, ViewEvent : BaseViewEvent>(
     initialSate: ViewState
 ) : ViewModel() {
 
-    private val updateUiState: MutableLiveData<ViewState> = MutableLiveData<ViewState>()
-    val onUiStateUpdated: LiveData<ViewState>
+    private val updateUiState: MutableStateFlow<ViewState> = MutableStateFlow<ViewState>(initialSate)
+    val onUiStateUpdated: StateFlow<ViewState>
         get() = updateUiState
 
     private val updateUiEvent: MutableLiveData<ViewEvent> = MutableLiveData()
@@ -18,7 +20,7 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseViewAct
         get() = updateUiEvent
 
     protected var state by Delegates.observable(initialSate) { _, _, new ->
-        updateUiState.postValue(new)
+        updateUiState.value = new
     }
 
     fun sendEvent(event: ViewEvent) {

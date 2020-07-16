@@ -11,6 +11,7 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,8 @@ import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -97,19 +100,19 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
             sortGroup.setOnCheckedChangeListener { _: RadioGroup, checkedId: Int ->
                 when (checkedId) {
                     R.id.sortByCountry -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Country)
+                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Country))
                     }
                     R.id.sortByConfirmed -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Confirmed)
+                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Confirmed))
                     }
                     R.id.sortByDeceased -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Deceased)
+                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Deceased))
                     }
                     R.id.sortByRecovered -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Recovered)
+                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Recovered))
                     }
                     R.id.sortByActive -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Active)
+                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Active))
                     }
                 }
                 dismiss()
@@ -118,9 +121,9 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
     }
 
     private fun setupObservers() {
-        mViewModel.onUiStateUpdated.observe(viewLifecycleOwner, {
-            renderUiState(countriesViewState = it)
-        })
+        mViewModel.onUiStateUpdated
+            .onEach { state ->  renderUiState(countriesViewState = state) }
+            .launchIn(lifecycleScope)
 
         mViewModel.onUiEventUpdated.observe(viewLifecycleOwner, {
             renderUiEvent(countriesViewEvent = it)

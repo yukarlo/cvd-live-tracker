@@ -12,6 +12,8 @@ import com.yukarlo.ui.home.HomeViewAction.HomeLoadSuccess
 import com.yukarlo.ui.home.HomeViewAction.HomeLoading
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
@@ -23,8 +25,26 @@ internal class HomeViewModel @ViewModelInject constructor(
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
 ) : BaseViewModel<HomeViewState, HomeViewAction, HomeViewEvent>(HomeViewState()) {
 
+    val intentChannel = ConflatedBroadcastChannel<HomeViewEvent>()
+
     init {
-        refreshData()
+        viewModelScope.launch {
+            intentChannel.send(HomeViewEvent.RefreshData)
+
+            handleIntents()
+        }
+    }
+
+    private suspend fun handleIntents() {
+        intentChannel
+            .asFlow()
+            .collect { intent ->
+                when (intent) {
+                    is HomeViewEvent.RefreshData -> {
+                        refreshData()
+                    }
+                }
+            }
     }
 
     override fun onReduceState(viewAction: HomeViewAction): HomeViewState = when (viewAction) {
@@ -41,7 +61,7 @@ internal class HomeViewModel @ViewModelInject constructor(
         )
     }
 
-    fun refreshData() {
+    private fun refreshData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 combine(

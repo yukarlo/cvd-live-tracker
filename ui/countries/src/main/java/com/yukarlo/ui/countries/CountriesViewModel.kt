@@ -9,15 +9,20 @@ import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.coronow.stack.cases.domain.GetAllCountriesCasesUseCase
 import com.yukarlo.ui.countries.CountriesViewAction.CountriesLoadSuccess
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import java.util.*
 
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 internal class CountriesViewModel @ViewModelInject constructor(
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<CountriesViewState, CountriesViewAction, CountriesViewEvent>(CountriesViewState()) {
+
+    val intentChannel = Channel<CountriesViewEvent>(Channel.UNLIMITED)
 
     private val continentNameArgs =
         savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
@@ -25,20 +30,38 @@ internal class CountriesViewModel @ViewModelInject constructor(
     private lateinit var completeCountryList: List<CasesCountriesModel>
 
     init {
-        if (continentNameArgs.isNotEmpty()) {
-            sendEvent(event = CountriesViewEvent.ContinentName(continentName = continentNameArgs))
-        }
+        viewModelScope.launch {
+            if (continentNameArgs.isNotEmpty()) {
+                intentChannel.send(CountriesViewEvent.ContinentName(continentName = continentNameArgs))
+            }
+            intentChannel.send(CountriesViewEvent.RefreshData)
 
-        viewModelScope.launch(Dispatchers.IO) {
-            sendAction(CountriesViewAction.CountriesLoading)
-            mGetAllCountriesCasesUseCase.execute(params = Unit)
-                .collect { countryList ->
-                    completeCountryList = countryList
-                    sortCountry(sortBy = SortBy.Country)
-                }
+            handleIntents()
         }
     }
 
+    private suspend fun handleIntents() {
+        intentChannel
+            .consumeAsFlow()
+            .collect { intent ->
+                when (intent) {
+                    is CountriesViewEvent.RefreshData -> {
+                        mGetAllCountriesCasesUseCase.execute(params = Unit)
+                            .onStart { sendAction(CountriesViewAction.CountriesLoading) }
+                            .collect { countryList ->
+                                completeCountryList = countryList
+                                sortCountry(sortBy = SortBy.Country)
+                            }
+                    }
+                    is CountriesViewEvent.SortedBy -> {
+                        sortCountry(sortBy = intent.sortBy)
+                    }
+                    is CountriesViewEvent.ContinentName -> {
+                        sendEvent(event = CountriesViewEvent.ContinentName(continentName = intent.continentName))
+                    }
+                }
+            }
+    }
 
     override fun onReduceState(viewAction: CountriesViewAction): CountriesViewState =
         when (viewAction) {
@@ -67,7 +90,7 @@ internal class CountriesViewModel @ViewModelInject constructor(
         sendAction(CountriesLoadSuccess(countries = filterContinent(countryList = filteredCountryList)))
     }
 
-    fun sortCountry(sortBy: SortBy) {
+    private fun sortCountry(sortBy: SortBy) {
         sendEvent(event = CountriesViewEvent.SortedBy(sortBy = sortBy))
 
         completeCountryList = when (sortBy) {
