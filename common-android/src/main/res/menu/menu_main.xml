@@ -5,9 +5,20 @@
     <item
         android:id="@+id/action_information"
         android:icon="@drawable/ic_information_transparent"
+        android:iconTint="@color/gray300"
         android:orderInCategory="100"
         android:title="@string/information"
+        app:iconTint="@color/gray300"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
         android:iconTint="@color/gray300"
+        android:orderInCategory="100"
+        android:title="@string/search"
+        app:actionViewClass="android.widget.SearchView"
+        android:visible="false"
         app:iconTint="@color/gray300"
         app:showAsAction="always" />
 </menu>
