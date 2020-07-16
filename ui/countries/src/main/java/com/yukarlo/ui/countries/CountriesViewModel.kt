@@ -2,8 +2,6 @@ package com.yukarlo.ui.countries
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.yukarlo.base.BaseViewModel
@@ -19,20 +17,16 @@ import java.util.*
 internal class CountriesViewModel @ViewModelInject constructor(
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : BaseViewModel<CountriesViewState, CountriesViewAction>(CountriesViewState()) {
+) : BaseViewModel<CountriesViewState, CountriesViewAction, CountriesViewEvent>(CountriesViewState()) {
 
     private val continentNameArgs =
         savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
 
     private var completeCountryList: List<CasesCountriesModel> = emptyList()
 
-    private val continentName: MutableLiveData<String> = MutableLiveData()
-    val onContinentNameUpdated: LiveData<String>
-        get() = continentName
-
     init {
         if (continentNameArgs.isNotEmpty()) {
-            continentName.postValue(continentNameArgs)
+            sendEvent(event = CountriesViewEvent.ContinentName(continentName = continentNameArgs))
         }
 
         viewModelScope.launch(Dispatchers.IO) {

@@ -118,13 +118,26 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
     }
 
     private fun setupObservers() {
-        mViewModel.stateLiveData.observe(viewLifecycleOwner, {
-            casesCountriesAdapter.updateData(items = it.countries)
+        mViewModel.onUiStateUpdated.observe(viewLifecycleOwner, {
+            renderUiState(countriesViewState = it)
         })
 
-        mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, { continentName ->
-            (activity as AppCompatActivity).supportActionBar?.title = continentName
+        mViewModel.onUiEventUpdated.observe(viewLifecycleOwner, {
+            renderUiEvent(countriesViewEvent = it)
         })
+    }
+
+    private fun renderUiState(countriesViewState: CountriesViewState) {
+        with(countriesViewState) {
+            casesCountriesAdapter.updateData(items = countriesViewState.countries)
+        }
+    }
+
+    private fun renderUiEvent(countriesViewEvent: CountriesViewEvent) {
+        when (countriesViewEvent) {
+            is CountriesViewEvent.ContinentName -> (activity as AppCompatActivity).supportActionBar?.title =
+                countriesViewEvent.continentName
+        }
     }
 
     override fun filterCountry(query: String) {
