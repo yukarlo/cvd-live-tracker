@@ -135,6 +135,9 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
     private fun renderUiEvent(countriesViewEvent: CountriesViewEvent) {
         when (countriesViewEvent) {
+            is CountriesViewEvent.SortedBy -> {
+                casesSearchCountryAdapter.updateSortTitle(sortBy = countriesViewEvent.sortBy)
+            }
             is CountriesViewEvent.ContinentName -> (activity as AppCompatActivity).supportActionBar?.title =
                 countriesViewEvent.continentName
         }

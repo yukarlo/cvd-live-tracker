@@ -22,7 +22,7 @@ internal class CountriesViewModel @ViewModelInject constructor(
     private val continentNameArgs =
         savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
 
-    private var completeCountryList: List<CasesCountriesModel> = emptyList()
+    private lateinit var completeCountryList: List<CasesCountriesModel>
 
     init {
         if (continentNameArgs.isNotEmpty()) {
@@ -34,7 +34,7 @@ internal class CountriesViewModel @ViewModelInject constructor(
             mGetAllCountriesCasesUseCase.execute(params = Unit)
                 .collect { countryList ->
                     completeCountryList = countryList
-                    sendAction(CountriesLoadSuccess(countries = countryList))
+                    sortCountry(sortBy = SortBy.Country)
                 }
         }
     }
@@ -68,24 +68,25 @@ internal class CountriesViewModel @ViewModelInject constructor(
     }
 
     fun sortCountry(sortBy: SortBy) {
-        val sortedCountryList =
-            when (sortBy) {
-                SortBy.Country -> {
-                    completeCountryList.sortedBy { it.countryName }
-                }
-                else -> {
-                    completeCountryList.sortedByDescending {
-                        when (sortBy) {
-                            SortBy.Confirmed -> it.totalCasesCount
-                            SortBy.Deceased -> it.totalDeceasedCount
-                            SortBy.Recovered -> it.totalRecoveredCount
-                            else -> it.totalActiveCount
-                        }
+        sendEvent(event = CountriesViewEvent.SortedBy(sortBy = sortBy))
+
+        completeCountryList = when (sortBy) {
+            SortBy.Country -> {
+                completeCountryList.sortedBy { it.countryName }
+            }
+            else -> {
+                completeCountryList.sortedByDescending {
+                    when (sortBy) {
+                        SortBy.Confirmed -> it.totalCasesCount
+                        SortBy.Deceased -> it.totalDeceasedCount
+                        SortBy.Recovered -> it.totalRecoveredCount
+                        else -> it.totalActiveCount
                     }
                 }
             }
+        }
 
-        sendAction(CountriesLoadSuccess(countries = filterContinent(countryList = sortedCountryList)))
+        sendAction(CountriesLoadSuccess(countries = filterContinent(countryList = completeCountryList)))
     }
 
     private fun filterContinent(countryList: List<CasesCountriesModel>): List<CasesCountriesModel> =
