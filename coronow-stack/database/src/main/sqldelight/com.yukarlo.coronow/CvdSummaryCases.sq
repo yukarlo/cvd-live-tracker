@@ -8,7 +8,7 @@ CREATE TABLE summaryCases(
 );
 
 selectAllSummary:
-SELECT * FROM summaryCases;
+SELECT * FROM summaryCases ORDER BY id DESC LIMIT 1;
 
 insertSummary:
 INSERT INTO summaryCases(
