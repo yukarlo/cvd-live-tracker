@@ -1,6 +1,8 @@
 package com.yukarlo.ui.countries
 
-internal sealed class CountriesViewAction {
+import com.yukarlo.base.BaseViewAction
+
+internal sealed class CountriesViewAction : BaseViewAction {
     object InitialLoad : CountriesViewAction()
     object RefreshData : CountriesViewAction()
     data class SortCountriesBy(val sortBy: SortBy) : CountriesViewAction()

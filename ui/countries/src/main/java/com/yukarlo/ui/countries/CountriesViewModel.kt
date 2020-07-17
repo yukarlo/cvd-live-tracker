@@ -16,6 +16,7 @@ import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoading
 import com.yukarlo.ui.countries.CountriesViewEvent.CountriesSortedBy
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.onStart
@@ -26,14 +27,12 @@ import java.util.*
 internal class CountriesViewModel @ViewModelInject constructor(
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : BaseViewModel<CountriesViewState, CountriesViewEvent>(CountriesViewState()) {
+) : BaseViewModel<CountriesViewState, CountriesViewEvent, CountriesViewAction>(CountriesViewState()) {
 
-    val intentChannel = Channel<CountriesViewAction>(Channel.UNLIMITED)
+    private lateinit var completeCountryList: List<CasesCountriesModel>
 
     private val continentNameArgs =
         savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
-
-    private lateinit var completeCountryList: List<CasesCountriesModel>
 
     private val continentName: MutableLiveData<String> = MutableLiveData()
     val onContinentNameUpdated: LiveData<String>
@@ -72,7 +71,7 @@ internal class CountriesViewModel @ViewModelInject constructor(
 
     private suspend fun handleIntents() {
         intentChannel
-            .consumeAsFlow()
+            .asFlow()
             .collect { action ->
                 when (action) {
                     is CountriesViewAction.InitialLoad,

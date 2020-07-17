@@ -67,11 +67,11 @@ class HomeFragment : Fragment(), IHomeInteraction {
         )
 
         fragmentBinding.swipeHomeLayout.setOnRefreshListener {
-            mViewModel.intentChannel.offer(HomeViewAction.Refresh)
+            mViewModel.sendAction(HomeViewAction.Refresh)
         }
 
         fragmentBinding.homeRetry.setOnClickListener {
-            mViewModel.intentChannel.offer(HomeViewAction.Retry)
+            mViewModel.sendAction(HomeViewAction.Retry)
         }
     }
 

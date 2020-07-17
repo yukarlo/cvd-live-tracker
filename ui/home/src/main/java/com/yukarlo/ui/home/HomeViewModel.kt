@@ -11,7 +11,6 @@ import com.yukarlo.ui.home.HomeViewEvent.HomeLoadSuccess
 import com.yukarlo.ui.home.HomeViewEvent.HomeLoading
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
@@ -22,9 +21,7 @@ import kotlinx.coroutines.launch
 internal class HomeViewModel @ViewModelInject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase,
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
-) : BaseViewModel<HomeViewState, HomeViewEvent>(HomeViewState()) {
-
-    val intentChannel = ConflatedBroadcastChannel<HomeViewAction>()
+) : BaseViewModel<HomeViewState, HomeViewEvent, HomeViewAction>(HomeViewState()) {
 
     init {
         viewModelScope.launch {
@@ -33,6 +30,8 @@ internal class HomeViewModel @ViewModelInject constructor(
             handleIntents()
         }
     }
+
+    // region Private Functions
 
     private suspend fun handleIntents() {
         intentChannel
@@ -98,4 +97,6 @@ internal class HomeViewModel @ViewModelInject constructor(
             add(HomeBaseItem.ContinentsItem(continents = it))
         }
     }
+
+    // endregion
 }
