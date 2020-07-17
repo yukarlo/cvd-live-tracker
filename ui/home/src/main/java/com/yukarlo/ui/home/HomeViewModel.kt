@@ -26,7 +26,6 @@ internal class HomeViewModel @ViewModelInject constructor(
     init {
         viewModelScope.launch {
             intentChannel.send(HomeViewAction.InitialLoad)
-
             handleIntents()
         }
     }
@@ -63,7 +62,6 @@ internal class HomeViewModel @ViewModelInject constructor(
         )
     }
 
-
     private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -73,9 +71,7 @@ internal class HomeViewModel @ViewModelInject constructor(
                 ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
                     provideHomeBaseItem(summary = summary, continents = continents)
                 }
-                    .onStart {
-                        sendEvent(viewEvent = HomeLoading)
-                    }
+                    .onStart { sendEvent(viewEvent = HomeLoading) }
                     .collect {
                         sendEvent(viewEvent = HomeLoadSuccess(homeItems = it))
                     }

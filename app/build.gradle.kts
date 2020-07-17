@@ -28,6 +28,7 @@ fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":common-android"))
+    implementation(coreModule("base"))
     implementation(coreModule("network"))
     implementation(coreModule("dispatchers"))
     implementation(coreModule("usecase"))

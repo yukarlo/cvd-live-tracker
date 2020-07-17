@@ -2,26 +2,17 @@ package com.yukarlo.ui.symptoms
 
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.yukarlo.base.viewBinding
 import com.yukarlo.ui.symptoms.databinding.SymptomsFragmentBinding
 
-class SymptomsFragment : Fragment() {
+class SymptomsFragment : Fragment(R.layout.symptoms_fragment) {
 
-    private lateinit var fragmentBinding: SymptomsFragmentBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        fragmentBinding = SymptomsFragmentBinding.inflate(inflater, container, false)
-        return fragmentBinding.root
-    }
+    private val fragmentBinding: SymptomsFragmentBinding by viewBinding(SymptomsFragmentBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
 
         fragmentBinding.symptomsMoreInformationTextView.movementMethod =
             LinkMovementMethod.getInstance()

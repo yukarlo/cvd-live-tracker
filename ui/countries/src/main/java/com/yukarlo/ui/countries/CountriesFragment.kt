@@ -1,21 +1,18 @@
 package com.yukarlo.ui.countries
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.yukarlo.base.BaseFragment
+import com.yukarlo.base.viewBinding
 import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
 import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
@@ -27,33 +24,20 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CountriesFragment : Fragment(), ICountrySortInteraction {
+internal class CountriesFragment
+    : BaseFragment<CountriesViewState>(contentLayoutId = R.layout.countries_fragment),
+    ICountrySortInteraction {
 
     @Inject
     lateinit var mTextProvider: TextProvider
 
     private val mViewModel: CountriesViewModel by viewModels()
+    private val fragmentBinding: CountriesFragmentBinding by viewBinding(CountriesFragmentBinding::bind)
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var fragmentBinding: CountriesFragmentBinding
     private lateinit var casesCountriesAdapter: CasesCountriesAdapter
     private lateinit var casesSearchCountryAdapter: CasesCountrySearchAdapter
     private lateinit var bottomSheetDialog: BottomSheetDialog
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        setHasOptionsMenu(true)
-        fragmentBinding = CountriesFragmentBinding.inflate(inflater, container, false)
-        return fragmentBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setUpViews()
-        setupObservers()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         with(menu) {
@@ -82,7 +66,7 @@ class CountriesFragment : Fragment(), ICountrySortInteraction {
         }
     }
 
-    private fun setUpViews() {
+    override fun setUpViews() {
         casesCountriesAdapter = CasesCountriesAdapter(textProvider = mTextProvider)
         casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySortInteraction = this)
 
@@ -110,9 +94,9 @@ class CountriesFragment : Fragment(), ICountrySortInteraction {
         }
     }
 
-    private fun setupObservers() {
+    override fun setUpObservers() {
         mViewModel.onUiStateUpdated
-            .onEach { state -> renderUiState(countriesViewState = state) }
+            .onEach { state -> render(state = state) }
             .launchIn(lifecycleScope)
 
         mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, {
@@ -120,10 +104,10 @@ class CountriesFragment : Fragment(), ICountrySortInteraction {
         })
     }
 
-    private fun renderUiState(countriesViewState: CountriesViewState) {
-        with(countriesViewState) {
-            casesCountriesAdapter.updateData(items = countriesViewState.countries)
-            casesSearchCountryAdapter.updateSortTitle(sortBy = countriesViewState.sortBy)
+    override fun render(state: CountriesViewState) {
+        with(state) {
+            casesCountriesAdapter.updateData(items = state.countries)
+            casesSearchCountryAdapter.updateSortTitle(sortBy = state.sortBy)
         }
     }
 
