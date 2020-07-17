@@ -128,11 +128,11 @@ class CountriesFragment : Fragment(), ICountrySortInteraction {
     }
 
     private fun filterCountry(query: String) {
-        mViewModel.intentChannel.offer(CountriesViewEvent.FilterCountries(query = query))
+        mViewModel.intentChannel.offer(CountriesViewAction.FilterCountries(query = query))
     }
 
     private fun sortCountriesBy(sortBy: SortBy) {
-        mViewModel.intentChannel.offer(CountriesViewEvent.SortCountriesBy(sortBy = sortBy))
+        mViewModel.intentChannel.offer(CountriesViewAction.SortCountriesBy(sortBy = sortBy))
     }
 
     override fun showSortCountryBottomSheet() {
