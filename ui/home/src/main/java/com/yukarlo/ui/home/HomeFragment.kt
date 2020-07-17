@@ -67,11 +67,11 @@ class HomeFragment : Fragment(), IHomeInteraction {
         )
 
         fragmentBinding.swipeHomeLayout.setOnRefreshListener {
-            refreshData()
+            mViewModel.intentChannel.offer(HomeViewEvent.Refresh)
         }
 
         fragmentBinding.homeRetry.setOnClickListener {
-            refreshData()
+            mViewModel.intentChannel.offer(HomeViewEvent.Retry)
         }
     }
 
@@ -89,10 +89,6 @@ class HomeFragment : Fragment(), IHomeInteraction {
 
         homeAdapter.items = state.homeItems
         recyclerView.adapter = homeAdapter
-    }
-
-    private fun refreshData() {
-        mViewModel.intentChannel.offer(HomeViewEvent.RefreshData)
     }
 
     override fun navigateToCountries(continentName: String) {

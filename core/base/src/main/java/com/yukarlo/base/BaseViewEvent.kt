@@ -1,3 +1,3 @@
 package com.yukarlo.base
 
-interface BaseViewAction
+interface BaseViewEvent

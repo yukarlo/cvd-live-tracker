@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.properties.Delegates
 
-abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseViewAction>(
+abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEvent>(
     initialSate: ViewState
 ) : ViewModel() {
 
@@ -17,9 +17,9 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseViewAct
         updateUiState.value = new
     }
 
-    fun sendAction(viewAction: ViewAction) {
-        state = onReduceState(viewAction)
+    fun sendEvent(viewEvent: ViewEvent) {
+        state = onReduceState(viewEvent)
     }
 
-    protected abstract fun onReduceState(viewAction: ViewAction): ViewState
+    protected abstract fun onReduceState(viewEvent: ViewEvent): ViewState
 }

@@ -10,10 +10,10 @@ import com.yukarlo.base.BaseViewModel
 import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.coronow.stack.cases.domain.GetAllCountriesCasesUseCase
-import com.yukarlo.ui.countries.CountriesViewAction.CountriesLoadFailure
-import com.yukarlo.ui.countries.CountriesViewAction.CountriesLoadSuccess
-import com.yukarlo.ui.countries.CountriesViewAction.CountriesLoading
-import com.yukarlo.ui.countries.CountriesViewAction.CountriesSortedBy
+import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoadFailure
+import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoadSuccess
+import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoading
+import com.yukarlo.ui.countries.CountriesViewEvent.CountriesSortedBy
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collect
@@ -26,9 +26,9 @@ import java.util.*
 internal class CountriesViewModel @ViewModelInject constructor(
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : BaseViewModel<CountriesViewState, CountriesViewAction>(CountriesViewState()) {
+) : BaseViewModel<CountriesViewState, CountriesViewEvent>(CountriesViewState()) {
 
-    val intentChannel = Channel<CountriesViewEvent>(Channel.UNLIMITED)
+    val intentChannel = Channel<CountriesViewAction>(Channel.UNLIMITED)
 
     private val continentNameArgs =
         savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
@@ -45,18 +45,18 @@ internal class CountriesViewModel @ViewModelInject constructor(
         }
 
         viewModelScope.launch {
-            intentChannel.send(CountriesViewEvent.RefreshData)
+            intentChannel.send(CountriesViewAction.InitialLoad)
             handleIntents()
         }
     }
 
-    override fun onReduceState(viewAction: CountriesViewAction): CountriesViewState =
-        when (viewAction) {
+    override fun onReduceState(viewEvent: CountriesViewEvent): CountriesViewState =
+        when (viewEvent) {
             is CountriesLoading -> state.copy()
             is CountriesLoadSuccess -> state.copy(
                 isLoading = false,
                 isError = false,
-                countries = viewAction.countries
+                countries = viewEvent.countries
             )
             is CountriesLoadFailure -> state.copy(
                 isLoading = false,
@@ -64,7 +64,7 @@ internal class CountriesViewModel @ViewModelInject constructor(
                 countries = listOf()
             )
             is CountriesSortedBy -> state.copy(
-                sortBy = viewAction.sortedBy
+                sortBy = viewEvent.sortedBy
             )
         }
 
@@ -73,11 +73,12 @@ internal class CountriesViewModel @ViewModelInject constructor(
     private suspend fun handleIntents() {
         intentChannel
             .consumeAsFlow()
-            .collect { intent ->
-                when (intent) {
-                    is CountriesViewEvent.RefreshData -> refreshData()
-                    is CountriesViewEvent.SortCountriesBy -> sortCountry(sortBy = intent.sortBy)
-                    is CountriesViewEvent.FilterCountries -> filterCountry(query = intent.query)
+            .collect { action ->
+                when (action) {
+                    is CountriesViewAction.InitialLoad,
+                    is CountriesViewAction.RefreshData -> loadData()
+                    is CountriesViewAction.SortCountriesBy -> sortCountry(sortBy = action.sortBy)
+                    is CountriesViewAction.FilterCountries -> filterCountry(query = action.query)
                 }
             }
     }
@@ -90,26 +91,26 @@ internal class CountriesViewModel @ViewModelInject constructor(
                 query.toLowerCase(Locale.getDefault())
             )
         }
-        sendAction(CountriesLoadSuccess(countries = filterContinent(countryList = filteredCountryList)))
+        sendEvent(CountriesLoadSuccess(countries = filterContinent(countryList = filteredCountryList)))
     }
 
-    private fun refreshData() {
+    private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 mGetAllCountriesCasesUseCase.execute(params = Unit)
-                    .onStart { sendAction(CountriesLoading) }
+                    .onStart { sendEvent(CountriesLoading) }
                     .collect { countryList ->
                         completeCountryList = countryList
                         sortCountry(sortBy = SortBy.Country)
                     }
             } catch (e: Exception) {
-                sendAction(CountriesLoadFailure)
+                sendEvent(CountriesLoadFailure)
             }
         }
     }
 
     private fun sortCountry(sortBy: SortBy) {
-        sendAction(CountriesSortedBy(sortedBy = sortBy))
+        sendEvent(CountriesSortedBy(sortedBy = sortBy))
 
         completeCountryList = when (sortBy) {
             SortBy.Country -> {
@@ -127,7 +128,7 @@ internal class CountriesViewModel @ViewModelInject constructor(
             }
         }
 
-        sendAction(CountriesLoadSuccess(countries = filterContinent(countryList = completeCountryList)))
+        sendEvent(CountriesLoadSuccess(countries = filterContinent(countryList = completeCountryList)))
     }
 
     private fun filterContinent(countryList: List<CasesCountriesModel>): List<CasesCountriesModel> =

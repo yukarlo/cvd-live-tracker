@@ -7,9 +7,8 @@ import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesContinentsUseCase
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesSummaryUseCase
-import com.yukarlo.ui.home.HomeViewAction.HomeLoadFailure
-import com.yukarlo.ui.home.HomeViewAction.HomeLoadSuccess
-import com.yukarlo.ui.home.HomeViewAction.HomeLoading
+import com.yukarlo.ui.home.HomeViewEvent.HomeLoadSuccess
+import com.yukarlo.ui.home.HomeViewEvent.HomeLoading
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
@@ -23,13 +22,13 @@ import kotlinx.coroutines.launch
 internal class HomeViewModel @ViewModelInject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase,
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
-) : BaseViewModel<HomeViewState, HomeViewAction>(HomeViewState()) {
+) : BaseViewModel<HomeViewState, HomeViewEvent>(HomeViewState()) {
 
-    val intentChannel = ConflatedBroadcastChannel<HomeViewEvent>()
+    val intentChannel = ConflatedBroadcastChannel<HomeViewAction>()
 
     init {
         viewModelScope.launch {
-            intentChannel.send(HomeViewEvent.RefreshData)
+            intentChannel.send(HomeViewAction.InitialLoad)
 
             handleIntents()
         }
@@ -38,16 +37,17 @@ internal class HomeViewModel @ViewModelInject constructor(
     private suspend fun handleIntents() {
         intentChannel
             .asFlow()
-            .collect { intent ->
-                when (intent) {
-                    is HomeViewEvent.RefreshData -> {
-                        refreshData()
-                    }
+            .collect { action ->
+                when (action) {
+                    is HomeViewAction.InitialLoad,
+                    is HomeViewAction.Refresh,
+                    is HomeViewAction.Retry -> loadData()
+
                 }
             }
     }
 
-    override fun onReduceState(viewAction: HomeViewAction): HomeViewState = when (viewAction) {
+    override fun onReduceState(viewEvent: HomeViewEvent): HomeViewState = when (viewEvent) {
         is HomeLoading -> state.copy(
             isLoading = true,
             isError = false
@@ -55,16 +55,17 @@ internal class HomeViewModel @ViewModelInject constructor(
         is HomeLoadSuccess -> state.copy(
             isLoading = false,
             isError = false,
-            homeItems = viewAction.homeItems
+            homeItems = viewEvent.homeItems
         )
-        is HomeLoadFailure -> state.copy(
+        is HomeViewEvent.HomeLoadFailure -> state.copy(
             isLoading = false,
             isError = true,
             homeItems = listOf()
         )
     }
 
-    private fun refreshData() {
+
+    private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 combine(
@@ -73,12 +74,14 @@ internal class HomeViewModel @ViewModelInject constructor(
                 ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
                     provideHomeBaseItem(summary = summary, continents = continents)
                 }
-                    .onStart { sendAction(HomeLoading) }
+                    .onStart {
+                        sendEvent(viewEvent = HomeLoading)
+                    }
                     .collect {
-                        sendAction(HomeLoadSuccess(homeItems = it))
+                        sendEvent(viewEvent = HomeLoadSuccess(homeItems = it))
                     }
             } catch (e: Exception) {
-                sendAction(HomeLoadFailure)
+                sendEvent(viewEvent = HomeViewEvent.HomeLoadFailure)
             }
         }
     }
