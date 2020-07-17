@@ -16,6 +16,7 @@ import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoading
 import com.yukarlo.ui.countries.CountriesViewEvent.CountriesSortedBy
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -93,16 +94,13 @@ internal class CountriesViewModel @ViewModelInject constructor(
 
     private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                mGetAllCountriesCasesUseCase.execute(params = Unit)
-                    .onStart { sendEvent(CountriesLoading) }
-                    .collect { countryList ->
-                        completeCountryList = countryList
-                        sortCountry(sortBy = SortBy.Country)
-                    }
-            } catch (e: Exception) {
-                sendEvent(CountriesLoadFailure)
-            }
+            mGetAllCountriesCasesUseCase.execute(params = Unit)
+                .onStart { sendEvent(CountriesLoading) }
+                .catch { sendEvent(CountriesLoadFailure) }
+                .collect { countryList ->
+                    completeCountryList = countryList
+                    sortCountry(sortBy = SortBy.Country)
+                }
         }
     }
 

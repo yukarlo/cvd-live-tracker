@@ -12,6 +12,7 @@ import com.yukarlo.ui.home.HomeViewEvent.HomeLoading
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
@@ -40,7 +41,6 @@ internal class HomeViewModel @ViewModelInject constructor(
                     is HomeViewAction.InitialLoad,
                     is HomeViewAction.Refresh,
                     is HomeViewAction.Retry -> loadData()
-
                 }
             }
     }
@@ -64,20 +64,17 @@ internal class HomeViewModel @ViewModelInject constructor(
 
     private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                combine(
-                    mGetCvdCasesContinentsUseCase.execute(params = Unit),
-                    mGetCvdCasesSummaryUseCase.execute(params = Unit)
-                ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
-                    provideHomeBaseItem(summary = summary, continents = continents)
-                }
-                    .onStart { sendEvent(viewEvent = HomeLoading) }
-                    .collect {
-                        sendEvent(viewEvent = HomeLoadSuccess(homeItems = it))
-                    }
-            } catch (e: Exception) {
-                sendEvent(viewEvent = HomeViewEvent.HomeLoadFailure)
+            combine(
+                mGetCvdCasesContinentsUseCase.execute(params = Unit),
+                mGetCvdCasesSummaryUseCase.execute(params = Unit)
+            ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
+                provideHomeBaseItem(summary = summary, continents = continents)
             }
+                .onStart { sendEvent(viewEvent = HomeLoading) }
+                .catch { sendEvent(viewEvent = HomeViewEvent.HomeLoadFailure) }
+                .collect {
+                    sendEvent(viewEvent = HomeLoadSuccess(homeItems = it))
+                }
         }
     }
 
