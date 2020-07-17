@@ -3,7 +3,7 @@ package com.yukarlo.coronow.di
 import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
-import com.yukarlo.coronow.stack.database.Database
+import com.yukarlo.coronow.cvdDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun provideSqlDriver(@ApplicationContext context: Context): SqlDriver = AndroidSqliteDriver(
-        schema = Database.Schema,
+        schema = cvdDatabase.Schema,
         context = context,
         name = "cvdDatabase.db"
     )

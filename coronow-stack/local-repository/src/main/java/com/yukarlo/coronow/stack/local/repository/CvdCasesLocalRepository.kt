@@ -4,34 +4,58 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
-import com.yukarlo.coronow.stack.database.Database
+import com.yukarlo.coronow.cvdDatabase
+import java.util.*
 import javax.inject.Inject
-import kotlin.time.minutes
+import kotlin.time.milliseconds
 
 @OptIn(kotlin.time.ExperimentalTime::class)
 class CvdCasesLocalRepository @Inject constructor(
     sqlDriver: SqlDriver
 ) : ICvdCasesLocalRepository {
+    private val database: cvdDatabase = cvdDatabase(driver = sqlDriver)
 
-    private val database: Database = Database(driver = sqlDriver)
-
-    override suspend fun addCountries(countries: List<CasesCountriesModel>) {
+    override suspend fun addOrUpdateCountries(countries: List<CasesCountriesModel>) {
         val countriesQueries = database.cvdCountriesCasesQueries
-        countriesQueries.deleteAllCountries()
-        countries.map {
-            countriesQueries.insertCountry(
-                country_name = it.countryName,
-                country_flag = it.countryFlag,
-                country_iso = it.countryIso,
-                continent_name = it.continent,
-                total_cases = it.totalCasesCount,
-                total_today_cases = it.totalTodayCases,
-                total_deaths = it.totalDeceasedCount,
-                total_today_deaths = it.totalTodayDeceased,
-                total_active = it.totalActiveCount,
-                total_recovered = it.totalRecoveredCount
-            )
+        if (countriesQueries.selectAllCountries().executeAsList().isEmpty()) {
+            countries.map {
+                countriesQueries.insertCountry(
+                    country_name = it.countryName,
+                    country_flag = it.countryFlag,
+                    country_iso = it.countryIso,
+                    continent_name = it.continent,
+                    total_cases = it.totalCasesCount,
+                    total_today_cases = it.totalTodayCases,
+                    total_deaths = it.totalDeceasedCount,
+                    total_today_deaths = it.totalTodayDeceased,
+                    total_active = it.totalActiveCount,
+                    total_recovered = it.totalRecoveredCount,
+                    is_favorite = false,
+                    time_added = System.currentTimeMillis()
+                )
+            }
+        } else {
+            countries.map {
+                countriesQueries.updateCountries(
+                    total_cases = it.totalCasesCount,
+                    total_today_cases = it.totalTodayCases,
+                    total_deaths = it.totalDeceasedCount,
+                    total_today_deaths = it.totalTodayDeceased,
+                    total_active = it.totalActiveCount,
+                    total_recovered = it.totalRecoveredCount,
+                    time_added = System.currentTimeMillis(),
+                    country_iso = it.countryIso,
+                )
+            }
         }
+    }
+
+    override suspend fun markCountryAsFavorite(countryIso: String) {
+        val countriesQueries = database.cvdCountriesCasesQueries
+        countriesQueries.markAsFavorite(
+            is_favorite = true,
+            country_iso = countryIso
+        )
     }
 
     override suspend fun addContinents(continents: List<CasesContinentsModel>) {
@@ -67,21 +91,28 @@ class CvdCasesLocalRepository @Inject constructor(
         val countriesQueries = database.cvdCountriesCasesQueries
         val countries = countriesQueries.selectAllCountries().executeAsList()
 
-        return countries.map {
-            CasesCountriesModel(
-                countryName = it.country_name,
-                countryIso = it.country_iso,
-                countryFlag = it.country_flag,
-                continent = it.continent_name,
-                totalCasesCount = it.total_cases,
-                totalTodayCases = it.total_today_cases,
-                totalDeceasedCount = it.total_deaths,
-                totalTodayDeceased = it.total_today_deaths,
-                totalRecoveredCount = it.total_recovered,
-                totalActiveCount = it.total_active
-            )
-        }
-
+        return countries
+            .takeIf {
+                it.isNotEmpty() &&
+                        it.first().time_added.getRelativeTimeInMinutes() < 10 &&
+                        it.first().time_added != 0L
+            }
+            ?.let {
+                countries.map {
+                    CasesCountriesModel(
+                        countryName = it.country_name,
+                        countryIso = it.country_iso,
+                        countryFlag = it.country_flag,
+                        continent = it.continent_name,
+                        totalCasesCount = it.total_cases,
+                        totalTodayCases = it.total_today_cases,
+                        totalDeceasedCount = it.total_deaths,
+                        totalTodayDeceased = it.total_today_deaths,
+                        totalRecoveredCount = it.total_recovered,
+                        totalActiveCount = it.total_active
+                    )
+                }
+            } ?: listOf()
     }
 
     override fun getContinents(): List<CasesContinentsModel> {
@@ -103,7 +134,7 @@ class CvdCasesLocalRepository @Inject constructor(
     override fun getSummary(): CasesSummaryModel? {
         val summaryQueries = database.cvdSummaryCasesQueries
         return summaryQueries.selectAllSummary().executeAsOneOrNull()?.run {
-            if (updated.minutes < 10.minutes) {
+            if (updated.getRelativeTimeInMinutes() < 10) {
                 CasesSummaryModel(
                     updatedSince = updated,
                     affectedCountries = affected_countries,
@@ -116,4 +147,9 @@ class CvdCasesLocalRepository @Inject constructor(
             }
         }
     }
+
+    private fun Long.getRelativeTimeInMinutes(): Int =
+        ((Date(System.currentTimeMillis()).time - Date(this).time)
+            .milliseconds.inMinutes / 1L).toInt()
+
 }

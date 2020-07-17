@@ -5,7 +5,8 @@ import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 
 interface ICvdCasesLocalRepository {
-    suspend fun addCountries(countries: List<CasesCountriesModel>)
+    suspend fun addOrUpdateCountries(countries: List<CasesCountriesModel>)
+    suspend fun markCountryAsFavorite(countryIso: String)
     suspend fun addContinents(continents: List<CasesContinentsModel>)
     suspend fun addSummary(casesSummary: CasesSummaryModel)
     fun getCountries(): List<CasesCountriesModel>
