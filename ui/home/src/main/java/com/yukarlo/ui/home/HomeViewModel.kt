@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 internal class HomeViewModel @ViewModelInject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase,
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
-) : BaseViewModel<HomeViewState, HomeViewAction, HomeViewEvent>(HomeViewState()) {
+) : BaseViewModel<HomeViewState, HomeViewAction>(HomeViewState()) {
 
     val intentChannel = ConflatedBroadcastChannel<HomeViewEvent>()
 
@@ -48,7 +48,10 @@ internal class HomeViewModel @ViewModelInject constructor(
     }
 
     override fun onReduceState(viewAction: HomeViewAction): HomeViewState = when (viewAction) {
-        is HomeLoading -> state.copy()
+        is HomeLoading -> state.copy(
+            isLoading = true,
+            isError = false
+        )
         is HomeLoadSuccess -> state.copy(
             isLoading = false,
             isError = false,

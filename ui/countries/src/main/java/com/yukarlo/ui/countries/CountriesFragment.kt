@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CountriesFragment : Fragment(), ICountrySearchInteraction {
+class CountriesFragment : Fragment(), ICountrySortInteraction {
 
     @Inject
     lateinit var mTextProvider: TextProvider
@@ -68,12 +68,12 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
-                    mViewModel.filterCountry(filter = newText)
+                    filterCountry(query = newText)
                     return true
                 }
 
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    mViewModel.filterCountry(filter = query)
+                    filterCountry(query = query)
                     return true
                 }
             })
@@ -84,7 +84,7 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
     private fun setUpViews() {
         casesCountriesAdapter = CasesCountriesAdapter(textProvider = mTextProvider)
-        casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySearchInteraction = this)
+        casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySortInteraction = this)
 
         val concatAdapter = ConcatAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
 
@@ -99,21 +99,11 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
             sortGroup.setOnCheckedChangeListener { _: RadioGroup, checkedId: Int ->
                 when (checkedId) {
-                    R.id.sortByCountry -> {
-                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Country))
-                    }
-                    R.id.sortByConfirmed -> {
-                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Confirmed))
-                    }
-                    R.id.sortByDeceased -> {
-                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Deceased))
-                    }
-                    R.id.sortByRecovered -> {
-                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Recovered))
-                    }
-                    R.id.sortByActive -> {
-                        mViewModel.intentChannel.offer(CountriesViewEvent.SortedBy(sortBy = SortBy.Active))
-                    }
+                    R.id.sortByCountry -> sortCountriesBy(sortBy = SortBy.Country)
+                    R.id.sortByConfirmed -> sortCountriesBy(sortBy = SortBy.Confirmed)
+                    R.id.sortByDeceased -> sortCountriesBy(sortBy = SortBy.Deceased)
+                    R.id.sortByRecovered -> sortCountriesBy(sortBy = SortBy.Recovered)
+                    R.id.sortByActive -> sortCountriesBy(sortBy = SortBy.Active)
                 }
                 dismiss()
             }
@@ -122,32 +112,27 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
     private fun setupObservers() {
         mViewModel.onUiStateUpdated
-            .onEach { state ->  renderUiState(countriesViewState = state) }
+            .onEach { state -> renderUiState(countriesViewState = state) }
             .launchIn(lifecycleScope)
 
-        mViewModel.onUiEventUpdated.observe(viewLifecycleOwner, {
-            renderUiEvent(countriesViewEvent = it)
+        mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, {
+            (activity as AppCompatActivity).supportActionBar?.title = it
         })
     }
 
     private fun renderUiState(countriesViewState: CountriesViewState) {
         with(countriesViewState) {
             casesCountriesAdapter.updateData(items = countriesViewState.countries)
+            casesSearchCountryAdapter.updateSortTitle(sortBy = countriesViewState.sortBy)
         }
     }
 
-    private fun renderUiEvent(countriesViewEvent: CountriesViewEvent) {
-        when (countriesViewEvent) {
-            is CountriesViewEvent.SortedBy -> {
-                casesSearchCountryAdapter.updateSortTitle(sortBy = countriesViewEvent.sortBy)
-            }
-            is CountriesViewEvent.ContinentName -> (activity as AppCompatActivity).supportActionBar?.title =
-                countriesViewEvent.continentName
-        }
+    private fun filterCountry(query: String) {
+        mViewModel.intentChannel.offer(CountriesViewEvent.FilterCountries(query = query))
     }
 
-    override fun filterCountry(query: String) {
-        mViewModel.filterCountry(filter = query)
+    private fun sortCountriesBy(sortBy: SortBy) {
+        mViewModel.intentChannel.offer(CountriesViewEvent.SortCountriesBy(sortBy = sortBy))
     }
 
     override fun showSortCountryBottomSheet() {
