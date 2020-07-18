@@ -1,5 +1,6 @@
 package com.yukarlo.coronow.stack.remote.repository.di
 
+import com.yukarlo.core.network.di.NetworkModule.Companion.BASE_URL_REST
 import com.yukarlo.coronow.stack.remote.repository.CvdCasesRemoteRepository
 import com.yukarlo.coronow.stack.remote.repository.ICvdCasesRemoteRepository
 import com.yukarlo.coronow.stack.remote.repository.api.CvdCasesApiService
@@ -11,6 +12,7 @@ import dagger.hilt.android.components.ActivityRetainedComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -25,7 +27,7 @@ abstract class RemoteRepositoryModule {
         @Provides
         fun provideCvdCasesApiService(
             okHttpClient: OkHttpClient,
-            baseUrl: String,
+            @Named(BASE_URL_REST) baseUrl: String,
             gsonConverterFactory: GsonConverterFactory
         ): CvdCasesApiService = Retrofit.Builder()
             .addConverterFactory(gsonConverterFactory)
