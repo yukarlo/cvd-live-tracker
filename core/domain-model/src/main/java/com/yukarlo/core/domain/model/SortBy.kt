@@ -1,4 +1,4 @@
-package com.yukarlo.ui.countries
+package com.yukarlo.core.domain.model
 
 sealed class SortBy {
     object Country : SortBy()

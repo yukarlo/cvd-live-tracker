@@ -34,8 +34,10 @@
             android:layout_marginBottom="10dp"
             android:background="?android:selectableItemBackground"
             android:button="@null"
+            android:drawableStart="@drawable/ic_arrow_up"
             android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
-            android:text="@string/countries"
+            android:drawablePadding="8dp"
+            android:text="@string/sort_default"
             android:textAlignment="textStart" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -45,7 +47,9 @@
             android:layout_marginBottom="10dp"
             android:background="?android:selectableItemBackground"
             android:button="@null"
+            android:drawableStart="@drawable/ic_arrow_down"
             android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:drawablePadding="8dp"
             android:text="@string/confirmed"
             android:textAlignment="textStart" />
 
@@ -56,7 +60,9 @@
             android:layout_marginBottom="10dp"
             android:background="?android:selectableItemBackground"
             android:button="@null"
+            android:drawableStart="@drawable/ic_arrow_down"
             android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:drawablePadding="8dp"
             android:text="@string/recovered"
             android:textAlignment="textStart" />
 
@@ -67,7 +73,9 @@
             android:layout_marginBottom="10dp"
             android:background="?android:selectableItemBackground"
             android:button="@null"
+            android:drawableStart="@drawable/ic_arrow_down"
             android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:drawablePadding="8dp"
             android:text="@string/active"
             android:textAlignment="textStart" />
 
@@ -78,7 +86,9 @@
             android:layout_marginBottom="10dp"
             android:background="?android:selectableItemBackground"
             android:button="@null"
+            android:drawableStart="@drawable/ic_arrow_down"
             android:drawableEnd="?android:attr/listChoiceIndicatorSingle"
+            android:drawablePadding="8dp"
             android:text="@string/deceased"
             android:textAlignment="textStart" />
     </RadioGroup>

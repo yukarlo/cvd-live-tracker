@@ -4,6 +4,8 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
+import com.yukarlo.core.domain.model.FavoriteCountry
+import com.yukarlo.core.domain.model.SortBy
 import com.yukarlo.coronow.cvdDatabase
 import java.util.*
 import javax.inject.Inject
@@ -17,7 +19,7 @@ class CvdCasesLocalRepository @Inject constructor(
 
     override suspend fun addOrUpdateCountries(countries: List<CasesCountriesModel>) {
         val countriesQueries = database.cvdCountriesCasesQueries
-        if (countriesQueries.selectAllCountries().executeAsList().isEmpty()) {
+        if (countriesQueries.selectAllCountriesSortedByCountryName().executeAsList().isEmpty()) {
             countries.map {
                 countriesQueries.insertCountry(
                     country_name = it.countryName,
@@ -50,11 +52,11 @@ class CvdCasesLocalRepository @Inject constructor(
         }
     }
 
-    override suspend fun markCountryAsFavorite(countryIso: String) {
+    override suspend fun markCountryAsFavorite(country: FavoriteCountry) {
         val countriesQueries = database.cvdCountriesCasesQueries
         countriesQueries.markAsFavorite(
-            is_favorite = true,
-            country_iso = countryIso
+            is_favorite = country.addToFavorite,
+            country_iso = country.countryIso
         )
     }
 
@@ -87,33 +89,40 @@ class CvdCasesLocalRepository @Inject constructor(
         }
     }
 
-    override fun getCountries(): List<CasesCountriesModel> {
-        val countriesQueries = database.cvdCountriesCasesQueries
-        val countries = countriesQueries.selectAllCountries().executeAsList()
-
-        return countries
-            .takeIf {
-                it.isNotEmpty() &&
-                        it.first().time_added.getRelativeTimeInMinutes() < 10 &&
-                        it.first().time_added != 0L
+    override fun getCountries(sortBy: SortBy): List<CasesCountriesModel> =
+        with(database.cvdCountriesCasesQueries) {
+            val countries = when (sortBy) {
+                SortBy.Confirmed -> selectAllCountriesSortedByCases().executeAsList()
+                SortBy.Deceased -> selectAllCountriesSortedByDeaths().executeAsList()
+                SortBy.Recovered -> selectAllCountriesSortedByRecovered().executeAsList()
+                SortBy.Active -> selectAllCountriesSortedByActive().executeAsList()
+                else -> selectAllCountriesSortedByCountryName().executeAsList()
             }
-            ?.let {
-                countries.map {
-                    CasesCountriesModel(
-                        countryName = it.country_name,
-                        countryIso = it.country_iso,
-                        countryFlag = it.country_flag,
-                        continent = it.continent_name,
-                        totalCasesCount = it.total_cases,
-                        totalTodayCases = it.total_today_cases,
-                        totalDeceasedCount = it.total_deaths,
-                        totalTodayDeceased = it.total_today_deaths,
-                        totalRecoveredCount = it.total_recovered,
-                        totalActiveCount = it.total_active
-                    )
+
+            countries
+                .takeIf { it.isNotEmpty() }
+                ?.takeIf {
+                    it.first().time_added.getRelativeTimeInMinutes() < 10 &&
+                            it.first().time_added != 0L
                 }
-            } ?: listOf()
-    }
+                ?.let {
+                    countries.map {
+                        CasesCountriesModel(
+                            countryName = it.country_name,
+                            countryIso = it.country_iso,
+                            countryFlag = it.country_flag,
+                            continent = it.continent_name,
+                            totalCasesCount = it.total_cases,
+                            totalTodayCases = it.total_today_cases,
+                            totalDeceasedCount = it.total_deaths,
+                            totalTodayDeceased = it.total_today_deaths,
+                            totalRecoveredCount = it.total_recovered,
+                            totalActiveCount = it.total_active,
+                            isFavorite = it.is_favorite
+                        )
+                    }
+                } ?: listOf()
+        }
 
     override fun getContinents(): List<CasesContinentsModel> {
         val continentsQueries = database.cvdContinentsCasesQueries

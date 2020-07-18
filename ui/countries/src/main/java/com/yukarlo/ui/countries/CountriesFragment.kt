@@ -14,9 +14,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.yukarlo.base.BaseFragment
 import com.yukarlo.base.viewBinding
 import com.yukarlo.common.android.text.TextProvider
+import com.yukarlo.core.domain.model.FavoriteCountry
+import com.yukarlo.core.domain.model.SortBy
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
 import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
+import com.yukarlo.ui.countries.model.CountriesUiModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
 import kotlinx.coroutines.flow.launchIn
@@ -26,7 +29,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 internal class CountriesFragment
     : BaseFragment<CountriesViewState>(contentLayoutId = R.layout.countries_fragment),
-    ICountrySortInteraction {
+    ICountrySortInteraction, ICountryFavoriteInteraction {
 
     @Inject
     lateinit var mTextProvider: TextProvider
@@ -67,7 +70,8 @@ internal class CountriesFragment
     }
 
     override fun setUpViews() {
-        casesCountriesAdapter = CasesCountriesAdapter(textProvider = mTextProvider)
+        casesCountriesAdapter =
+            CasesCountriesAdapter(textProvider = mTextProvider, countryFavoriteInteraction = this)
         casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySortInteraction = this)
 
         val concatAdapter = ConcatAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
@@ -121,5 +125,9 @@ internal class CountriesFragment
 
     override fun showSortCountryBottomSheet() {
         bottomSheetDialog.show()
+    }
+
+    override fun addToFavorites(country: FavoriteCountry) {
+        mViewModel.sendAction(CountriesViewAction.AddToFavorite(country = country))
     }
 }

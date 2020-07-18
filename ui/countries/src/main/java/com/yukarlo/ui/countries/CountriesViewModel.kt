@@ -9,11 +9,14 @@ import androidx.lifecycle.viewModelScope
 import com.yukarlo.base.BaseViewModel
 import com.yukarlo.common.android.CountriesInputModel
 import com.yukarlo.core.domain.model.CasesCountriesModel
+import com.yukarlo.core.domain.model.SortBy
+import com.yukarlo.coronow.stack.cases.domain.AddToFavoriteUseCase
 import com.yukarlo.coronow.stack.cases.domain.GetAllCountriesCasesUseCase
 import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoadFailure
 import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoadSuccess
 import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoading
 import com.yukarlo.ui.countries.CountriesViewEvent.CountriesSortedBy
+import com.yukarlo.ui.countries.model.CountriesUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
@@ -24,11 +27,13 @@ import java.util.*
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 internal class CountriesViewModel @ViewModelInject constructor(
+    private val mAddToFavoriteUseCase: AddToFavoriteUseCase,
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<CountriesViewState, CountriesViewEvent, CountriesViewAction>(CountriesViewState()) {
 
     private lateinit var completeCountryList: List<CasesCountriesModel>
+    private val uiModel: CountriesUiModel = CountriesUiModel()
 
     private val continentNameArgs =
         savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
@@ -74,9 +79,13 @@ internal class CountriesViewModel @ViewModelInject constructor(
             .collect { action ->
                 when (action) {
                     is CountriesViewAction.InitialLoad,
-                    is CountriesViewAction.RefreshData -> loadData()
+                    is CountriesViewAction.RefreshData -> loadCountries()
                     is CountriesViewAction.SortCountriesBy -> sortCountry(sortBy = action.sortBy)
                     is CountriesViewAction.FilterCountries -> filterCountry(query = action.query)
+                    is CountriesViewAction.AddToFavorite -> {
+                        mAddToFavoriteUseCase.run(params = action.country)
+                        loadCountries()
+                    }
                 }
             }
     }
@@ -92,38 +101,22 @@ internal class CountriesViewModel @ViewModelInject constructor(
         sendEvent(CountriesLoadSuccess(countries = filterContinent(countryList = filteredCountryList)))
     }
 
-    private fun loadData() {
+    private fun loadCountries(sortBy: SortBy? = null) {
         viewModelScope.launch(Dispatchers.IO) {
-            mGetAllCountriesCasesUseCase.execute(params = Unit)
+            mGetAllCountriesCasesUseCase.execute(params = sortBy ?: uiModel.sortBy)
                 .onStart { sendEvent(CountriesLoading) }
                 .catch { sendEvent(CountriesLoadFailure) }
                 .collect { countryList ->
                     completeCountryList = countryList
-                    sortCountry(sortBy = SortBy.Country)
+                    sendEvent(CountriesLoadSuccess(countries = filterContinent(countryList = countryList)))
                 }
         }
     }
 
     private fun sortCountry(sortBy: SortBy) {
+        uiModel.sortBy = sortBy
         sendEvent(CountriesSortedBy(sortedBy = sortBy))
-
-        completeCountryList = when (sortBy) {
-            SortBy.Country -> {
-                completeCountryList.sortedBy { it.countryName }
-            }
-            else -> {
-                completeCountryList.sortedByDescending {
-                    when (sortBy) {
-                        SortBy.Confirmed -> it.totalCasesCount
-                        SortBy.Deceased -> it.totalDeceasedCount
-                        SortBy.Recovered -> it.totalRecoveredCount
-                        else -> it.totalActiveCount
-                    }
-                }
-            }
-        }
-
-        sendEvent(CountriesLoadSuccess(countries = filterContinent(countryList = completeCountryList)))
+        loadCountries(sortBy = sortBy)
     }
 
     private fun filterContinent(countryList: List<CasesCountriesModel>): List<CasesCountriesModel> =

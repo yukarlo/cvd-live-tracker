@@ -25,5 +25,5 @@ class DatabaseModule {
 
 //    @Provides
 //    @Singleton
-//    fun provideDatabase(sqlDriver: SqlDriver): Database = Database(sqlDriver)
+//    fun provideDatabase(sqlDriver: SqlDriver): cvdDatabase = cvdDatabase(driver = sqlDriver)
 }

@@ -31,17 +31,17 @@
         android:textColor="@color/white800"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/affectedRegionFlag"
-        app:layout_constraintEnd_toStartOf="@+id/affectedChevron"
+        app:layout_constraintEnd_toStartOf="@+id/affectedFavorite"
         app:layout_constraintStart_toEndOf="@+id/affectedRegionFlag"
         app:layout_constraintTop_toTopOf="@+id/affectedRegionFlag"
         app:layout_goneMarginStart="0dp"
         tool:text="Central African Republic" />
 
     <ImageView
-        android:id="@+id/affectedChevron"
+        android:id="@+id/affectedFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_chevron"
+        android:src="@drawable/ic_star_unfilled"
         app:layout_constraintBottom_toBottomOf="@+id/affectedRegionName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/affectedRegionName"

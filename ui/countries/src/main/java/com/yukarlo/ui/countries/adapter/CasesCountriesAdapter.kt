@@ -1,23 +1,24 @@
 package com.yukarlo.ui.countries.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.doOnLayout
-import androidx.core.view.doOnPreDraw
-import androidx.core.view.isVisible
+import androidx.annotation.DrawableRes
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
 import com.yukarlo.common.android.text.TextProvider
-import com.yukarlo.common.android.view.collapse
-import com.yukarlo.common.android.view.expand
-import com.yukarlo.common.android.view.rotate
 import com.yukarlo.core.domain.model.CasesCountriesModel
+import com.yukarlo.core.domain.model.FavoriteCountry
+import com.yukarlo.ui.countries.ICountryFavoriteInteraction
+import com.yukarlo.ui.countries.R
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter.CasesCountriesViewHolder
 import javax.inject.Inject
 
 class CasesCountriesAdapter @Inject constructor(
+    val countryFavoriteInteraction: ICountryFavoriteInteraction,
     val textProvider: TextProvider
 ) : RecyclerView.Adapter<CasesCountriesViewHolder>() {
 
@@ -68,43 +69,36 @@ class CasesCountriesAdapter @Inject constructor(
                 load(data.countryFlag)
                 visibility = View.VISIBLE
             }
-
-            getHiddenViewHeight()
-
-            val isExpanded = layoutPosition == mExpandedPosition
-
-            if (isExpanded) {
-                itemBinding.affectedExpand.expand(expandedHeight = expandedHeight)
-            } else {
-                itemBinding.affectedExpand.collapse(expandedHeight = expandedHeight)
-            }
-
-            itemBinding.affectedConstraintLayout.setOnClickListener {
-                mExpandedPosition = if (isExpanded) {
-                    itemBinding.affectedChevron.rotate(from = 180f, to = 0f)
-                    -1
+            itemBinding.affectedFavorite.setImageDrawable(
+                if (data.isFavorite) {
+                    getDrawable(R.drawable.ic_star_filled)
                 } else {
-                    itemBinding.affectedChevron.rotate(from = 0f, to = 180f)
-                    layoutPosition
+                    getDrawable(R.drawable.ic_star_unfilled)
                 }
-                notifyDataSetChanged()
-            }
-        }
+            )
 
-        private fun getHiddenViewHeight() {
-            if (expandedHeight < 0) {
-                expandedHeight = 0
-
-                itemBinding.affectedConstraintLayout.doOnLayout { view ->
-
-                    val expandedView = itemBinding.affectedExpand
-                    expandedView.isVisible = true
-                    view.doOnPreDraw {
-                        expandedHeight = expandedView.height
-                        expandedView.isVisible = false
+            itemBinding.affectedFavorite.setOnClickListener {
+                countryFavoriteInteraction.addToFavorites(
+                    country = FavoriteCountry(
+                        countryIso = data.countryIso,
+                        addToFavorite = !data.isFavorite
+                    )
+                )
+                itemBinding.affectedFavorite.setImageDrawable(
+                    if (!data.isFavorite) {
+                        getDrawable(R.drawable.ic_star_filled)
+                    } else {
+                        getDrawable(R.drawable.ic_star_unfilled)
                     }
-                }
+                )
             }
         }
+
+        private fun getDrawable(@DrawableRes id: Int): Drawable? =
+            ResourcesCompat.getDrawable(
+                itemBinding.root.resources,
+                id,
+                null
+            )
     }
 }

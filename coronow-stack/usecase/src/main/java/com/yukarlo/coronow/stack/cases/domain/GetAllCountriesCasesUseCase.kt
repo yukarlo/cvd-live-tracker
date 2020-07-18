@@ -2,6 +2,7 @@ package com.yukarlo.coronow.stack.cases.domain
 
 import com.yukarlo.core.dispatchers.AppCoroutineDispatchers
 import com.yukarlo.core.domain.model.CasesCountriesModel
+import com.yukarlo.core.domain.model.SortBy
 import com.yukarlo.core.usecase.FlowUseCase
 import com.yukarlo.coronow.stack.local.repository.ICvdCasesLocalRepository
 import com.yukarlo.coronow.stack.remote.repository.ICvdCasesRemoteRepository
@@ -14,17 +15,18 @@ class GetAllCountriesCasesUseCase @Inject constructor(
     private val mAppCoroutineDispatcher: AppCoroutineDispatchers,
     private val mCvdCasesRemoteRepository: ICvdCasesRemoteRepository,
     private val mCvdCasesLocalRepository: ICvdCasesLocalRepository
-) : FlowUseCase<List<CasesCountriesModel>, Unit>() {
+) : FlowUseCase<List<CasesCountriesModel>, SortBy>() {
 
-    override fun doWork(params: Unit): Flow<List<CasesCountriesModel>> = flow {
-        mCvdCasesLocalRepository.getCountries()
+    override fun doWork(params: SortBy): Flow<List<CasesCountriesModel>> = flow {
+        mCvdCasesLocalRepository.getCountries(sortBy = params)
             .takeIf { it.isNotEmpty() }
             ?.let {
                 emit(it)
             } ?: kotlin.run {
-            val countries = mCvdCasesRemoteRepository.getAllCountries()
-            mCvdCasesLocalRepository.addOrUpdateCountries(countries = countries)
-            emit(countries)
+            mCvdCasesLocalRepository.addOrUpdateCountries(
+                countries = mCvdCasesRemoteRepository.getAllCountries()
+            )
+            emit(mCvdCasesLocalRepository.getCountries(sortBy = params))
         }
     }
 

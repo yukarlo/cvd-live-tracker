@@ -27,19 +27,28 @@ fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    
+    // Project
     implementation(project(":common-android"))
+
+    // Core
     implementation(coreModule("base"))
-    implementation(coreModule("network"))
     implementation(coreModule("dispatchers"))
+    implementation(coreModule("domain-model"))
+    implementation(coreModule("network"))
     implementation(coreModule("usecase"))
-    implementation(stackModule("usecase"))
+
+    // Stack
     implementation(stackModule("database"))
-    implementation(stackModule("remote-repository"))
     implementation(stackModule("local-repository"))
-    implementation(featureModule("home"))
+    implementation(stackModule("remote-repository"))
+    implementation(stackModule("usecase"))
+
+    // UI or Feature
     implementation(featureModule("countries"))
-    implementation(featureModule("symptoms"))
+    implementation(featureModule("home"))
     implementation(featureModule("preventive-measures"))
+    implementation(featureModule("symptoms"))
 
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.APP_COMPACT)

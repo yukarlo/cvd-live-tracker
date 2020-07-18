@@ -131,6 +131,6 @@ internal fun homeContinentsDelegate(homeInteraction: IHomeInteraction, textProvi
             binding.affectedTotalActiveCount.text =
                 textProvider.formatNumber(item.continents.totalActiveCount)
             binding.affectedRegionName.text = item.continents.continentName
-            binding.affectedChevron.isVisible = false
+            binding.affectedFavorite.isVisible = false
         }
     }

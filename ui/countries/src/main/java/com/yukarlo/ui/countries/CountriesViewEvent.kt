@@ -1,6 +1,7 @@
 package com.yukarlo.ui.countries
 
 import com.yukarlo.base.BaseViewEvent
+import com.yukarlo.core.domain.model.SortBy
 import com.yukarlo.core.domain.model.CasesCountriesModel
 
 sealed class CountriesViewEvent : BaseViewEvent {

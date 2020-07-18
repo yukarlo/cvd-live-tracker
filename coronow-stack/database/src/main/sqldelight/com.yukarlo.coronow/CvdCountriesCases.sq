@@ -14,8 +14,20 @@ CREATE TABLE countries(
     time_added INTEGER NOT NULL DEFAULT 0
 );
 
-selectAllCountries:
-SELECT * FROM countries;
+selectAllCountriesSortedByCountryName:
+SELECT * FROM countries ORDER BY is_favorite DESC, country_name ASC;
+
+selectAllCountriesSortedByCases:
+SELECT * FROM countries ORDER BY is_favorite DESC, total_cases DESC;
+
+selectAllCountriesSortedByDeaths:
+SELECT * FROM countries ORDER BY is_favorite DESC, total_deaths DESC;
+
+selectAllCountriesSortedByRecovered:
+SELECT * FROM countries ORDER BY is_favorite DESC, total_recovered DESC;
+
+selectAllCountriesSortedByActive:
+SELECT * FROM countries ORDER BY is_favorite DESC, total_active DESC;
 
 insertCountry:
 INSERT INTO countries(
