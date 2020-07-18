@@ -7,11 +7,12 @@ import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesContinentsUseCase
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesSummaryUseCase
-import com.yukarlo.ui.home.HomeViewAction.HomeLoadFailure
-import com.yukarlo.ui.home.HomeViewAction.HomeLoadSuccess
-import com.yukarlo.ui.home.HomeViewAction.HomeLoading
+import com.yukarlo.ui.home.HomeViewEvent.HomeLoadSuccess
+import com.yukarlo.ui.home.HomeViewEvent.HomeLoading
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
@@ -21,42 +22,59 @@ import kotlinx.coroutines.launch
 internal class HomeViewModel @ViewModelInject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase,
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
-) : BaseViewModel<HomeViewState, HomeViewAction, HomeViewEvent>(HomeViewState()) {
+) : BaseViewModel<HomeViewState, HomeViewEvent, HomeViewAction>(HomeViewState()) {
 
     init {
-        refreshData()
+        viewModelScope.launch {
+            intentChannel.send(HomeViewAction.InitialLoad)
+            handleIntents()
+        }
     }
 
-    override fun onReduceState(viewAction: HomeViewAction): HomeViewState = when (viewAction) {
-        is HomeLoading -> state.copy()
+    // region Private Functions
+
+    private suspend fun handleIntents() {
+        intentChannel
+            .asFlow()
+            .collect { action ->
+                when (action) {
+                    is HomeViewAction.InitialLoad,
+                    is HomeViewAction.Refresh,
+                    is HomeViewAction.Retry -> loadData()
+                }
+            }
+    }
+
+    override fun onReduceState(viewEvent: HomeViewEvent): HomeViewState = when (viewEvent) {
+        is HomeLoading -> state.copy(
+            isLoading = true,
+            isError = false
+        )
         is HomeLoadSuccess -> state.copy(
             isLoading = false,
             isError = false,
-            homeItems = viewAction.homeItems
+            homeItems = viewEvent.homeItems
         )
-        is HomeLoadFailure -> state.copy(
+        is HomeViewEvent.HomeLoadFailure -> state.copy(
             isLoading = false,
             isError = true,
             homeItems = listOf()
         )
     }
 
-    fun refreshData() {
+    private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                combine(
-                    mGetCvdCasesContinentsUseCase.execute(params = Unit),
-                    mGetCvdCasesSummaryUseCase.execute(params = Unit)
-                ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
-                    provideHomeBaseItem(summary = summary, continents = continents)
-                }
-                    .onStart { sendAction(HomeLoading) }
-                    .collect {
-                        sendAction(HomeLoadSuccess(homeItems = it))
-                    }
-            } catch (e: Exception) {
-                sendAction(HomeLoadFailure)
+            combine(
+                mGetCvdCasesContinentsUseCase.execute(params = Unit),
+                mGetCvdCasesSummaryUseCase.execute(params = Unit)
+            ) { continents: List<CasesContinentsModel>, summary: CasesSummaryModel ->
+                provideHomeBaseItem(summary = summary, continents = continents)
             }
+                .onStart { sendEvent(viewEvent = HomeLoading) }
+                .catch { sendEvent(viewEvent = HomeViewEvent.HomeLoadFailure) }
+                .collect {
+                    sendEvent(viewEvent = HomeLoadSuccess(homeItems = it))
+                }
         }
     }
 
@@ -72,4 +90,6 @@ internal class HomeViewModel @ViewModelInject constructor(
             add(HomeBaseItem.ContinentsItem(continents = it))
         }
     }
+
+    // endregion
 }

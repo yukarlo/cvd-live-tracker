@@ -12,5 +12,6 @@ data class CasesCountriesModel(
     val totalTodayDeceased: Long,
     val totalRecoveredCount: Long,
     val totalActiveCount: Long,
-    val countryFlag: String
+    val countryFlag: String,
+    val isFavorite: Boolean = false,
 ) : DomainModel

@@ -25,21 +25,25 @@ internal object LibraryVersion {
 }
 
 object LibraryDependency {
+    // region Kotlin
+
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibraryVersion.KOTLIN}"
-    const val CONSTRAINT_LAYOUT =
-        "androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
-    const val APP_COMPACT = "androidx.appcompat:appcompat:${LibraryVersion.APP_COMPACT}"
-    const val CORE_KTX = "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
+    const val KOTLIN_COROUTINES =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${LibraryVersion.COROUTINES}"
+
+    // endregion
+
+    // region Navigation
+
     const val NAVIGATION_SAFE_ARGS =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${LibraryVersion.ANDROID_NAVIGATION}"
     const val NAVIGATION_FRAGMENT_KTX =
         "androidx.navigation:navigation-fragment-ktx:${LibraryVersion.ANDROID_NAVIGATION}"
     const val NAVIGATION_UI_KTX =
         "androidx.navigation:navigation-ui-ktx:${LibraryVersion.ANDROID_NAVIGATION}"
-    const val GOOGLE_MATERIAL =
-        "com.google.android.material:material:${LibraryVersion.GOOGLE_MATERIAL}"
-    const val SWIPE_REFRESH_LAYOUT =
-        "androidx.swiperefreshlayout:swiperefreshlayout:${LibraryVersion.SWIPE_REFRESH_LAYOUT}"
+    // endregion
+
+    // region Dagger Hilt
 
     const val DAGGER_HILT_ANDROID =
         "com.google.dagger:hilt-android:${LibraryVersion.DAGGER_HILT_ANDROID}"
@@ -50,35 +54,75 @@ object LibraryDependency {
         "androidx.hilt:hilt-lifecycle-viewmodel:${LibraryVersion.DAGGER_HILT}"
     const val DAGGER_HILT_COMPILER = "androidx.hilt:hilt-compiler:${LibraryVersion.DAGGER_HILT}"
 
-    // alternatively - just ViewModel
+    // endregion
+
+    // region Lifecycle
+
     const val ANDROID_LIFECYCLE_VIEWMODEL_KTX =
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibraryVersion.ANDROID_LIFECYCLE}"
     const val ANDROID_LIFECYCLE_LIVEDATA_KTX =
         "androidx.lifecycle:lifecycle-livedata-ktx:${LibraryVersion.ANDROID_LIFECYCLE}"
-    const val ANDROID_RECYCLERVIEW =
-        "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLERVIEW}"
+    const val ANDROID_LIFECYCLE_COMMON_JAVA8 =
+        "androidx.lifecycle:lifecycle-common-java8:${LibraryVersion.ANDROID_LIFECYCLE}"
+
+    // endregion
+
+    // region Retrofit
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
     const val RETROFIT_ADAPTER_RXJAVA2 =
         "com.squareup.retrofit2:adapter-rxjava2:${LibraryVersion.RETROFIT}"
     const val RETROFIT_CONVERTER_GSON =
         "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"
-    const val GOOGLE_GSON = "com.google.code.gson:gson:${LibraryVersion.GSON}"
-    const val KOTLIN_COROUTINES =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${LibraryVersion.COROUTINES}"
-    const val OKHTTP3_LOGGING = "com.squareup.okhttp3:logging-interceptor:${LibraryVersion.OKHTTP3}"
-    const val MOSHI_CONVERTER = "com.squareup.retrofit2:converter-moshi:${LibraryVersion.MOSHI}"
+
+    // endregion
+
+    // region Paging
+
     const val PAGING_RUNTIME = "androidx.paging:paging-runtime:${LibraryVersion.PAGING}"
     const val PAGING_RUNTIME_KTX = "androidx.paging:paging-runtime-ktx:${LibraryVersion.PAGING}"
-    const val COIL_KT = "io.coil-kt:coil:${LibraryVersion.COIL}"
-    const val WILLIAM_CHART = "com.diogobernardino:williamchart:${LibraryVersion.WILLIAM_CHART}"
-    const val CIRCULAR_IMAGE_VIEW =
-        "de.hdodenhof:circleimageview:${LibraryVersion.CIRCULAR_IMAGE_VIEW}"
+
+    // endregion
+
+    // region SQL Deligt
     const val SQL_DELIGHT = "com.squareup.sqldelight:gradle-plugin:${LibraryVersion.SQL_DELIGHT}"
     const val SQL_DELIGHT_DRIVER =
         "com.squareup.sqldelight:android-driver:${LibraryVersion.SQL_DELIGHT}"
     const val SQL_DELIGHT_COROUTINES =
         "com.squareup.sqldelight:coroutines-extensions-jvm:${LibraryVersion.SQL_DELIGHT}"
+
+    // endregion
+
+    const val GOOGLE_MATERIAL =
+        "com.google.android.material:material:${LibraryVersion.GOOGLE_MATERIAL}"
+
+    const val SWIPE_REFRESH_LAYOUT =
+        "androidx.swiperefreshlayout:swiperefreshlayout:${LibraryVersion.SWIPE_REFRESH_LAYOUT}"
+
+    const val CONSTRAINT_LAYOUT =
+        "androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
+
+    const val APP_COMPACT = "androidx.appcompat:appcompat:${LibraryVersion.APP_COMPACT}"
+
+    const val CORE_KTX = "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
+
+    const val ANDROID_RECYCLERVIEW =
+        "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLERVIEW}"
+
+    const val GOOGLE_GSON = "com.google.code.gson:gson:${LibraryVersion.GSON}"
+
+    const val OKHTTP3_LOGGING = "com.squareup.okhttp3:logging-interceptor:${LibraryVersion.OKHTTP3}"
+
+    const val MOSHI_CONVERTER = "com.squareup.retrofit2:converter-moshi:${LibraryVersion.MOSHI}"
+
+    const val COIL_KT = "io.coil-kt:coil:${LibraryVersion.COIL}"
+
+    const val WILLIAM_CHART = "com.diogobernardino:williamchart:${LibraryVersion.WILLIAM_CHART}"
+
+    const val CIRCULAR_IMAGE_VIEW =
+        "de.hdodenhof:circleimageview:${LibraryVersion.CIRCULAR_IMAGE_VIEW}"
+
     const val ADAPTER_DELEGATE =
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${LibraryVersion.ADAPTER_DELEGATE}"
+
     const val APP_UPDATER = "com.github.javiersantos:AppUpdater:${LibraryVersion.APP_UPDATER}"
 }

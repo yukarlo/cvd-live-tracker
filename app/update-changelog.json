@@ -1,9 +1,15 @@
 {
-  "latestVersion": "0.90",
-  "latestVersionCode": 3,
-  "url": "https://drive.google.com/file/d/1Sh0aBrRzUyuynsCyjDB8mjZllzbrfAMD/view?usp=sharing",
+  "latestVersion": "1.00",
+  "latestVersionCode": 4,
+  "url": "https://drive.google.com/file/d/13LRjrxFgVpb3SPdKkEgfOM8RruES1pgq/view?usp=sharing",
   "releaseNotes": [
-    "Bump Target Android Version to 11",
-    "Improve Codebase"
+    "What's New",
+    "Favorite a country",
+    "Adjust sort by pop up layout",
+    "Sort by active cases functionality",
+    "Improve code base",
+    "Bug Fixed",
+    "Layout issues in Home",
+    "Sorting back to default when searching"
   ]
 }

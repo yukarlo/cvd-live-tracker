@@ -1,56 +1,45 @@
 package com.yukarlo.ui.countries
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.yukarlo.base.BaseFragment
+import com.yukarlo.base.viewBinding
 import com.yukarlo.common.android.text.TextProvider
+import com.yukarlo.core.domain.model.FavoriteCountry
+import com.yukarlo.core.domain.model.SortBy
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
-import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
+import com.yukarlo.ui.countries.adapter.CasesCountryOptionsAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CountriesFragment : Fragment(), ICountrySearchInteraction {
+internal class CountriesFragment
+    : BaseFragment<CountriesViewState>(contentLayoutId = R.layout.countries_fragment),
+    ICountrySortInteraction, ICountryFavoriteInteraction {
 
     @Inject
     lateinit var mTextProvider: TextProvider
 
     private val mViewModel: CountriesViewModel by viewModels()
+    private val fragmentBinding: CountriesFragmentBinding by viewBinding(CountriesFragmentBinding::bind)
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var fragmentBinding: CountriesFragmentBinding
     private lateinit var casesCountriesAdapter: CasesCountriesAdapter
-    private lateinit var casesSearchCountryAdapter: CasesCountrySearchAdapter
+    private lateinit var casesSearchCountryAdapter: CasesCountryOptionsAdapter
     private lateinit var bottomSheetDialog: BottomSheetDialog
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        setHasOptionsMenu(true)
-        fragmentBinding = CountriesFragmentBinding.inflate(inflater, container, false)
-        return fragmentBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setUpViews()
-        setupObservers()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         with(menu) {
@@ -65,12 +54,12 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
-                    mViewModel.filterCountry(filter = newText)
+                    filterCountry(query = newText)
                     return true
                 }
 
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    mViewModel.filterCountry(filter = query)
+                    filterCountry(query = query)
                     return true
                 }
             })
@@ -79,9 +68,10 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
         }
     }
 
-    private fun setUpViews() {
-        casesCountriesAdapter = CasesCountriesAdapter(textProvider = mTextProvider)
-        casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySearchInteraction = this)
+    override fun setUpViews() {
+        casesCountriesAdapter =
+            CasesCountriesAdapter(textProvider = mTextProvider, countryFavoriteInteraction = this)
+        casesSearchCountryAdapter = CasesCountryOptionsAdapter(countrySortInteraction = this)
 
         val concatAdapter = ConcatAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
 
@@ -96,58 +86,47 @@ class CountriesFragment : Fragment(), ICountrySearchInteraction {
 
             sortGroup.setOnCheckedChangeListener { _: RadioGroup, checkedId: Int ->
                 when (checkedId) {
-                    R.id.sortByCountry -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Country)
-                    }
-                    R.id.sortByConfirmed -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Confirmed)
-                    }
-                    R.id.sortByDeceased -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Deceased)
-                    }
-                    R.id.sortByRecovered -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Recovered)
-                    }
-                    R.id.sortByActive -> {
-                        mViewModel.sortCountry(sortBy = SortBy.Active)
-                    }
+                    R.id.sortByCountry -> sortCountriesBy(sortBy = SortBy.Country)
+                    R.id.sortByConfirmed -> sortCountriesBy(sortBy = SortBy.Confirmed)
+                    R.id.sortByDeceased -> sortCountriesBy(sortBy = SortBy.Deceased)
+                    R.id.sortByRecovered -> sortCountriesBy(sortBy = SortBy.Recovered)
+                    R.id.sortByActive -> sortCountriesBy(sortBy = SortBy.Active)
                 }
                 dismiss()
             }
         }
     }
 
-    private fun setupObservers() {
-        mViewModel.onUiStateUpdated.observe(viewLifecycleOwner, {
-            renderUiState(countriesViewState = it)
-        })
+    override fun setUpObservers() {
+        mViewModel.onUiStateUpdated
+            .onEach { state -> render(state = state) }
+            .launchIn(lifecycleScope)
 
-        mViewModel.onUiEventUpdated.observe(viewLifecycleOwner, {
-            renderUiEvent(countriesViewEvent = it)
+        mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, {
+            (activity as AppCompatActivity).supportActionBar?.title = it
         })
     }
 
-    private fun renderUiState(countriesViewState: CountriesViewState) {
-        with(countriesViewState) {
-            casesCountriesAdapter.updateData(items = countriesViewState.countries)
+    override fun render(state: CountriesViewState) {
+        with(state) {
+            casesCountriesAdapter.updateData(items = state.countries)
+            casesSearchCountryAdapter.updateSortTitle(sortBy = state.sortBy)
         }
     }
 
-    private fun renderUiEvent(countriesViewEvent: CountriesViewEvent) {
-        when (countriesViewEvent) {
-            is CountriesViewEvent.SortedBy -> {
-                casesSearchCountryAdapter.updateSortTitle(sortBy = countriesViewEvent.sortBy)
-            }
-            is CountriesViewEvent.ContinentName -> (activity as AppCompatActivity).supportActionBar?.title =
-                countriesViewEvent.continentName
-        }
+    private fun filterCountry(query: String) {
+        mViewModel.sendAction(CountriesViewAction.FilterCountries(query = query))
     }
 
-    override fun filterCountry(query: String) {
-        mViewModel.filterCountry(filter = query)
+    private fun sortCountriesBy(sortBy: SortBy) {
+        mViewModel.sendAction(CountriesViewAction.SortCountriesBy(sortBy = sortBy))
     }
 
     override fun showSortCountryBottomSheet() {
         bottomSheetDialog.show()
+    }
+
+    override fun addToFavorites(country: FavoriteCountry) {
+        mViewModel.sendAction(CountriesViewAction.AddToFavorite(country = country))
     }
 }

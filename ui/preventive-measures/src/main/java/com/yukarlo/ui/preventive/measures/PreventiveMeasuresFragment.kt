@@ -6,22 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.yukarlo.base.viewBinding
 import com.yukarlo.ui.preventive.measures.databinding.PreventiveMeasuresFragmentBinding
 
-class PreventiveMeasuresFragment : Fragment() {
+class PreventiveMeasuresFragment : Fragment(R.layout.preventive_measures_fragment) {
 
-    private lateinit var fragmentBinding: PreventiveMeasuresFragmentBinding
+    private val fragmentBinding: PreventiveMeasuresFragmentBinding by viewBinding(PreventiveMeasuresFragmentBinding::bind)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        fragmentBinding = PreventiveMeasuresFragmentBinding.inflate(inflater, container, false)
-        return fragmentBinding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         fragmentBinding.preventiveMeasuresMoreInformationTextView.movementMethod =
             LinkMovementMethod.getInstance()

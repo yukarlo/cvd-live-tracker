@@ -28,5 +28,5 @@ class NetworkModule {
     fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
 
     @Provides
-    fun provideBaseUrl(): String = "https://disease.sh/v2/"
+    fun provideBaseUrl(): String = "https://disease.sh/v3/covid-19/"
 }

@@ -9,11 +9,25 @@ CREATE TABLE countries(
     total_deaths INTEGER NOT NULL,
     total_today_deaths INTEGER NOT NULL,
     total_recovered INTEGER NOT NULL,
-    total_active INTEGER NOT NULL
+    total_active INTEGER NOT NULL,
+    is_favorite INTEGER As Boolean NOT NULL DEFAULT 0,
+    time_added INTEGER NOT NULL DEFAULT 0
 );
 
-selectAllCountries:
-SELECT * FROM countries;
+selectAllCountriesSortedByCountryName:
+SELECT * FROM countries ORDER BY is_favorite DESC, country_name ASC;
+
+selectAllCountriesSortedByCases:
+SELECT * FROM countries ORDER BY is_favorite DESC, total_cases DESC;
+
+selectAllCountriesSortedByDeaths:
+SELECT * FROM countries ORDER BY is_favorite DESC, total_deaths DESC;
+
+selectAllCountriesSortedByRecovered:
+SELECT * FROM countries ORDER BY is_favorite DESC, total_recovered DESC;
+
+selectAllCountriesSortedByActive:
+SELECT * FROM countries ORDER BY is_favorite DESC, total_active DESC;
 
 insertCountry:
 INSERT INTO countries(
@@ -26,8 +40,24 @@ INSERT INTO countries(
     total_deaths,
     total_today_deaths,
     total_recovered,
-    total_active
-) VALUES (?,?,?,?,?,?,?,?,?,?);
+    total_active,
+    is_favorite,
+    time_added
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
+
+updateCountries:
+UPDATE countries SET
+total_cases = ?,
+total_today_cases = ?,
+total_deaths = ?,
+total_today_deaths = ?,
+total_recovered = ?,
+total_active = ?,
+time_added = ?
+WHERE country_iso = ?;
+
+markAsFavorite:
+UPDATE countries SET is_favorite = ? WHERE country_iso = ?;
 
 deleteAllCountries:
 DELETE FROM countries;

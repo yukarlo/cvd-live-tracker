@@ -1,33 +1,33 @@
 package com.yukarlo.base
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlin.properties.Delegates
 
-abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseViewAction, ViewEvent : BaseViewEvent>(
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEvent, ViewAction : BaseViewAction>(
     initialSate: ViewState
 ) : ViewModel() {
 
-    private val updateUiState: MutableLiveData<ViewState> = MutableLiveData<ViewState>()
-    val onUiStateUpdated: LiveData<ViewState>
+    protected val intentChannel = ConflatedBroadcastChannel<ViewAction>()
+
+    private val updateUiState: MutableStateFlow<ViewState> = MutableStateFlow(initialSate)
+    val onUiStateUpdated: StateFlow<ViewState>
         get() = updateUiState
 
-    private val updateUiEvent: MutableLiveData<ViewEvent> = MutableLiveData()
-    val onUiEventUpdated: LiveData<ViewEvent>
-        get() = updateUiEvent
-
     protected var state by Delegates.observable(initialSate) { _, _, new ->
-        updateUiState.postValue(new)
-    }
-
-    fun sendEvent(event: ViewEvent) {
-        updateUiEvent.postValue(event)
+        updateUiState.value = new
     }
 
     fun sendAction(viewAction: ViewAction) {
-        state = onReduceState(viewAction)
+        intentChannel.offer(element = viewAction)
     }
 
-    protected abstract fun onReduceState(viewAction: ViewAction): ViewState
+    fun sendEvent(viewEvent: ViewEvent) {
+        state = onReduceState(viewEvent)
+    }
+
+    protected abstract fun onReduceState(viewEvent: ViewEvent): ViewState
 }
