@@ -4,8 +4,8 @@ internal object AndroidConfig {
     const val MIN_SDK_VERSION = 23
     const val TARGET_SDK_VERSION = 30
 
-    const val VERSION_CODE = 3
-    const val VERSION_NAME = "0.90"
+    const val VERSION_CODE = 4
+    const val VERSION_NAME = "1.00"
 
     const val APP_ID = "com.yukarlo.coronow"
     const val TEST_INSTRUMENTATION_RUNNER = "android.support.test.runner.AndroidJUnitRunner"

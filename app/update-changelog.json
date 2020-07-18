@@ -1,9 +1,10 @@
 {
-  "latestVersion": "0.90",
-  "latestVersionCode": 3,
-  "url": "https://drive.google.com/file/d/1Sh0aBrRzUyuynsCyjDB8mjZllzbrfAMD/view?usp=sharing",
+  "latestVersion": "1.00",
+  "latestVersionCode": 4,
+  "url": "https://drive.google.com/file/d/13LRjrxFgVpb3SPdKkEgfOM8RruES1pgq/view?usp=sharing",
   "releaseNotes": [
     "What's New",
+    "Favorite a country",
     "Adjust sort by pop up layout",
     "Sort by active cases functionality",
     "Improve code base",
