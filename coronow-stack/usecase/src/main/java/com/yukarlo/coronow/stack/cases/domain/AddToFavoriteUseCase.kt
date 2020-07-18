@@ -17,5 +17,4 @@ class AddToFavoriteUseCase @Inject constructor(
     override suspend fun run(params: FavoriteCountry) {
         mCvdCasesLocalRepository.markCountryAsFavorite(country = params)
     }
-
 }
