@@ -1,6 +1,7 @@
 include(":coronow-stack:database")
 include(":coronow-stack:local-repository")
 include(":coronow-stack:remote-repository")
+include(":coronow-stack:remote-graphql-repository")
 include(":coronow-stack:usecase")
 include(":ui:home")
 include(":ui:preventive-measures")

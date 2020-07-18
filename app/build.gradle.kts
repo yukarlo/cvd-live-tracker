@@ -41,6 +41,7 @@ dependencies {
     // Stack
     implementation(stackModule("database"))
     implementation(stackModule("local-repository"))
+    implementation(stackModule("remote-graphql-repository"))
     implementation(stackModule("remote-repository"))
     implementation(stackModule("usecase"))
 
