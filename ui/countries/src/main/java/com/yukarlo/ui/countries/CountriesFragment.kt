@@ -17,9 +17,8 @@ import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.core.domain.model.FavoriteCountry
 import com.yukarlo.core.domain.model.SortBy
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter
-import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter
+import com.yukarlo.ui.countries.adapter.CasesCountryOptionsAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
-import com.yukarlo.ui.countries.model.CountriesUiModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
 import kotlinx.coroutines.flow.launchIn
@@ -39,7 +38,7 @@ internal class CountriesFragment
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var casesCountriesAdapter: CasesCountriesAdapter
-    private lateinit var casesSearchCountryAdapter: CasesCountrySearchAdapter
+    private lateinit var casesSearchCountryAdapter: CasesCountryOptionsAdapter
     private lateinit var bottomSheetDialog: BottomSheetDialog
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -72,7 +71,7 @@ internal class CountriesFragment
     override fun setUpViews() {
         casesCountriesAdapter =
             CasesCountriesAdapter(textProvider = mTextProvider, countryFavoriteInteraction = this)
-        casesSearchCountryAdapter = CasesCountrySearchAdapter(countrySortInteraction = this)
+        casesSearchCountryAdapter = CasesCountryOptionsAdapter(countrySortInteraction = this)
 
         val concatAdapter = ConcatAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
 

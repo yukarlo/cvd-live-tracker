@@ -1,14 +1,12 @@
 package com.yukarlo.ui.countries.adapter
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.DrawableRes
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
+import com.yukarlo.common.android.extension.getDrawableCompat
 import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.FavoriteCountry
@@ -71,9 +69,9 @@ class CasesCountriesAdapter @Inject constructor(
             }
             itemBinding.affectedFavorite.setImageDrawable(
                 if (data.isFavorite) {
-                    getDrawable(R.drawable.ic_star_filled)
+                    itemBinding.root.resources.getDrawableCompat(R.drawable.ic_star_filled)
                 } else {
-                    getDrawable(R.drawable.ic_star_unfilled)
+                    itemBinding.root.resources.getDrawableCompat(R.drawable.ic_star_unfilled)
                 }
             )
 
@@ -86,19 +84,12 @@ class CasesCountriesAdapter @Inject constructor(
                 )
                 itemBinding.affectedFavorite.setImageDrawable(
                     if (!data.isFavorite) {
-                        getDrawable(R.drawable.ic_star_filled)
+                        itemBinding.root.resources.getDrawableCompat(R.drawable.ic_star_filled)
                     } else {
-                        getDrawable(R.drawable.ic_star_unfilled)
+                        itemBinding.root.resources.getDrawableCompat(R.drawable.ic_star_unfilled)
                     }
                 )
             }
         }
-
-        private fun getDrawable(@DrawableRes id: Int): Drawable? =
-            ResourcesCompat.getDrawable(
-                itemBinding.root.resources,
-                id,
-                null
-            )
     }
 }

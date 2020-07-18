@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yukarlo.ui.countries.ICountrySortInteraction
 import com.yukarlo.ui.countries.R
 import com.yukarlo.core.domain.model.SortBy
-import com.yukarlo.ui.countries.adapter.CasesCountrySearchAdapter.CasesCountrySearchViewHolder
+import com.yukarlo.ui.countries.adapter.CasesCountryOptionsAdapter.CasesCountrySearchViewHolder
 import com.yukarlo.ui.countries.databinding.SearchRowBinding
 
-class CasesCountrySearchAdapter(val countrySortInteraction: ICountrySortInteraction) :
+class CasesCountryOptionsAdapter(val countrySortInteraction: ICountrySortInteraction) :
     RecyclerView.Adapter<CasesCountrySearchViewHolder>() {
 
     private lateinit var data: SortBy
