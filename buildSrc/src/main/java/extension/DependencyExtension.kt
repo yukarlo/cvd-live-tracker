@@ -17,6 +17,7 @@ fun DependencyHandler.addPluginDependencies() {
     classpath(dependencyNotation = LibraryDependency.NAVIGATION_SAFE_ARGS)
     classpath(dependencyNotation = LibraryDependency.SQL_DELIGHT)
     classpath(dependencyNotation = GradlePlugin.DAGGER_HILT_ANDROID_GRADLE_PLUGIN)
+    classpath(dependencyNotation = GradlePlugin.APOLLO_GRADLE_PLUGIN)
 }
 
 fun DependencyHandler.addDaggerDependencies() {

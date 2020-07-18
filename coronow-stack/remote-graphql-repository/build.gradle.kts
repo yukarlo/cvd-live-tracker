@@ -4,7 +4,7 @@ plugins {
     kotlinAndroid
     kotlinKapt
     daggerHilt
-    id("com.apollographql.apollo").version("2.2.2")
+    id("com.apollographql.apollo")
 }
 
 apollo {
