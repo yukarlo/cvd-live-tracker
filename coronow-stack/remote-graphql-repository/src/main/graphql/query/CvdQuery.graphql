@@ -1,0 +1,59 @@
+query GetSummary {
+    all {
+        cases
+        todayCases
+        deaths
+        todayDeaths
+        recovered
+        active
+        updated
+    }
+}
+
+query GetCountries {
+    countries {
+        country
+        countryInfo {
+            iso2
+            flag
+            lat
+            long
+        }
+        cases
+        todayCases
+        deaths
+        todayDeaths
+        recovered
+        active
+        updated
+    }
+}
+
+query GetContinents {
+    continents {
+        continent
+        cases
+        todayCases
+        deaths
+        todayDeaths
+        recovered
+        active
+        updated
+    }
+}
+
+query GetHistoricalData(
+    $countryName: ID!
+) {
+    country(name: $countryName) {
+        historical{
+            cases
+            todayCases
+            deaths
+            todayDeaths
+            recovered
+            todayRecovered
+            date
+        }
+    }
+}
