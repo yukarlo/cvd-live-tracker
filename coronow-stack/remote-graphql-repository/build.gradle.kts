@@ -20,6 +20,7 @@ dependencies {
     implementation(LibraryDependency.KOTLIN_COROUTINES)
 
     implementation(LibraryDependency.GRAPHQL_RUNTIME)
+    implementation(LibraryDependency.GRAPHQL_COROUTINES)
 
     addDaggerDependencies()
 }

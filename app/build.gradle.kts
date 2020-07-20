@@ -60,6 +60,7 @@ dependencies {
     implementation(LibraryDependency.GOOGLE_MATERIAL)
     implementation(LibraryDependency.APP_UPDATER)
     implementation(LibraryDependency.GRAPHQL_RUNTIME)
+    implementation(LibraryDependency.GRAPHQL_COROUTINES)
 
     addDaggerDependencies()
 }
