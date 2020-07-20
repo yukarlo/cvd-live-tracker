@@ -24,5 +24,5 @@ internal object GradlePlugin {
     const val DAGGER_HILT_ANDROID_GRADLE_PLUGIN =
         "com.google.dagger:hilt-android-gradle-plugin:${LibraryVersion.DAGGER_HILT_ANDROID}"
     const val APOLLO_GRADLE_PLUGIN =
-        "com.apollographql.apollo:apollo-gradle-plugin:2.2.2"
+        "com.apollographql.apollo:apollo-gradle-plugin:${LibraryVersion.GRAPHQL}"
 }

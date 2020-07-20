@@ -22,6 +22,7 @@ internal object LibraryVersion {
     internal const val CIRCULAR_IMAGE_VIEW = "3.1.0"
     internal const val SQL_DELIGHT = "1.4.0"
     internal const val APP_UPDATER = "2.7"
+    internal const val GRAPHQL = "2.7"
 }
 
 object LibraryDependency {
@@ -68,12 +69,21 @@ object LibraryDependency {
     // endregion
 
     // region Retrofit
+
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
     const val RETROFIT_ADAPTER_RXJAVA2 =
         "com.squareup.retrofit2:adapter-rxjava2:${LibraryVersion.RETROFIT}"
     const val RETROFIT_CONVERTER_GSON =
         "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"
 
+    // endregion
+
+    // region Graphql
+    const val GRAPHQL_RUNTIME = "com.apollographql.apollo:apollo-runtime:${LibraryVersion.GRAPHQL}"
+    const val GRAPHQL_NORMALIZED_CACHE =
+        "com.apollographql.apollo:apollo-normalized-cache-sqlite:${LibraryVersion.GRAPHQL}"
+    const val GRAPHQL_COROUTINES =
+        "com.apollographql.apollo:apollo-coroutines-support:${LibraryVersion.GRAPHQL}"
     // endregion
 
     // region Paging
