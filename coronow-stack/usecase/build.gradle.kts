@@ -11,6 +11,7 @@ dependencies {
     implementation(coreModule("usecase"))
     implementation(coreModule("dispatchers"))
     implementation(stackModule("remote-repository"))
+    implementation(stackModule("remote-graphql-repository"))
     implementation(stackModule("local-repository"))
 
     implementation(LibraryDependency.KOTLIN)

@@ -22,12 +22,17 @@ abstract class RemoteGraphqlRepositoryModule {
 
     companion object {
         @Provides
-        fun provideCvdCasesGraphqlClient(
+        fun provideApolloClient(
             okHttpClient: OkHttpClient,
             @Named(BASE_URL_GRAPHQL) baseUrl: String
         ): ApolloClient = ApolloClient.builder()
             .serverUrl(baseUrl)
             .okHttpClient(okHttpClient)
             .build()
+
+//        @Provides
+//        fun provideCvdCasesApolloClient(
+//            apolloClient: ApolloClient
+//        ): CvdCasesApolloClient = CvdCasesApolloClient(mApolloClient = apolloClient)
     }
 }

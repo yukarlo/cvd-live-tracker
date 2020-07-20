@@ -19,11 +19,11 @@ dependencies {
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.KOTLIN_COROUTINES)
 
-    api("com.apollographql.apollo:apollo-runtime:2.2.2")
+    implementation("com.apollographql.apollo:apollo-runtime:2.2.2")
     // optional: if you want to use the normalized cache
-    api("com.apollographql.apollo:apollo-normalized-cache-sqlite:2.2.2")
+    implementation("com.apollographql.apollo:apollo-normalized-cache-sqlite:2.2.2")
     // optional: for coroutines support
-    api("com.apollographql.apollo:apollo-coroutines-support:2.2.2")
+    implementation("com.apollographql.apollo:apollo-coroutines-support:2.2.2")
 
     addDaggerDependencies()
 }
