@@ -23,4 +23,6 @@ internal object GradlePlugin {
     const val KOTLIN_GRADLE_PLUGIN = "gradle-plugin"
     const val DAGGER_HILT_ANDROID_GRADLE_PLUGIN =
         "com.google.dagger:hilt-android-gradle-plugin:${LibraryVersion.DAGGER_HILT_ANDROID}"
+    const val NAVIGATION_SAFE_ARGS_GRADLE_PLUGIN =
+        "androidx.navigation:navigation-safe-args-gradle-plugin:${LibraryVersion.ANDROID_NAVIGATION}"
 }

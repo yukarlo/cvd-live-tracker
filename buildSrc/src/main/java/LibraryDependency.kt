@@ -34,9 +34,6 @@ object LibraryDependency {
     // endregion
 
     // region Navigation
-
-    const val NAVIGATION_SAFE_ARGS =
-        "androidx.navigation:navigation-safe-args-gradle-plugin:${LibraryVersion.ANDROID_NAVIGATION}"
     const val NAVIGATION_FRAGMENT_KTX =
         "androidx.navigation:navigation-fragment-ktx:${LibraryVersion.ANDROID_NAVIGATION}"
     const val NAVIGATION_UI_KTX =

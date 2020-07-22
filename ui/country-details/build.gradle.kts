@@ -28,6 +28,7 @@ dependencies {
     implementation(LibraryDependency.ADAPTER_DELEGATE)
     implementation(LibraryDependency.COIL_KT)
     implementation(LibraryDependency.ANDROID_RECYCLERVIEW)
+    implementation(LibraryDependency.WILLIAM_CHART)
 
     addDaggerDependencies()
 }

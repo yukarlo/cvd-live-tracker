@@ -14,4 +14,5 @@ interface ICvdCasesLocalRepository {
     fun getCountries(sortBy: SortBy): List<CasesCountriesModel>
     fun getContinents(): List<CasesContinentsModel>
     fun getSummary(): CasesSummaryModel?
+    fun getCountry(countryIso: String): CasesCountriesModel
 }

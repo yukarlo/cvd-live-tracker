@@ -77,7 +77,7 @@ internal class HomeFragment
 
     override fun navigateToCountries(continentName: String) {
         val bundle = bundleOf(
-            "continent" to CountriesInputModel(
+            "inputModel" to CountriesInputModel(
                 mContinentName = continentName
             )
         )

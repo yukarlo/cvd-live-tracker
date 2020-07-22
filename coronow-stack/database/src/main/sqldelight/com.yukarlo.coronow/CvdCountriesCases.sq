@@ -11,7 +11,10 @@ CREATE TABLE countries(
     total_recovered INTEGER NOT NULL,
     total_active INTEGER NOT NULL,
     is_favorite INTEGER As Boolean NOT NULL DEFAULT 0,
-    time_added INTEGER NOT NULL DEFAULT 0
+    time_added INTEGER NOT NULL DEFAULT 0,
+    total_tests INTEGER NOT NULL DEFAULT 0,
+    total_critical INTEGER NOT NULL DEFAULT 0,
+    updated INTEGER NOT NULL DEFAULT 0
 );
 
 selectAllCountriesSortedByCountryName:
@@ -29,6 +32,9 @@ SELECT * FROM countries ORDER BY is_favorite DESC, total_recovered DESC;
 selectAllCountriesSortedByActive:
 SELECT * FROM countries ORDER BY is_favorite DESC, total_active DESC;
 
+selectACountry:
+SELECT * FROM countries WHERE country_iso = ?;
+
 insertCountry:
 INSERT INTO countries(
     country_name,
@@ -42,8 +48,11 @@ INSERT INTO countries(
     total_recovered,
     total_active,
     is_favorite,
-    time_added
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
+    time_added,
+    total_tests,
+    total_critical,
+    updated
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
 
 updateCountries:
 UPDATE countries SET
@@ -53,7 +62,10 @@ total_deaths = ?,
 total_today_deaths = ?,
 total_recovered = ?,
 total_active = ?,
-time_added = ?
+time_added = ?,
+total_tests = ?,
+total_critical = ?,
+updated = ?
 WHERE country_iso = ?;
 
 markAsFavorite:

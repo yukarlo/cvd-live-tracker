@@ -10,13 +10,13 @@ import com.yukarlo.common.android.extension.getDrawableCompat
 import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.core.domain.model.CasesCountriesModel
 import com.yukarlo.core.domain.model.FavoriteCountry
-import com.yukarlo.ui.countries.ICountryFavoriteInteraction
+import com.yukarlo.ui.countries.ICountryInteraction
 import com.yukarlo.ui.countries.R
 import com.yukarlo.ui.countries.adapter.CasesCountriesAdapter.CasesCountriesViewHolder
 import javax.inject.Inject
 
 class CasesCountriesAdapter @Inject constructor(
-    val countryFavoriteInteraction: ICountryFavoriteInteraction,
+    val countryInteraction: ICountryInteraction,
     val textProvider: TextProvider
 ) : RecyclerView.Adapter<CasesCountriesViewHolder>() {
 
@@ -75,8 +75,12 @@ class CasesCountriesAdapter @Inject constructor(
                 }
             )
 
+            itemBinding.affectedConstraintLayout.setOnClickListener {
+                countryInteraction.navigateToCountryDetails(countryIso = data.countryIso)
+            }
+
             itemBinding.affectedFavorite.setOnClickListener {
-                countryFavoriteInteraction.addToFavorites(
+                countryInteraction.addToFavorites(
                     country = FavoriteCountry(
                         countryIso = data.countryIso,
                         addToFavorite = !data.isFavorite

@@ -28,9 +28,9 @@
         android:name="com.yukarlo.ui.countries.CountriesFragment"
         android:label="@string/countries"
         tools:layout="@layout/countries_fragment">
-        <argument
-            android:name="countriesInputModel"
-            app:argType="com.yukarlo.common.android.CountriesInputModel" />
+        <action
+            android:id="@+id/action_Countries_to_CountryDetailsFragment"
+            app:destination="@id/CountryDetailsFragment" />
     </fragment>
 
     <fragment
@@ -44,5 +44,11 @@
         android:name="com.yukarlo.ui.preventive.measures.PreventiveMeasuresFragment"
         android:label="@string/preventive_measures"
         tools:layout="@layout/preventive_measures_fragment" />
+
+    <fragment
+        android:id="@+id/CountryDetailsFragment"
+        android:name="com.yukarlo.ui.country.details.CountryDetailsFragment"
+        android:label="@string/country"
+        tools:layout="@layout/country_details_fragment" />
 
 </navigation>

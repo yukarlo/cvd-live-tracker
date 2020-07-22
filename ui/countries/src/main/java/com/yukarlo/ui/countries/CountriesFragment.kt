@@ -5,14 +5,17 @@ import android.view.MenuInflater
 import android.widget.RadioGroup
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.yukarlo.base.BaseFragment
 import com.yukarlo.base.viewBinding
+import com.yukarlo.common.android.CountryInputModel
 import com.yukarlo.common.android.text.TextProvider
 import com.yukarlo.core.domain.model.FavoriteCountry
 import com.yukarlo.core.domain.model.SortBy
@@ -28,7 +31,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 internal class CountriesFragment
     : BaseFragment<CountriesViewState>(contentLayoutId = R.layout.countries_fragment),
-    ICountrySortInteraction, ICountryFavoriteInteraction {
+    ICountrySortInteraction, ICountryInteraction {
 
     @Inject
     lateinit var mTextProvider: TextProvider
@@ -70,7 +73,7 @@ internal class CountriesFragment
 
     override fun setUpViews() {
         casesCountriesAdapter =
-            CasesCountriesAdapter(textProvider = mTextProvider, countryFavoriteInteraction = this)
+            CasesCountriesAdapter(textProvider = mTextProvider, countryInteraction = this)
         casesSearchCountryAdapter = CasesCountryOptionsAdapter(countrySortInteraction = this)
 
         val concatAdapter = ConcatAdapter(casesSearchCountryAdapter, casesCountriesAdapter)
@@ -128,5 +131,14 @@ internal class CountriesFragment
 
     override fun addToFavorites(country: FavoriteCountry) {
         mViewModel.sendAction(CountriesViewAction.AddToFavorite(country = country))
+    }
+
+    override fun navigateToCountryDetails(countryIso: String) {
+        val bundle = bundleOf(
+            "inputModel" to CountryInputModel(
+                mCountryIso = countryIso
+            )
+        )
+       findNavController().navigate(R.id.action_Countries_to_CountryDetailsFragment, bundle)
     }
 }

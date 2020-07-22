@@ -52,7 +52,10 @@ internal object CvdCountriesResponseConverter :
             countryName = input.country,
             continent = input.continent,
             countryIso = input.countryInfo.iso2 ?: "",
-            countryFlag = input.countryInfo.flag
+            countryFlag = input.countryInfo.flag,
+            critical = input.critical,
+            tests = input.tests,
+            updatedSince = input.updated
         )
     }
 }

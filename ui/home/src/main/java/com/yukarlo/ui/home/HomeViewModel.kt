@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
 internal class HomeViewModel @ViewModelInject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase,
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase

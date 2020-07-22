@@ -49,6 +49,7 @@ dependencies {
     implementation(featureModule("home"))
     implementation(featureModule("preventive-measures"))
     implementation(featureModule("symptoms"))
+    implementation(featureModule("country-details"))
 
     implementation(LibraryDependency.KOTLIN)
     implementation(LibraryDependency.APP_COMPACT)

@@ -33,7 +33,10 @@ class CvdCasesLocalRepository @Inject constructor(
                     total_active = it.totalActiveCount,
                     total_recovered = it.totalRecoveredCount,
                     is_favorite = false,
-                    time_added = System.currentTimeMillis()
+                    time_added = System.currentTimeMillis(),
+                    total_critical = it.critical,
+                    total_tests = it.tests,
+                    updated = it.updatedSince
                 )
             }
         } else {
@@ -47,6 +50,9 @@ class CvdCasesLocalRepository @Inject constructor(
                     total_recovered = it.totalRecoveredCount,
                     time_added = System.currentTimeMillis(),
                     country_iso = it.countryIso,
+                    total_critical = it.critical,
+                    total_tests = it.tests,
+                    updated = it.updatedSince
                 )
             }
         }
@@ -118,7 +124,10 @@ class CvdCasesLocalRepository @Inject constructor(
                             totalTodayDeceased = it.total_today_deaths,
                             totalRecoveredCount = it.total_recovered,
                             totalActiveCount = it.total_active,
-                            isFavorite = it.is_favorite
+                            isFavorite = it.is_favorite,
+                            tests = it.total_tests,
+                            critical = it.total_critical,
+                            updatedSince = it.updated
                         )
                     }
                 } ?: listOf()
@@ -154,6 +163,29 @@ class CvdCasesLocalRepository @Inject constructor(
             } else {
                 null
             }
+        }
+    }
+
+    override fun getCountry(countryIso: String): CasesCountriesModel {
+        val countryQueries = database.cvdCountriesCasesQueries
+
+        return countryQueries.selectACountry(country_iso = countryIso).executeAsOne().run {
+            CasesCountriesModel(
+                countryName = country_name,
+                countryIso = country_iso,
+                countryFlag = country_flag,
+                continent = continent_name,
+                totalCasesCount = total_cases,
+                totalTodayCases = total_today_cases,
+                totalDeceasedCount = total_deaths,
+                totalTodayDeceased = total_today_deaths,
+                totalRecoveredCount = total_recovered,
+                totalActiveCount = total_active,
+                isFavorite = is_favorite,
+                tests = total_tests,
+                critical = total_critical,
+                updatedSince = updated
+            )
         }
     }
 

@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import java.util.*
 
-@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
 internal class CountriesViewModel @ViewModelInject constructor(
     private val mAddToFavoriteUseCase: AddToFavoriteUseCase,
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
@@ -36,7 +36,7 @@ internal class CountriesViewModel @ViewModelInject constructor(
     private val uiModel: CountriesUiModel = CountriesUiModel()
 
     private val continentNameArgs =
-        savedStateHandle.get<CountriesInputModel>("continent")?.mContinentName ?: ""
+        savedStateHandle.get<CountriesInputModel>("inputModel")?.mContinentName ?: ""
 
     private val continentName: MutableLiveData<String> = MutableLiveData()
     val onContinentNameUpdated: LiveData<String>
