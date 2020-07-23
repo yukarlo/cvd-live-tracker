@@ -5,7 +5,6 @@ import android.view.MenuInflater
 import android.widget.RadioGroup
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -134,11 +133,11 @@ internal class CountriesFragment
     }
 
     override fun navigateToCountryDetails(countryIso: String) {
-        val bundle = bundleOf(
-            "inputModel" to CountryInputModel(
+        val direction = CountriesFragmentDirections.actionCountriesToCountryDetailsFragment(
+            CountryInputModel(
                 mCountryIso = countryIso
             )
         )
-       findNavController().navigate(R.id.action_Countries_to_CountryDetailsFragment, bundle)
+        findNavController().navigate(direction)
     }
 }

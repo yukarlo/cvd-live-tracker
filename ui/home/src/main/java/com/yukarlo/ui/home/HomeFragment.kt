@@ -1,6 +1,5 @@
 package com.yukarlo.ui.home
 
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -76,12 +75,12 @@ internal class HomeFragment
     }
 
     override fun navigateToCountries(continentName: String) {
-        val bundle = bundleOf(
-            "inputModel" to CountriesInputModel(
+        val direction = HomeFragmentDirections.actionSummaryToCountriesFragment(
+            CountriesInputModel(
                 mContinentName = continentName
             )
         )
-        findNavController().navigate(R.id.action_Summary_to_CountriesFragment, bundle)
+        findNavController().navigate(direction)
     }
 
     override fun navigateToSymptoms() {

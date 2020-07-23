@@ -3,6 +3,7 @@ plugins {
     androidLibrary
     kotlinAndroid
     kotlinAndroidExtensions
+    androidSafeArgs
     kotlinKapt
 }
 

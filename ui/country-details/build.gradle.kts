@@ -4,7 +4,6 @@ plugins {
     kotlinAndroid
     kotlinAndroidExtensions
     kotlinKapt
-    androidSafeArgs
     daggerHilt
 }
 
@@ -23,7 +22,6 @@ dependencies {
     implementation(LibraryDependency.ANDROID_LIFECYCLE_LIVEDATA_KTX)
     implementation(LibraryDependency.ANDROID_LIFECYCLE_VIEWMODEL_KTX)
     implementation(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
-    implementation(LibraryDependency.NAVIGATION_UI_KTX)
     implementation(LibraryDependency.GOOGLE_MATERIAL)
     implementation(LibraryDependency.ADAPTER_DELEGATE)
     implementation(LibraryDependency.COIL_KT)
