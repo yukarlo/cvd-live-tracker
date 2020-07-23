@@ -1,5 +1,6 @@
 package com.yukarlo.ui.countries
 
+import androidx.navigation.NavDirections
 import com.yukarlo.base.BaseViewAction
 import com.yukarlo.core.domain.model.FavoriteCountry
 import com.yukarlo.core.domain.model.SortBy
@@ -10,4 +11,5 @@ internal sealed class CountriesViewAction : BaseViewAction {
     data class SortCountriesBy(val sortBy: SortBy) : CountriesViewAction()
     data class AddToFavorite(val country: FavoriteCountry) : CountriesViewAction()
     data class FilterCountries(val query: String) : CountriesViewAction()
+    data class Navigate(val to: NavDirections) : CountriesViewAction()
 }

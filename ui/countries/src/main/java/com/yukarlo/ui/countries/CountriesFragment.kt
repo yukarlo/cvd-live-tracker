@@ -104,6 +104,12 @@ internal class CountriesFragment
             .onEach { state -> render(state = state) }
             .launchIn(lifecycleScope)
 
+        mViewModel.onNavigate.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { navDirections ->
+                findNavController().navigate(navDirections)
+            }
+        }
+
         mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, {
             (activity as AppCompatActivity).supportActionBar?.title = it
         })
@@ -133,11 +139,14 @@ internal class CountriesFragment
     }
 
     override fun navigateToCountryDetails(countryIso: String) {
-        val direction = CountriesFragmentDirections.actionCountriesToCountryDetailsFragment(
-            CountryInputModel(
-                mCountryIso = countryIso
+        mViewModel.sendAction(
+            CountriesViewAction.Navigate(
+                to = CountriesFragmentDirections.actionCountriesToCountryDetailsFragment(
+                    CountryInputModel(
+                        mCountryIso = countryIso
+                    )
+                )
             )
         )
-        findNavController().navigate(direction)
     }
 }

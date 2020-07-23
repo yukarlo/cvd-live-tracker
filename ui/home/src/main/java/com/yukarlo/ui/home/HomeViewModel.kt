@@ -1,8 +1,12 @@
 package com.yukarlo.ui.home
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
 import com.yukarlo.base.BaseViewModel
+import com.yukarlo.base.SingleEvent
 import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesContinentsUseCase
@@ -41,6 +45,7 @@ internal class HomeViewModel @ViewModelInject constructor(
                     is HomeViewAction.InitialLoad,
                     is HomeViewAction.Refresh,
                     is HomeViewAction.Retry -> loadData()
+                    is HomeViewAction.Navigate -> sendSingleEvent(action.to)
                 }
             }
     }

@@ -62,6 +62,12 @@ internal class HomeFragment
         mViewModel.onUiStateUpdated
             .onEach { state -> render(state = state) }
             .launchIn(lifecycleScope)
+
+        mViewModel.onNavigate.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { navDirections ->
+                findNavController().navigate(navDirections)
+            }
+        }
     }
 
     override fun render(state: HomeViewState) {
@@ -75,19 +81,30 @@ internal class HomeFragment
     }
 
     override fun navigateToCountries(continentName: String) {
-        val direction = HomeFragmentDirections.actionSummaryToCountriesFragment(
-            CountriesInputModel(
-                mContinentName = continentName
+        mViewModel.sendAction(
+            viewAction = HomeViewAction.Navigate(
+                to = HomeFragmentDirections.actionSummaryToCountriesFragment(
+                    CountriesInputModel(
+                        mContinentName = continentName
+                    )
+                )
             )
         )
-        findNavController().navigate(direction)
     }
 
     override fun navigateToSymptoms() {
-        findNavController().navigate(R.id.action_Symptoms_to_SymptomsFragment)
+        mViewModel.sendAction(
+            viewAction = HomeViewAction.Navigate(
+                to = HomeFragmentDirections.actionSymptomsToSymptomsFragment()
+            )
+        )
     }
 
     override fun navigateToPreventiveMeasures() {
-        findNavController().navigate(R.id.action_Preventive_Measures_to_PreventiveMeasuresFragment)
+        mViewModel.sendAction(
+            viewAction = HomeViewAction.Navigate(
+                to = HomeFragmentDirections.actionPreventiveMeasuresToPreventiveMeasuresFragment()
+            )
+        )
     }
 }
