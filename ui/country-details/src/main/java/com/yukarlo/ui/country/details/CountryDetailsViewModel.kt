@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 internal class CountryDetailsViewModel @ViewModelInject constructor(
     private val mGetCountryDetailsUseCase: GetCountryDetailsUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : BaseViewModel<CountryDetailsViewState, CountryDetailsViewEvent, CountryDetailsViewAction>(
+) : BaseViewModel<CountryDetailsViewState, CountryDetailsViewEvent, CountryDetailsViewAction, Unit>(
     CountryDetailsViewState()
 ) {
 

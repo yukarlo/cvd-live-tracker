@@ -11,5 +11,5 @@ internal sealed class CountriesViewAction : BaseViewAction {
     data class SortCountriesBy(val sortBy: SortBy) : CountriesViewAction()
     data class AddToFavorite(val country: FavoriteCountry) : CountriesViewAction()
     data class FilterCountries(val query: String) : CountriesViewAction()
-    data class Navigate(val to: NavDirections) : CountriesViewAction()
+    data class Navigate(val directions: NavDirections) : CountriesViewAction()
 }

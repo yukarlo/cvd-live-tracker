@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 internal class CountryDetailsFragment :
-    BaseFragment<CountryDetailsViewState>(R.layout.country_details_fragment) {
+    BaseFragment<CountryDetailsViewState, Unit>(R.layout.country_details_fragment) {
 
     @Inject
     lateinit var mTextProvider: TextProvider
@@ -50,5 +50,9 @@ internal class CountryDetailsFragment :
             fragmentBinding.CountryDetailsTestsCount.text = mTextProvider.formatNumber(tests)
             fragmentBinding.CountryDetailsCountryImageView.load(countryFlag)
         }
+    }
+
+    override fun renderSideEffect(sideEffect: Unit) {
+        // No side effect
     }
 }

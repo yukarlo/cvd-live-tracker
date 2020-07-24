@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<ViewState : BaseViewState>(@LayoutRes contentLayoutId: Int) :
+abstract class BaseFragment<ViewState : BaseViewState, ViewSideEffect: Any>(@LayoutRes contentLayoutId: Int) :
     Fragment(contentLayoutId) {
 
     override fun onCreateView(
@@ -27,4 +27,5 @@ abstract class BaseFragment<ViewState : BaseViewState>(@LayoutRes contentLayoutI
     protected abstract fun setUpViews()
     protected abstract fun setUpObservers()
     protected abstract fun render(state: ViewState)
+    protected abstract fun renderSideEffect(sideEffect: ViewSideEffect)
 }

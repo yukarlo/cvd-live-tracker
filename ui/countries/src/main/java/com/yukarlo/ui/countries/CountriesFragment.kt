@@ -28,9 +28,9 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-internal class CountriesFragment
-    : BaseFragment<CountriesViewState>(contentLayoutId = R.layout.countries_fragment),
-    ICountrySortInteraction, ICountryInteraction {
+internal class CountriesFragment : BaseFragment<CountriesViewState, CountriesViewSideEffect>(
+    contentLayoutId = R.layout.countries_fragment
+), ICountrySortInteraction, ICountryInteraction {
 
     @Inject
     lateinit var mTextProvider: TextProvider
@@ -104,21 +104,25 @@ internal class CountriesFragment
             .onEach { state -> render(state = state) }
             .launchIn(lifecycleScope)
 
-        mViewModel.onNavigate.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { navDirections ->
-                findNavController().navigate(navDirections)
+        mViewModel.onSideEffect.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { sideEffect ->
+                renderSideEffect(sideEffect = sideEffect)
             }
         }
-
-        mViewModel.onContinentNameUpdated.observe(viewLifecycleOwner, {
-            (activity as AppCompatActivity).supportActionBar?.title = it
-        })
     }
 
     override fun render(state: CountriesViewState) {
         with(state) {
             casesCountriesAdapter.updateData(items = state.countries)
             casesSearchCountryAdapter.updateSortTitle(sortBy = state.sortBy)
+        }
+    }
+
+    override fun renderSideEffect(sideEffect: CountriesViewSideEffect) {
+        when (sideEffect) {
+            is CountriesViewSideEffect.NavigateTo -> findNavController().navigate(sideEffect.directions)
+            is CountriesViewSideEffect.UpdateCountryName ->
+                (activity as AppCompatActivity).supportActionBar?.title = sideEffect.name
         }
     }
 
@@ -141,7 +145,7 @@ internal class CountriesFragment
     override fun navigateToCountryDetails(countryIso: String) {
         mViewModel.sendAction(
             CountriesViewAction.Navigate(
-                to = CountriesFragmentDirections.actionCountriesToCountryDetailsFragment(
+                directions = CountriesFragmentDirections.actionCountriesToCountryDetailsFragment(
                     CountryInputModel(
                         mCountryIso = countryIso
                     )

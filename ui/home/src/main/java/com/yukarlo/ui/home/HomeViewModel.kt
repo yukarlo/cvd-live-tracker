@@ -1,12 +1,8 @@
 package com.yukarlo.ui.home
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavDirections
 import com.yukarlo.base.BaseViewModel
-import com.yukarlo.base.SingleEvent
 import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesContinentsUseCase
@@ -26,7 +22,7 @@ import kotlinx.coroutines.launch
 internal class HomeViewModel @ViewModelInject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase,
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
-) : BaseViewModel<HomeViewState, HomeViewEvent, HomeViewAction>(HomeViewState()) {
+) : BaseViewModel<HomeViewState, HomeViewEvent, HomeViewAction, HomeViewSideEffect>(HomeViewState()) {
 
     init {
         viewModelScope.launch {
@@ -45,7 +41,11 @@ internal class HomeViewModel @ViewModelInject constructor(
                     is HomeViewAction.InitialLoad,
                     is HomeViewAction.Refresh,
                     is HomeViewAction.Retry -> loadData()
-                    is HomeViewAction.Navigate -> sendSingleEvent(action.to)
+                    is HomeViewAction.Navigate -> sendSideEffect(
+                        HomeViewSideEffect.NavigateTo(
+                            directions = action.directions
+                        )
+                    )
                 }
             }
     }

@@ -24,8 +24,9 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-internal class HomeFragment
-    : BaseFragment<HomeViewState>(contentLayoutId = R.layout.home_fragment), IHomeInteraction {
+internal class HomeFragment : BaseFragment<HomeViewState, HomeViewSideEffect>(
+    contentLayoutId = R.layout.home_fragment
+), IHomeInteraction {
 
     @Inject
     lateinit var mTextProvider: TextProvider
@@ -63,9 +64,9 @@ internal class HomeFragment
             .onEach { state -> render(state = state) }
             .launchIn(lifecycleScope)
 
-        mViewModel.onNavigate.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { navDirections ->
-                findNavController().navigate(navDirections)
+        mViewModel.onSideEffect.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { sideEffect ->
+                renderSideEffect(sideEffect = sideEffect)
             }
         }
     }
@@ -80,10 +81,16 @@ internal class HomeFragment
         recyclerView.adapter = homeAdapter
     }
 
+    override fun renderSideEffect(sideEffect: HomeViewSideEffect) {
+        when (sideEffect) {
+            is HomeViewSideEffect.NavigateTo -> findNavController().navigate(sideEffect.directions)
+        }
+    }
+
     override fun navigateToCountries(continentName: String) {
         mViewModel.sendAction(
             viewAction = HomeViewAction.Navigate(
-                to = HomeFragmentDirections.actionSummaryToCountriesFragment(
+                directions = HomeFragmentDirections.actionSummaryToCountriesFragment(
                     CountriesInputModel(
                         mContinentName = continentName
                     )
@@ -95,7 +102,7 @@ internal class HomeFragment
     override fun navigateToSymptoms() {
         mViewModel.sendAction(
             viewAction = HomeViewAction.Navigate(
-                to = HomeFragmentDirections.actionSymptomsToSymptomsFragment()
+                directions = HomeFragmentDirections.actionSymptomsToSymptomsFragment()
             )
         )
     }
@@ -103,7 +110,7 @@ internal class HomeFragment
     override fun navigateToPreventiveMeasures() {
         mViewModel.sendAction(
             viewAction = HomeViewAction.Navigate(
-                to = HomeFragmentDirections.actionPreventiveMeasuresToPreventiveMeasuresFragment()
+                directions = HomeFragmentDirections.actionPreventiveMeasuresToPreventiveMeasuresFragment()
             )
         )
     }

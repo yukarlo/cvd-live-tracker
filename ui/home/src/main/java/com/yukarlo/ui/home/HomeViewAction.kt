@@ -7,5 +7,5 @@ internal sealed class HomeViewAction : BaseViewAction {
     object InitialLoad : HomeViewAction()
     object Refresh : HomeViewAction()
     object Retry : HomeViewAction()
-    data class Navigate(val to: NavDirections) : HomeViewAction()
+    data class Navigate(val directions: NavDirections) : HomeViewAction()
 }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlin.properties.Delegates
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
-abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEvent, ViewAction : BaseViewAction>(
+abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEvent, ViewAction : BaseViewAction, ViewSideEffect : Any>(
     initialSate: ViewState
 ) : ViewModel() {
 
@@ -20,10 +20,10 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEven
     val onUiStateUpdated: StateFlow<ViewState>
         get() = updateUiState
 
-    private val navigate: MutableLiveData<SingleEvent<NavDirections>> =
-        MutableLiveData<SingleEvent<NavDirections>>()
-    val onNavigate: LiveData<SingleEvent<NavDirections>>
-        get() = navigate
+    private val sideEffect: MutableLiveData<SingleEvent<ViewSideEffect>> =
+        MutableLiveData<SingleEvent<ViewSideEffect>>()
+    val onSideEffect: LiveData<SingleEvent<ViewSideEffect>>
+        get() = sideEffect
 
     protected var state by Delegates.observable(initialSate) { _, _, new ->
         updateUiState.value = new
@@ -37,8 +37,8 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEven
         state = onReduceState(viewEvent)
     }
 
-    protected fun sendSingleEvent(navDirections: NavDirections) {
-        navigate.postValue(SingleEvent(content = navDirections))
+    protected fun sendSideEffect(viewSideEffect: ViewSideEffect) {
+        sideEffect.postValue(SingleEvent(content = viewSideEffect))
     }
 
     protected abstract fun onReduceState(viewEvent: ViewEvent): ViewState

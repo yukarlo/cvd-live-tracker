@@ -2,8 +2,6 @@ package com.yukarlo.ui.countries
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.yukarlo.base.BaseViewModel
@@ -30,7 +28,9 @@ internal class CountriesViewModel @ViewModelInject constructor(
     private val mAddToFavoriteUseCase: AddToFavoriteUseCase,
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : BaseViewModel<CountriesViewState, CountriesViewEvent, CountriesViewAction>(CountriesViewState()) {
+) : BaseViewModel<CountriesViewState, CountriesViewEvent, CountriesViewAction, CountriesViewSideEffect>(
+    CountriesViewState()
+) {
 
     private lateinit var completeCountryList: List<CasesCountriesModel>
     private val uiModel: CountriesUiModel = CountriesUiModel()
@@ -38,14 +38,14 @@ internal class CountriesViewModel @ViewModelInject constructor(
     private val continentNameArgs =
         savedStateHandle.get<CountriesInputModel>("inputModel")?.mContinentName ?: ""
 
-    private val continentName: MutableLiveData<String> = MutableLiveData()
-    val onContinentNameUpdated: LiveData<String>
-        get() = continentName
-
     init {
-        if (continentNameArgs.isNotEmpty()) {
-            continentName.postValue(continentNameArgs)
-        }
+        continentNameArgs
+            .takeIf {
+                it.isNotEmpty()
+            }
+            ?.let {
+                sendSideEffect(CountriesViewSideEffect.UpdateCountryName(name = it))
+            }
 
         viewModelScope.launch {
             intentChannel.send(CountriesViewAction.InitialLoad)
@@ -86,7 +86,11 @@ internal class CountriesViewModel @ViewModelInject constructor(
                         mAddToFavoriteUseCase.run(params = action.country)
                         loadCountries()
                     }
-                    is CountriesViewAction.Navigate -> sendSingleEvent(action.to)
+                    is CountriesViewAction.Navigate -> sendSideEffect(
+                        CountriesViewSideEffect.NavigateTo(
+                            action.directions
+                        )
+                    )
                 }
             }
     }
