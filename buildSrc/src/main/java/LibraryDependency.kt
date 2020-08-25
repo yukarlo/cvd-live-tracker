@@ -1,5 +1,5 @@
 internal object LibraryVersion {
-    internal const val KOTLIN = "1.4-M1"
+    internal const val KOTLIN = "1.4.0"
     internal const val APP_COMPACT = "1.3.0-alpha01"
     internal const val CONSTRAINT_LAYOUT = "2.0.0-beta8"
     internal const val CORE_KTX = "1.5.0-alpha01"
