@@ -23,7 +23,7 @@ class DatabaseModule {
         name = "cvdDatabase.db"
     )
 
-//    @Provides
-//    @Singleton
-//    fun provideDatabase(sqlDriver: SqlDriver): cvdDatabase = cvdDatabase(driver = sqlDriver)
+    @Provides
+    @Singleton
+    fun provideDatabase(sqlDriver: SqlDriver): cvdDatabase = cvdDatabase(driver = sqlDriver)
 }
