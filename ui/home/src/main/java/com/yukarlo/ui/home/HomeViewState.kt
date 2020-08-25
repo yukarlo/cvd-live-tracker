@@ -4,7 +4,14 @@ import com.yukarlo.base.BaseViewState
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 
 internal data class HomeViewState(
+    val fetchStatus: FetchStatus = FetchStatus.Idle,
     val isLoading: Boolean = true,
     val isError: Boolean = false,
     val homeItems: List<HomeBaseItem> = listOf()
 ) : BaseViewState
+
+internal enum class FetchStatus {
+    Fetching,
+    Fetched,
+    Idle
+}

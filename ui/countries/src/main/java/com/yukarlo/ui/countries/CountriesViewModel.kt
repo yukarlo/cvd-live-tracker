@@ -48,25 +48,31 @@ internal class CountriesViewModel @ViewModelInject constructor(
             }
 
         viewModelScope.launch {
-            intentChannel.send(CountriesViewAction.InitialLoad)
             handleIntents()
         }
     }
 
     override fun onReduceState(viewEvent: CountriesViewEvent): CountriesViewState =
         when (viewEvent) {
-            is CountriesLoading -> state.copy()
+            is CountriesLoading -> state.copy(
+                fetchStatus = FetchStatus.Fetching,
+                isLoading = true,
+                isError = false
+            )
             is CountriesLoadSuccess -> state.copy(
+                fetchStatus = FetchStatus.Fetched,
                 isLoading = false,
                 isError = false,
                 countries = viewEvent.countries
             )
             is CountriesLoadFailure -> state.copy(
+                fetchStatus = FetchStatus.Fetched,
                 isLoading = false,
                 isError = true,
                 countries = listOf()
             )
             is CountriesSortedBy -> state.copy(
+                fetchStatus = FetchStatus.Fetched,
                 sortBy = viewEvent.sortedBy
             )
         }

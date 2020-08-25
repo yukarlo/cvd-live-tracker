@@ -72,13 +72,18 @@ internal class HomeFragment : BaseFragment<HomeViewState, HomeViewSideEffect>(
     }
 
     override fun render(state: HomeViewState) {
-        fragmentBinding.swipeHomeLayout.isRefreshing = state.isLoading
-        fragmentBinding.homeRecyclerView.isVisible = state.homeItems.isNotEmpty()
-        fragmentBinding.homeError.isVisible = state.isError
-        fragmentBinding.homeRetry.isVisible = state.isError
+        when {
+            state.fetchStatus != FetchStatus.Idle -> {
+                fragmentBinding.swipeHomeLayout.isRefreshing = state.isLoading
+                fragmentBinding.homeRecyclerView.isVisible = state.homeItems.isNotEmpty()
+                fragmentBinding.homeError.isVisible = state.isError
+                fragmentBinding.homeRetry.isVisible = state.isError
 
-        homeAdapter.items = state.homeItems
-        recyclerView.adapter = homeAdapter
+                homeAdapter.items = state.homeItems
+                recyclerView.adapter = homeAdapter
+            }
+            else -> mViewModel.sendAction(HomeViewAction.InitialLoad)
+        }
     }
 
     override fun renderSideEffect(sideEffect: HomeViewSideEffect) {

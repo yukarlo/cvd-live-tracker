@@ -26,7 +26,6 @@ internal class HomeViewModel @ViewModelInject constructor(
 
     init {
         viewModelScope.launch {
-            intentChannel.send(HomeViewAction.InitialLoad)
             handleIntents()
         }
     }
@@ -52,15 +51,18 @@ internal class HomeViewModel @ViewModelInject constructor(
 
     override fun onReduceState(viewEvent: HomeViewEvent): HomeViewState = when (viewEvent) {
         is HomeLoading -> state.copy(
+            fetchStatus = FetchStatus.Fetching,
             isLoading = true,
             isError = false
         )
         is HomeLoadSuccess -> state.copy(
+            fetchStatus = FetchStatus.Fetched,
             isLoading = false,
             isError = false,
             homeItems = viewEvent.homeItems
         )
         is HomeViewEvent.HomeLoadFailure -> state.copy(
+            fetchStatus = FetchStatus.Fetched,
             isLoading = false,
             isError = true,
             homeItems = listOf()

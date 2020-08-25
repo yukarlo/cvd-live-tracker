@@ -36,19 +36,26 @@ internal class CountryDetailsFragment :
     }
 
     override fun render(state: CountryDetailsViewState) {
-        with(state.details) {
-            fragmentBinding.CountryDetailsCountryHeader.text = countryName
-            fragmentBinding.CountryDetailsActiveCount.text =
-                mTextProvider.formatNumber(totalActiveCount)
-            fragmentBinding.CountryDetailsConfirmedCasesCount.text =
-                mTextProvider.formatNumber(totalCasesCount)
-            fragmentBinding.CountryDetailsDeceasedCount.text =
-                mTextProvider.formatNumber(totalDeceasedCount)
-            fragmentBinding.CountryDetailsRecoveredCount.text =
-                mTextProvider.formatNumber(totalRecoveredCount)
-            fragmentBinding.CountryDetailsCriticalCount.text = mTextProvider.formatNumber(critical)
-            fragmentBinding.CountryDetailsTestsCount.text = mTextProvider.formatNumber(tests)
-            fragmentBinding.CountryDetailsCountryImageView.load(countryFlag)
+        when {
+            state.fetchStatus != FetchStatus.Idle -> {
+                with(state.details) {
+                    fragmentBinding.CountryDetailsCountryHeader.text = countryName
+                    fragmentBinding.CountryDetailsActiveCount.text =
+                        mTextProvider.formatNumber(totalActiveCount)
+                    fragmentBinding.CountryDetailsConfirmedCasesCount.text =
+                        mTextProvider.formatNumber(totalCasesCount)
+                    fragmentBinding.CountryDetailsDeceasedCount.text =
+                        mTextProvider.formatNumber(totalDeceasedCount)
+                    fragmentBinding.CountryDetailsRecoveredCount.text =
+                        mTextProvider.formatNumber(totalRecoveredCount)
+                    fragmentBinding.CountryDetailsCriticalCount.text =
+                        mTextProvider.formatNumber(critical)
+                    fragmentBinding.CountryDetailsTestsCount.text =
+                        mTextProvider.formatNumber(tests)
+                    fragmentBinding.CountryDetailsCountryImageView.load(countryFlag)
+                }
+            }
+            else -> mViewModel.sendAction(CountryDetailsViewAction.LoadDetails)
         }
     }
 

@@ -113,8 +113,16 @@ internal class CountriesFragment : BaseFragment<CountriesViewState, CountriesVie
 
     override fun render(state: CountriesViewState) {
         with(state) {
-            casesCountriesAdapter.updateData(items = state.countries)
-            casesSearchCountryAdapter.updateSortTitle(sortBy = state.sortBy)
+            when {
+                state.fetchStatus != FetchStatus.Idle -> {
+                    casesCountriesAdapter.updateData(items = countries)
+                    casesSearchCountryAdapter.updateSortTitle(sortBy = sortBy)
+                }
+                else -> {
+                    mViewModel.sendAction(CountriesViewAction.InitialLoad)
+                    casesSearchCountryAdapter.updateSortTitle(sortBy = sortBy)
+                }
+            }
         }
     }
 

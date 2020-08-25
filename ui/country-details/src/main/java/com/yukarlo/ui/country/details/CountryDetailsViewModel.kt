@@ -21,12 +21,11 @@ internal class CountryDetailsViewModel @ViewModelInject constructor(
     CountryDetailsViewState()
 ) {
 
-    private val continentIsoArgs =
+    private val countryIso =
         savedStateHandle.get<CountryInputModel>("inputModel")?.mCountryIso ?: ""
 
     init {
         viewModelScope.launch {
-            intentChannel.send(CountryDetailsViewAction.LoadDetails)
             handleIntents()
         }
     }
@@ -39,7 +38,7 @@ internal class CountryDetailsViewModel @ViewModelInject constructor(
             .collect { action ->
                 when (action) {
                     is CountryDetailsViewAction.LoadDetails -> {
-                        mGetCountryDetailsUseCase.execute(params = continentIsoArgs)
+                        mGetCountryDetailsUseCase.execute(params = countryIso)
                             .onStart { sendEvent(CountryDetailsViewEvent.DetailsLoading) }
                             .catch { sendEvent(CountryDetailsViewEvent.DetailsLoadFailure) }
                             .collect {
