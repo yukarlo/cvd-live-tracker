@@ -8,12 +8,9 @@
 
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.project
 
 fun DependencyHandler.addPluginDependencies() {
-    classpath(dependencyNotation = GradlePlugin.ANDROID_TOOLS_BUILD_GRADLE)
-    classpath(kotlin(module = GradlePlugin.KOTLIN_GRADLE_PLUGIN, version = LibraryVersion.KOTLIN))
     classpath(dependencyNotation = GradlePlugin.NAVIGATION_SAFE_ARGS_GRADLE_PLUGIN)
     classpath(dependencyNotation = LibraryDependency.SQL_DELIGHT)
     classpath(dependencyNotation = GradlePlugin.DAGGER_HILT_ANDROID_GRADLE_PLUGIN)
