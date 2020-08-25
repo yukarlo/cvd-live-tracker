@@ -1,7 +1,7 @@
 <h1 align="center">Covid-19 Information and Tracker </h1>
 
 <p align="center">
-    <a href=""><img alt="Kotlin" src="https://img.shields.io/badge/kotlin-1.4--M3-blue?logo=kotlin"/></a>
+    <a href=""><img alt="Kotlin" src="https://img.shields.io/badge/kotlin-1.4.0-blue?logo=kotlin"/></a>
     <a href="https://actions-badge.atrox.dev/yukarlo/cvd-live-tracker/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fyukarlo%2Fcvd-live-tracker%2Fbadge" /></a>
     <a href="https://www.codefactor.io/repository/github/yukarlo/cvd-live-tracker"><img src="https://www.codefactor.io/repository/github/yukarlo/cvd-live-tracker/badge" alt="CodeFactor" /></a>
     <a href="https://codebeat.co/projects/github-com-yukarlo-cvd-live-tracker-master"><img alt="codebeat badge" src="https://codebeat.co/badges/5c73d594-580f-4219-a94d-39bf70dd002e" /></a>
