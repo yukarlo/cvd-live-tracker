@@ -22,6 +22,7 @@ internal object LibraryVersion {
     internal const val CIRCULAR_IMAGE_VIEW = "3.1.0"
     internal const val SQL_DELIGHT = "1.4.0"
     internal const val APP_UPDATER = "2.7"
+    internal const val JETPACK_COMPOSE = "1.0.0-alpha03"
 }
 
 object LibraryDependency {
@@ -122,4 +123,23 @@ object LibraryDependency {
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${LibraryVersion.ADAPTER_DELEGATE}"
 
     const val APP_UPDATER = "com.github.javiersantos:AppUpdater:${LibraryVersion.APP_UPDATER}"
+
+    object Compose {
+        const val ANIMATION =
+            "androidx.compose.animation:animation:${LibraryVersion.JETPACK_COMPOSE}"
+        const val FOUNDATION =
+            "androidx.compose.foundation:foundation:${LibraryVersion.JETPACK_COMPOSE}"
+        const val MATERIAL = "androidx.compose.material:material:${LibraryVersion.JETPACK_COMPOSE}"
+        const val RUNTIME = "androidx.compose.runtime:runtime:${LibraryVersion.JETPACK_COMPOSE}"
+        const val RUNTIME_LIVEDATA =
+            "androidx.compose.runtime:runtime-livedata:${LibraryVersion.JETPACK_COMPOSE}"
+        const val UI = "androidx.compose.ui:ui:${LibraryVersion.JETPACK_COMPOSE}"
+        const val LAYOUT =
+            "androidx.compose.foundation:foundation-layout:${LibraryVersion.JETPACK_COMPOSE}"
+        const val MATERIAL_ICONS_EXTENDED =
+            "androidx.compose.material:material-icons-extended:${LibraryVersion.JETPACK_COMPOSE}"
+        const val TEST_CORE = "androidx.compose.test:test-core:${LibraryVersion.JETPACK_COMPOSE}"
+        const val UI_TEST = "androidx.ui:ui-test:${LibraryVersion.JETPACK_COMPOSE}"
+        const val UI_TOOLING = "androidx.ui:ui-tooling:${LibraryVersion.JETPACK_COMPOSE}"
+    }
 }
