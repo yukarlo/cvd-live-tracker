@@ -139,9 +139,19 @@ internal class CountriesFragment
     }
 
     override fun navigateToCountryDetails(countryIso: String) {
+//        mViewModel.sendAction(
+//            CountriesViewAction.Navigate(
+//                to = CountriesFragmentDirections.actionCountriesToCountryDetailsFragment(
+//                    CountryInputModel(
+//                        mCountryIso = countryIso
+//                    )
+//                )
+//            )
+//        )
+
         mViewModel.sendAction(
             CountriesViewAction.Navigate(
-                to = CountriesFragmentDirections.actionCountriesToCountryDetailsFragment(
+                to = CountriesFragmentDirections.actionCountriesToCountryDetailsComposeFragment(
                     CountryInputModel(
                         mCountryIso = countryIso
                     )
