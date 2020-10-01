@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@OptIn(ExperimentalLayout::class)
 @AndroidEntryPoint
 internal class CountryDetailsComposeFragment : Fragment() {
 
@@ -38,7 +40,7 @@ internal class CountryDetailsComposeFragment : Fragment() {
         mViewModel.onUiStateUpdated
             .onEach { state ->
                 mComposeView.setContent {
-                    countryDetails(details = state.details)
+                    countryDetailsConstraintLayout(details = state.details)
                 }
             }
             .launchIn(lifecycleScope)
