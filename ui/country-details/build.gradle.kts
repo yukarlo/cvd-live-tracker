@@ -7,6 +7,12 @@ plugins {
     daggerHilt
 }
 
+android {
+    buildFeatures {
+        compose = true
+    }
+}
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(coreModule("base"))
@@ -27,6 +33,11 @@ dependencies {
     implementation(LibraryDependency.COIL_KT)
     implementation(LibraryDependency.ANDROID_RECYCLERVIEW)
     implementation(LibraryDependency.WILLIAM_CHART)
+
+    implementation(LibraryDependency.Compose.UI)
+    implementation(LibraryDependency.Compose.FOUNDATION)
+    implementation(LibraryDependency.Compose.MATERIAL)
+    implementation(LibraryDependency.Compose.UI_TOOLING)
 
     addDaggerDependencies()
 }
