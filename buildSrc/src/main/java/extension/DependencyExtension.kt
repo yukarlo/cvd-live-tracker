@@ -11,6 +11,8 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.project
 
 fun DependencyHandler.addPluginDependencies() {
+    classpath(dependencyNotation = GradlePlugin.ANDROID_BUILD_TOOLS)
+    classpath(dependencyNotation = GradlePlugin.KOTLIN_GRADLE_PLUGIN)
     classpath(dependencyNotation = GradlePlugin.NAVIGATION_SAFE_ARGS_GRADLE_PLUGIN)
     classpath(dependencyNotation = LibraryDependency.SQL_DELIGHT)
     classpath(dependencyNotation = GradlePlugin.DAGGER_HILT_ANDROID_GRADLE_PLUGIN)

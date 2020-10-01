@@ -14,6 +14,9 @@ internal object GradlePluginId {
 }
 
 internal object GradlePlugin {
+    const val ANDROID_BUILD_TOOLS = "com.android.tools.build:gradle:${LibraryVersion.BUILD_TOOLS}"
+    const val KOTLIN_GRADLE_PLUGIN =
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:${LibraryVersion.KOTLIN}"
     const val DAGGER_HILT_ANDROID_GRADLE_PLUGIN =
         "com.google.dagger:hilt-android-gradle-plugin:${LibraryVersion.DAGGER_HILT_ANDROID}"
     const val NAVIGATION_SAFE_ARGS_GRADLE_PLUGIN =
