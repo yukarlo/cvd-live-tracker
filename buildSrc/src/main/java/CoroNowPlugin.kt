@@ -80,6 +80,10 @@ class CoroNowPlugin : Plugin<Project> {
                 testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
             }
 
+            lintOptions {
+                isAbortOnError = false
+            }
+
             sourceSets.getByName("androidTest")
                 .assets.srcDirs(project.files("${project.projectDir}/schemas"))
 
