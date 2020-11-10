@@ -4,7 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+
+import coil.load
 import com.yukarlo.common.android.databinding.AffectedRowViewBinding
 import com.yukarlo.common.android.extension.getDrawableCompat
 import com.yukarlo.common.android.text.TextProvider

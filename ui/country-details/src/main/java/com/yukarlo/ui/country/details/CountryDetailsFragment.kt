@@ -3,7 +3,7 @@ package com.yukarlo.ui.country.details
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import coil.api.load
+import coil.load
 import com.yukarlo.base.BaseFragment
 import com.yukarlo.base.viewBinding
 import com.yukarlo.common.android.text.TextProvider
