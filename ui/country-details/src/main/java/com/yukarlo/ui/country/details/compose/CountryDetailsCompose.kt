@@ -1,82 +1,77 @@
 package com.yukarlo.ui.country.details.compose
 
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.ConstraintSet
 import androidx.compose.foundation.layout.Dimension
-import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.Card
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
+import com.yukarlo.common.android.compose.components.casesCard
+import com.yukarlo.common.android.compose.theme.CoronowTheme
 import com.yukarlo.core.domain.model.CasesCountriesModel
-import com.yukarlo.ui.country.details.compose.ui.cyan300
-import com.yukarlo.ui.country.details.compose.ui.gray00
-import com.yukarlo.ui.country.details.compose.ui.green300
-import com.yukarlo.ui.country.details.compose.ui.red300
-import com.yukarlo.ui.country.details.compose.ui.yellow300
 
-@ExperimentalLayout
 @Composable
-fun countryDetailsConstraintLayout(details: CasesCountriesModel) {
+fun countryDetailsLayout(details: CasesCountriesModel) {
     ConstraintLayout(
         constraintSet = decoupledConstraints(),
         modifier = Modifier
             .padding(10.dp)
     ) {
         Text(
+            color = CoronowTheme.colors.textPrimary,
             text = "${details.countryName} - Covid19 Cases",
             fontSize = 28.sp,
             modifier = Modifier.layoutId("countryName")
         )
         Text(
+            color = CoronowTheme.colors.textPrimary,
             text = "Confirmed Cases: ${details.totalCasesCount}",
             fontSize = 16.sp,
             modifier = Modifier.layoutId("confirmedCases")
         )
         Text(
+            color = CoronowTheme.colors.textPrimary,
             text = "Active Cases: ${details.totalActiveCount}",
             fontSize = 16.sp,
             modifier = Modifier.layoutId("activeCount")
         )
-        ownCard(
+        casesCard(
             text = "Critical",
             count = details.critical.toString(),
-            backgroundColor = yellow300,
+            backgroundColor = CoronowTheme.colors.cardCriticalBackground,
             cardModifier = Modifier
                 .layoutId("criticalCard")
                 .wrapContentHeight()
-                .padding(start = 0.dp, top = 0.dp, end = 5.dp, bottom = 0.dp),
+                .padding(start = 0.dp, top = 10.dp, end = 5.dp, bottom = 0.dp),
         )
-        ownCard(
+        casesCard(
             text = "Recovered",
             count = details.totalRecoveredCount.toString(),
-            backgroundColor = green300,
+            backgroundColor = CoronowTheme.colors.cardRecoveredBackground,
             cardModifier = Modifier
                 .layoutId("recoveredCard")
                 .wrapContentHeight()
-                .padding(start = 5.dp, top = 0.dp, end = 0.dp, bottom = 0.dp)
+                .padding(start = 5.dp, top = 10.dp, end = 0.dp, bottom = 0.dp)
         )
-        ownCard(
+        casesCard(
             text = "Deceased",
             count = details.totalDeceasedCount.toString(),
-            backgroundColor = red300,
+            backgroundColor = CoronowTheme.colors.cardDeceasedBackground,
             cardModifier = Modifier
                 .layoutId("deceasedCard")
                 .wrapContentHeight()
                 .padding(start = 0.dp, top = 10.dp, end = 5.dp, bottom = 0.dp)
         )
-        ownCard(
+        casesCard(
             text = "Test Conducted",
             count = details.tests.toString(),
-            backgroundColor = cyan300,
+            backgroundColor = CoronowTheme.colors.cardAdditionalInformationBackground,
             cardModifier = Modifier
                 .layoutId("testConductedCard")
                 .wrapContentHeight()
@@ -131,71 +126,38 @@ private fun decoupledConstraints(): ConstraintSet {
     }
 }
 
-
+@Preview(showBackground = true, name = "Country's Details Light Layout")
 @Composable
-private fun ownCard(
-    text: String,
-    count: String,
-    backgroundColor: Color,
-    cardModifier: Modifier
-) {
-    Card(
-        backgroundColor = backgroundColor,
-        contentColor = gray00,
-        modifier = cardModifier,
-    ) {
-        ConstraintLayout(
-            modifier = Modifier.padding(
-                start = 10.dp,
-                end = 10.dp,
-                top = 40.dp,
-                bottom = 40.dp
+private fun CountryDetailsLightLayoutPreview() {
+    CoronowTheme(darkTheme = false) {
+        countryDetailsLayout(
+            CasesCountriesModel(
+                countryName = "Philippines",
+                totalActiveCount = 6542000,
+                totalDeceasedCount = 1231250,
+                totalRecoveredCount = 4314300,
+                totalCasesCount = 16951550,
+                critical = 1990100,
+                tests = 8813640
             )
-        ) {
-            val (
-                textLabel,
-                textCount
-            ) = createRefs()
-
-            Text(
-                text = count,
-                fontSize = 24.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.constrainAs(ref = textCount) {
-                    top.linkTo(anchor = parent.top)
-                    start.linkTo(anchor = parent.start)
-                    end.linkTo(anchor = parent.end)
-                    bottom.linkTo(anchor = textLabel.top)
-                }
-            )
-            Text(
-                text = text,
-                textAlign = TextAlign.Center,
-                fontSize = 14.sp,
-                modifier = Modifier.constrainAs(ref = textLabel) {
-                    top.linkTo(anchor = textCount.bottom)
-                    start.linkTo(anchor = textCount.start)
-                    end.linkTo(anchor = textCount.end)
-                    bottom.linkTo(anchor = parent.bottom)
-                }
-            )
-        }
+        )
     }
 }
 
-@ExperimentalLayout
-@Preview(showBackground = true, name = "Country's Details Constraint Layout")
+@Preview(showBackground = false, name = "Country's Details Dark Layout")
 @Composable
-private fun defaultCountryDetailsConstraintLayoutPreview() {
-    countryDetailsConstraintLayout(
-        CasesCountriesModel(
-            countryName = "Philippines",
-            totalActiveCount = 6542000,
-            totalDeceasedCount = 1231250,
-            totalRecoveredCount = 4314300,
-            totalCasesCount = 16951550,
-            critical = 1990100,
-            tests = 8813640
+private fun CountryDetailsDarkLayoutPreview() {
+    CoronowTheme(darkTheme = true) {
+        countryDetailsLayout(
+            CasesCountriesModel(
+                countryName = "Philippines",
+                totalActiveCount = 6542000,
+                totalDeceasedCount = 1231250,
+                totalRecoveredCount = 4314300,
+                totalCasesCount = 16951550,
+                critical = 1990100,
+                tests = 8813640
+            )
         )
-    )
+    }
 }

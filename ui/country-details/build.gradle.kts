@@ -37,6 +37,7 @@ dependencies {
     implementation(LibraryDependency.Compose.UI)
     implementation(LibraryDependency.Compose.FOUNDATION)
     implementation(LibraryDependency.Compose.MATERIAL)
+    implementation(LibraryDependency.Compose.RUNTIME)
     implementation(LibraryDependency.Compose.UI_TOOLING)
 
     addDaggerDependencies()
