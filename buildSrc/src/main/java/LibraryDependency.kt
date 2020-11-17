@@ -23,7 +23,7 @@ internal object LibraryVersion {
     internal const val CIRCULAR_IMAGE_VIEW = "3.1.0"
     internal const val SQL_DELIGHT = "1.4.0"
     internal const val APP_UPDATER = "2.7"
-    internal const val JETPACK_COMPOSE = "1.0.0-alpha06"
+    internal const val JETPACK_COMPOSE = "1.0.0-alpha07"
 }
 
 object LibraryDependency {
