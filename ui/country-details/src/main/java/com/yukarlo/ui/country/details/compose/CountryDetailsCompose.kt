@@ -4,14 +4,17 @@ import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.ConstraintSet
 import androidx.compose.foundation.layout.Dimension
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredSize
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
+import com.yukarlo.common.android.compose.components.CircularImage
 import com.yukarlo.common.android.compose.components.casesCard
 import com.yukarlo.common.android.compose.theme.CoronowTheme
 import com.yukarlo.core.domain.model.CasesCountriesModel
@@ -23,11 +26,19 @@ fun countryDetailsLayout(details: CasesCountriesModel) {
         modifier = Modifier
             .padding(10.dp)
     ) {
+        CircularImage(
+            imageUrl = details.countryFlag,
+            modifier = Modifier.layoutId("countryFlag")
+                .preferredSize(32.dp)
+        )
         Text(
             color = CoronowTheme.colors.textPrimary,
             text = "${details.countryName} - Covid19 Cases",
             fontSize = 28.sp,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
             modifier = Modifier.layoutId("countryName")
+                .padding(start = 5.dp, top = 0.dp, end = 0.dp, bottom = 0.dp)
         )
         Text(
             color = CoronowTheme.colors.textPrimary,
@@ -48,7 +59,7 @@ fun countryDetailsLayout(details: CasesCountriesModel) {
             cardModifier = Modifier
                 .layoutId("criticalCard")
                 .wrapContentHeight()
-                .padding(start = 0.dp, top = 10.dp, end = 5.dp, bottom = 0.dp),
+                .padding(start = 0.dp, top = 10.dp, end = 5.dp, bottom = 0.dp)
         )
         casesCard(
             text = "Recovered",
@@ -82,6 +93,7 @@ fun countryDetailsLayout(details: CasesCountriesModel) {
 
 private fun decoupledConstraints(): ConstraintSet {
     return ConstraintSet {
+        val countryFlag = createRefFor(id = "countryFlag")
         val countryName = createRefFor(id = "countryName")
         val confirmedCases = createRefFor(id ="confirmedCases")
         val activeCount = createRefFor(id ="activeCount")
@@ -90,8 +102,18 @@ private fun decoupledConstraints(): ConstraintSet {
         val deceasedCard = createRefFor(id ="deceasedCard")
         val testConductedCard = createRefFor(id ="testConductedCard")
 
+        constrain(countryFlag) {
+            top.linkTo(anchor = countryName.top)
+            end.linkTo(anchor = countryName.start)
+            start.linkTo(anchor = parent.start)
+            bottom.linkTo(anchor = countryName.bottom)
+        }
         constrain(countryName) {
             top.linkTo(anchor = parent.top)
+            start.linkTo(anchor = countryFlag.end)
+            end.linkTo(anchor = parent.end)
+            bottom.linkTo(anchor = confirmedCases.top)
+            width = Dimension.fillToConstraints
         }
         constrain(confirmedCases) {
             top.linkTo(anchor = countryName.bottom)

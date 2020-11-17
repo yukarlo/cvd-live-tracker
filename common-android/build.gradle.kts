@@ -36,6 +36,7 @@ dependencies {
     implementation(LibraryDependency.Compose.MATERIAL)
     implementation(LibraryDependency.Compose.RUNTIME)
     implementation(LibraryDependency.Compose.UI_TOOLING)
+    implementation("dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1")
 
     addDaggerDependencies()
 }
