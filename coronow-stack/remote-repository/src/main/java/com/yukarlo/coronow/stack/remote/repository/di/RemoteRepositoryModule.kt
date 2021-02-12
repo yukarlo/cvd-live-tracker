@@ -7,15 +7,17 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class RemoteRepositoryModule {
     @Binds
+    @ViewModelScoped
     abstract fun bindRemoteRepository(
         mCvdCasesRemoteRepository: CvdCasesRemoteRepository
     ): ICvdCasesRemoteRepository
@@ -23,6 +25,7 @@ abstract class RemoteRepositoryModule {
     companion object {
 
         @Provides
+        @ViewModelScoped
         fun provideCvdCasesApiService(
             okHttpClient: OkHttpClient,
             baseUrl: String,

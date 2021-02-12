@@ -1,22 +1,23 @@
 package com.yukarlo.ui.country.details
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.yukarlo.base.BaseViewModel
 import com.yukarlo.common.android.CountryInputModel
 import com.yukarlo.coronow.stack.cases.domain.GetCountryDetailsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
-internal class CountryDetailsViewModel @ViewModelInject constructor(
+@HiltViewModel
+internal class CountryDetailsViewModel @Inject constructor(
     private val mGetCountryDetailsUseCase: GetCountryDetailsUseCase,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<CountryDetailsViewState, CountryDetailsViewEvent, CountryDetailsViewAction>(
     CountryDetailsViewState()
 ) {

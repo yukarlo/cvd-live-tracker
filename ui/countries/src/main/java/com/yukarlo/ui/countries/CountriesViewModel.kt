@@ -1,7 +1,5 @@
 package com.yukarlo.ui.countries
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -17,6 +15,7 @@ import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoadSuccess
 import com.yukarlo.ui.countries.CountriesViewEvent.CountriesLoading
 import com.yukarlo.ui.countries.CountriesViewEvent.CountriesSortedBy
 import com.yukarlo.ui.countries.model.CountriesUiModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
@@ -24,12 +23,14 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
-internal class CountriesViewModel @ViewModelInject constructor(
+@HiltViewModel
+internal class CountriesViewModel @Inject constructor(
     private val mAddToFavoriteUseCase: AddToFavoriteUseCase,
     private val mGetAllCountriesCasesUseCase: GetAllCountriesCasesUseCase,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<CountriesViewState, CountriesViewEvent, CountriesViewAction>(CountriesViewState()) {
 
     private lateinit var completeCountryList: List<CasesCountriesModel>

@@ -5,13 +5,15 @@ import com.yukarlo.coronow.stack.local.repository.ICvdCasesLocalRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class LocalRepositoryModule {
 
     @Binds
+    @ViewModelScoped
     abstract fun bindLocalRepository(
         mCvdCasesLocalRepository: CvdCasesLocalRepository
     ): ICvdCasesLocalRepository
