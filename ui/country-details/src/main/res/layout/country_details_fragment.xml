@@ -8,81 +8,79 @@
     tools:context=".CountryDetailsFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/CountryDetailsCountryImageView"
+        android:id="@+id/countryDetailsCountryImageView"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:foregroundGravity="center"
         android:src="@drawable/ic_covid_19"
-        app:layout_constraintBottom_toBottomOf="@+id/CountryDetailsCountryHeader"
-        app:layout_constraintEnd_toStartOf="@+id/CountryDetailsCountryHeader"
+        app:layout_constraintBottom_toBottomOf="@+id/countryDetailsCountryHeader"
+        app:layout_constraintEnd_toStartOf="@+id/countryDetailsCountryHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/CountryDetailsCountryHeader" />
+        app:layout_constraintTop_toTopOf="@+id/countryDetailsCountryHeader" />
 
     <TextView
-        android:id="@+id/CountryDetailsCountryHeader"
+        android:id="@+id/countryDetailsCountryHeader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginBottom="12dp"
-        android:text="Sample"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/CountryDetailsConfirmedCasesTitle"
+        app:layout_constraintBottom_toTopOf="@+id/countryDetailsActiveCasesTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CountryDetailsCountryImageView"
+        app:layout_constraintStart_toEndOf="@+id/countryDetailsCountryImageView"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Philippines - Covid19 Cases" />
 
     <TextView
-        android:id="@+id/CountryDetailsConfirmedCasesTitle"
+        android:id="@+id/countryDetailsActiveCasesTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total Confirmed Cases"
+        android:text="@string/currently_active_cases"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/CountryDetailsConfirmedCasesCount"
+        app:layout_constraintBottom_toTopOf="@+id/countryDetailsActiveCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countryDetailsCountryHeader" />
+
+    <TextView
+        android:id="@+id/countryDetailsActiveCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/countryDetailsConfirmedCasesTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countryDetailsActiveCasesTitle"
+        tools:text="123,123,123" />
+
+    <TextView
+        android:id="@+id/countryDetailsConfirmedCasesTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/total_confirmed_cases"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/countryDetailsConfirmedCasesCount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CountryDetailsCountryHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/countryDetailsActiveCount" />
 
     <TextView
-        android:id="@+id/CountryDetailsConfirmedCasesCount"
+        android:id="@+id/countryDetailsConfirmedCasesCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:text="0"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/CountryDetailsActiveCasesTitle"
+        app:layout_constraintBottom_toTopOf="@+id/countryDetailsCriticalCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CountryDetailsConfirmedCasesTitle"
-        tools:text="123,123,123" />
-
-    <TextView
-        android:id="@+id/CountryDetailsActiveCasesTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Currently Active Cases"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/CountryDetailsConfirmedCasesCount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/CountryDetailsActiveCount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CountryDetailsActiveCasesTitle"
+        app:layout_constraintTop_toBottomOf="@+id/countryDetailsConfirmedCasesTitle"
         tools:text="123,123,123" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/CountryDetailsCriticalCardView"
+        android:id="@+id/countryDetailsCriticalCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -91,53 +89,53 @@
         app:cardBackgroundColor="@color/yellow300"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/CountryDetailsRecoveredCardView"
+        app:layout_constraintEnd_toStartOf="@+id/countryDetailsRecoveredCardView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CountryDetailsActiveCount">
+        app:layout_constraintTop_toBottomOf="@+id/countryDetailsConfirmedCasesCount">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/CountryDetailsCriticalConstraintLayout"
+            android:id="@+id/countryDetailsCriticalConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="10dp"
             android:paddingTop="40dp"
             android:paddingEnd="10dp"
             android:paddingBottom="40dp"
-            app:layout_constraintEnd_toStartOf="@+id/CountryDetailsRecoveredConstraintLayout"
+            app:layout_constraintEnd_toStartOf="@+id/countryDetailsRecoveredConstraintLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/CountryDetailsCriticalCount"
+                android:id="@+id/countryDetailsCriticalCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/gray00"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/CountryDetailsCriticalTitle"
+                app:layout_constraintBottom_toTopOf="@+id/countryDetailsCriticalTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="111,200,433" />
 
             <TextView
-                android:id="@+id/CountryDetailsCriticalTitle"
+                android:id="@+id/countryDetailsCriticalTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Critical"
+                android:text="@string/critical"
                 android:textColor="@color/gray00"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/CountryDetailsCriticalCount"
-                app:layout_constraintStart_toStartOf="@+id/CountryDetailsCriticalCount"
-                app:layout_constraintTop_toBottomOf="@+id/CountryDetailsCriticalCount" />
+                app:layout_constraintEnd_toEndOf="@+id/countryDetailsCriticalCount"
+                app:layout_constraintStart_toStartOf="@+id/countryDetailsCriticalCount"
+                app:layout_constraintTop_toBottomOf="@+id/countryDetailsCriticalCount" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/CountryDetailsRecoveredCardView"
+        android:id="@+id/countryDetailsRecoveredCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -147,8 +145,8 @@
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CountryDetailsCriticalCardView"
-        app:layout_constraintTop_toBottomOf="@+id/CountryDetailsActiveCount">
+        app:layout_constraintStart_toEndOf="@+id/countryDetailsCriticalCardView"
+        app:layout_constraintTop_toBottomOf="@+id/countryDetailsConfirmedCasesCount">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/CountryDetailsRecoveredConstraintLayout"
@@ -158,41 +156,41 @@
             android:paddingTop="40dp"
             android:paddingEnd="10dp"
             android:paddingBottom="40dp"
-            app:layout_constraintEnd_toEndOf="@+id/CountryDetailsCriticalCardView"
+            app:layout_constraintEnd_toEndOf="@+id/countryDetailsCriticalCardView"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/CountryDetailsCriticalConstraintLayout">
+            app:layout_constraintStart_toEndOf="@+id/countryDetailsCriticalConstraintLayout">
 
             <TextView
-                android:id="@+id/CountryDetailsRecoveredCount"
+                android:id="@+id/countryDetailsRecoveredCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/gray00"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/CountryDetailsRecoveredTitle"
+                app:layout_constraintBottom_toTopOf="@+id/countryDetailsRecoveredTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="109,299,433" />
 
             <TextView
-                android:id="@+id/CountryDetailsRecoveredTitle"
+                android:id="@+id/countryDetailsRecoveredTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/recovered"
                 android:textColor="@color/gray00"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/CountryDetailsRecoveredCount"
-                app:layout_constraintStart_toStartOf="@+id/CountryDetailsRecoveredCount"
-                app:layout_constraintTop_toBottomOf="@+id/CountryDetailsRecoveredCount" />
+                app:layout_constraintEnd_toEndOf="@+id/countryDetailsRecoveredCount"
+                app:layout_constraintStart_toStartOf="@+id/countryDetailsRecoveredCount"
+                app:layout_constraintTop_toBottomOf="@+id/countryDetailsRecoveredCount" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/CountryDetailsDeceasedCardView"
+        android:id="@+id/countryDetailsDeceasedCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -201,12 +199,12 @@
         app:cardBackgroundColor="@color/red300"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/CountryDetailsTestsCardView"
+        app:layout_constraintEnd_toStartOf="@+id/countryDetailsTestsCardView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CountryDetailsCriticalCardView">
+        app:layout_constraintTop_toBottomOf="@+id/countryDetailsCriticalCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/CountryDetailsDeceasedConstraintLayout"
+            android:id="@+id/countryDetailsDeceasedConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="10dp"
@@ -215,35 +213,35 @@
             android:paddingBottom="40dp">
 
             <TextView
-                android:id="@+id/CountryDetailsDeceasedCount"
+                android:id="@+id/countryDetailsDeceasedCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/gray00"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/CountryDetailsDeceasedTitle"
+                app:layout_constraintBottom_toTopOf="@+id/countryDetailsDeceasedTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="1,200,000" />
 
             <TextView
-                android:id="@+id/CountryDetailsDeceasedTitle"
+                android:id="@+id/countryDetailsDeceasedTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/deceased"
                 android:textColor="@color/gray00"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/CountryDetailsDeceasedCount"
-                app:layout_constraintStart_toStartOf="@+id/CountryDetailsDeceasedCount"
-                app:layout_constraintTop_toBottomOf="@+id/CountryDetailsDeceasedCount" />
+                app:layout_constraintEnd_toEndOf="@+id/countryDetailsDeceasedCount"
+                app:layout_constraintStart_toStartOf="@+id/countryDetailsDeceasedCount"
+                app:layout_constraintTop_toBottomOf="@+id/countryDetailsDeceasedCount" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/CountryDetailsTestsCardView"
+        android:id="@+id/countryDetailsTestsCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -253,11 +251,11 @@
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/CountryDetailsDeceasedCardView"
-        app:layout_constraintTop_toBottomOf="@+id/CountryDetailsRecoveredCardView">
+        app:layout_constraintStart_toEndOf="@+id/countryDetailsDeceasedCardView"
+        app:layout_constraintTop_toBottomOf="@+id/countryDetailsRecoveredCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/CountryDetailsTestsConstraintLayout"
+            android:id="@+id/countryDetailsTestsConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="10dp"
@@ -266,30 +264,30 @@
             android:paddingBottom="40dp">
 
             <TextView
-                android:id="@+id/CountryDetailsTestsCount"
+                android:id="@+id/countryDetailsTestsCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/gray00"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/CountryDetailsTestsTitle"
+                app:layout_constraintBottom_toTopOf="@+id/countryDetailsTestsTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="750,002,294" />
 
             <TextView
-                android:id="@+id/CountryDetailsTestsTitle"
+                android:id="@+id/countryDetailsTestsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Tests Conducted"
+                android:text="@string/tests_conducted"
                 android:textColor="@color/gray00"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/CountryDetailsTestsCount"
-                app:layout_constraintStart_toStartOf="@+id/CountryDetailsTestsCount"
-                app:layout_constraintTop_toBottomOf="@+id/CountryDetailsTestsCount" />
+                app:layout_constraintEnd_toEndOf="@+id/countryDetailsTestsCount"
+                app:layout_constraintStart_toStartOf="@+id/countryDetailsTestsCount"
+                app:layout_constraintTop_toBottomOf="@+id/countryDetailsTestsCount" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
