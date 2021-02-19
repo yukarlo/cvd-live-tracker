@@ -25,7 +25,6 @@ import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
-@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
 @HiltViewModel
 internal class CountriesViewModel @Inject constructor(
     private val mAddToFavoriteUseCase: AddToFavoriteUseCase,

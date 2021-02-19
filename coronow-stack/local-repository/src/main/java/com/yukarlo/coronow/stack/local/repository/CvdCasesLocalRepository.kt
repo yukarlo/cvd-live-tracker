@@ -10,7 +10,6 @@ import java.util.*
 import javax.inject.Inject
 import kotlin.time.milliseconds
 
-@OptIn(kotlin.time.ExperimentalTime::class)
 class CvdCasesLocalRepository @Inject constructor(
     private val database: cvdDatabase
 ) : ICvdCasesLocalRepository {

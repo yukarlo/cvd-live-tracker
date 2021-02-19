@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.properties.Delegates
 
-@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEvent, ViewAction : BaseViewAction>(
     initialSate: ViewState
 ) : ViewModel() {
