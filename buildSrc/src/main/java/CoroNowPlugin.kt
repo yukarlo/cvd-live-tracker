@@ -7,9 +7,6 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.io.File
 
 class CoroNowPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -29,8 +26,6 @@ class CoroNowPlugin : Plugin<Project> {
 
     private fun setUpAndroidModules(extension: BaseAppModuleExtension, project: Project) {
         extension.apply {
-            buildFeatures.dataBinding = true
-
             defaultConfig.apply {
                 applicationId = AndroidConfig.APP_ID
             }
@@ -41,28 +36,13 @@ class CoroNowPlugin : Plugin<Project> {
 
     private fun setUpLibraryModule(extension: LibraryExtension, project: Project) {
         extension.apply {
-            buildFeatures.dataBinding = true
-
             setUpCommon(project = project, extension = extension)
         }
     }
 
     private fun setUpCommon(project: Project, extension: BaseExtension) {
         with(extension) {
-
-            project.allprojects {
-                tasks.withType(KotlinCompile::class.java).all {
-                    kotlinOptions.freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
-                }
-            }
-
             buildFeatures.viewBinding = true
-
-            project.tasks.withType<KotlinCompile> {
-                kotlinOptions {
-                    jvmTarget = JavaVersion.VERSION_1_8.toString()
-                }
-            }
 
             compileOptions.apply {
                 sourceCompatibility = JavaVersion.VERSION_1_8

@@ -23,8 +23,10 @@ import com.yukarlo.ui.countries.adapter.CasesCountryOptionsAdapter
 import com.yukarlo.ui.countries.databinding.CountriesFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.bottom_sheet_sorting.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -104,9 +106,11 @@ internal class CountriesFragment
             .onEach { state -> render(state = state) }
             .launchIn(lifecycleScope)
 
-        mViewModel.onNavigate.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { navDirections ->
-                findNavController().navigate(navDirections)
+        lifecycleScope.launch {
+            mViewModel.onNavigate.collect {
+                it.getContentIfNotHandled()?.let { navDirections ->
+                    findNavController().navigate(navDirections)
+                }
             }
         }
 

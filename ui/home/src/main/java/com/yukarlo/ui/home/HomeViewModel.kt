@@ -1,12 +1,7 @@
 package com.yukarlo.ui.home
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavDirections
 import com.yukarlo.base.BaseViewModel
-import com.yukarlo.base.SingleEvent
 import com.yukarlo.core.domain.model.CasesContinentsModel
 import com.yukarlo.core.domain.model.CasesSummaryModel
 import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesContinentsUseCase
@@ -14,6 +9,7 @@ import com.yukarlo.coronow.stack.cases.domain.GetCvdCasesSummaryUseCase
 import com.yukarlo.ui.home.HomeViewEvent.HomeLoadSuccess
 import com.yukarlo.ui.home.HomeViewEvent.HomeLoading
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
@@ -21,9 +17,10 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
-internal class HomeViewModel @ViewModelInject constructor(
+@HiltViewModel
+internal class HomeViewModel @Inject constructor(
     private val mGetCvdCasesSummaryUseCase: GetCvdCasesSummaryUseCase,
     private val mGetCvdCasesContinentsUseCase: GetCvdCasesContinentsUseCase
 ) : BaseViewModel<HomeViewState, HomeViewEvent, HomeViewAction>(HomeViewState()) {

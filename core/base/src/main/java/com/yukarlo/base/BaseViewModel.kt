@@ -1,15 +1,14 @@
 package com.yukarlo.base
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.properties.Delegates
 
-@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEvent, ViewAction : BaseViewAction>(
     initialSate: ViewState
 ) : ViewModel() {
@@ -20,9 +19,8 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEven
     val onUiStateUpdated: StateFlow<ViewState>
         get() = updateUiState
 
-    private val navigate: MutableLiveData<SingleEvent<NavDirections>> =
-        MutableLiveData<SingleEvent<NavDirections>>()
-    val onNavigate: LiveData<SingleEvent<NavDirections>>
+    private val navigate: MutableSharedFlow<SingleEvent<NavDirections>> = MutableSharedFlow()
+    val onNavigate: SharedFlow<SingleEvent<NavDirections>>
         get() = navigate
 
     protected var state by Delegates.observable(initialSate) { _, _, new ->
@@ -37,8 +35,8 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewEvent : BaseViewEven
         state = onReduceState(viewEvent)
     }
 
-    protected fun sendSingleEvent(navDirections: NavDirections) {
-        navigate.postValue(SingleEvent(content = navDirections))
+    protected suspend fun sendSingleEvent(navDirections: NavDirections) {
+        navigate.emit(SingleEvent(content = navDirections))
     }
 
     protected abstract fun onReduceState(viewEvent: ViewEvent): ViewState

@@ -3,7 +3,7 @@ package com.yukarlo.ui.country.details
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import coil.api.load
+import coil.load
 import com.yukarlo.base.BaseFragment
 import com.yukarlo.base.viewBinding
 import com.yukarlo.common.android.text.TextProvider
@@ -26,7 +26,7 @@ internal class CountryDetailsFragment :
     )
 
     override fun setUpViews() {
-        fragmentBinding.CountryDetailsCountryImageView.isVisible = true
+        fragmentBinding.countryDetailsCountryImageView.isVisible = true
     }
 
     override fun setUpObservers() {
@@ -37,18 +37,18 @@ internal class CountryDetailsFragment :
 
     override fun render(state: CountryDetailsViewState) {
         with(state.details) {
-            fragmentBinding.CountryDetailsCountryHeader.text = countryName
-            fragmentBinding.CountryDetailsActiveCount.text =
+            fragmentBinding.countryDetailsCountryHeader.text = countryName
+            fragmentBinding.countryDetailsActiveCount.text =
                 mTextProvider.formatNumber(totalActiveCount)
-            fragmentBinding.CountryDetailsConfirmedCasesCount.text =
+            fragmentBinding.countryDetailsConfirmedCasesCount.text =
                 mTextProvider.formatNumber(totalCasesCount)
-            fragmentBinding.CountryDetailsDeceasedCount.text =
+            fragmentBinding.countryDetailsDeceasedCount.text =
                 mTextProvider.formatNumber(totalDeceasedCount)
-            fragmentBinding.CountryDetailsRecoveredCount.text =
+            fragmentBinding.countryDetailsRecoveredCount.text =
                 mTextProvider.formatNumber(totalRecoveredCount)
-            fragmentBinding.CountryDetailsCriticalCount.text = mTextProvider.formatNumber(critical)
-            fragmentBinding.CountryDetailsTestsCount.text = mTextProvider.formatNumber(tests)
-            fragmentBinding.CountryDetailsCountryImageView.load(countryFlag)
+            fragmentBinding.countryDetailsCriticalCount.text = mTextProvider.formatNumber(critical)
+            fragmentBinding.countryDetailsTestsCount.text = mTextProvider.formatNumber(tests)
+            fragmentBinding.countryDetailsCountryImageView.load(countryFlag)
         }
     }
 }

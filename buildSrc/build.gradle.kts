@@ -11,6 +11,10 @@ gradlePlugin {
     }
 }
 
+kotlinDslPluginOptions {
+    experimentalWarning.set(false)
+}
+
 repositories {
     google()
     jcenter()

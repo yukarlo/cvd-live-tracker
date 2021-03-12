@@ -19,8 +19,10 @@ import com.yukarlo.ui.home.adapter.homeSummaryDelegate
 import com.yukarlo.ui.home.adapter.model.HomeBaseItem
 import com.yukarlo.ui.home.databinding.HomeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -63,9 +65,11 @@ internal class HomeFragment
             .onEach { state -> render(state = state) }
             .launchIn(lifecycleScope)
 
-        mViewModel.onNavigate.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { navDirections ->
-                findNavController().navigate(navDirections)
+        lifecycleScope.launch {
+            mViewModel.onNavigate.collect {
+                it.getContentIfNotHandled()?.let { navDirections ->
+                    findNavController().navigate(navDirections)
+                }
             }
         }
     }
